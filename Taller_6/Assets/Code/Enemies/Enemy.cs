@@ -6,11 +6,13 @@ namespace Enemies
 {
     public abstract class Enemy : MonoBehaviour
     {
-        protected float speed;
+        [SerializeField] protected float speed;
         protected float take_Down_Door_Timer;
-        protected float doorTimer;
+        protected float door_Timer;
         protected int Life;
         [SerializeField] private EnemyConfig config;
+        protected int way_Point_Index;
+        protected Transform target;
 
         protected enum BehaviourParams
         {
@@ -35,11 +37,13 @@ namespace Enemies
         }
 
         private void Death(){}
-        private void Config()
+        protected virtual void Config()
         {
             this.speed = config.speed;
             this.take_Down_Door_Timer = config.take_Down_Door_Timer;
             this.Life = config.Life;
+            way_Point_Index = 0;
+            currentBehaviour = BehaviourParams.Moving_Towars_Target;
         }
 
         void OnTriggerEnter2D(Collider2D col)
