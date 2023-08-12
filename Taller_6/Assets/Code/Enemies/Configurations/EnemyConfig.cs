@@ -8,7 +8,8 @@ namespace Enemies
     public class EnemyConfig : ScriptableObject
     {
         public float speed;
-        public float take_Down_Door_Timer;
+        public float door_Damage;
         public int Life;
+        public int path_Index;
     }
 }

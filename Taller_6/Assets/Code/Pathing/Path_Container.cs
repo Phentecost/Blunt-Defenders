@@ -1,13 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
-namespace Enemies
+public class Path_Container : MonoBehaviour
 {
-    public class Bachitombo : Enemy
-    {
-        
-    }
-
+    public int Index;
 }
-

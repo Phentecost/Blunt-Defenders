@@ -1,18 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WayPointManager : MonoBehaviour
 {
-    [SerializeField] private GameObject Path1_Container;
-    public static Transform[] Path1 {get; private set;}
+    public Path_Container[] path_Containers;
+    public static List<Transform>[] Paths {get; private set;}
 
     void Awake()
     {
-        Path1 = new Transform[Path1_Container.transform.childCount];
-        for (int i = 0; i < Path1.Length; i++)
+
+        path_Containers = GameObject.FindObjectsOfType<Path_Container>();
+        Array.Sort(path_Containers, delegate(Path_Container a , Path_Container b){ return a.Index.CompareTo(b.Index);});
+
+        Paths = new List<Transform>[path_Containers.Length];
+        for (int i = 0; i < Paths.Length; i++)
         {
-            Path1[i] = Path1_Container.transform.GetChild(i);
+            Paths[i] = new List<Transform>();
+            for (int j = 0; j < path_Containers[i].transform.childCount; j++)
+            {
+                Paths[i].Add(path_Containers[i].transform.GetChild(j));
+                
+            }
         }
     }
 }
