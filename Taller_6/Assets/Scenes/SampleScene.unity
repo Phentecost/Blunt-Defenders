@@ -153,6 +153,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bachitombo_Prefab: {fileID: 319473559983075376, guid: 121ed758832c738418d2fd362d93d90a, type: 3}
+  _bachitombo_Pool_Default_Capacity: 20
+  _bachitombo_Pool_Max_Capacity: 30
+  _bachitombo_Pool_Collection_Check: 0
+  _tombo_Prefab: {fileID: 8051348774956833821, guid: 6a172c969e6685347a0fe65c1e5e418f, type: 3}
+  _tombo_Pool_Default_Capacity: 20
+  _tombo_Pool_Max_Capacity: 30
+  _tombo_Pool_Collection_Check: 0
+  _tombo_Tactico_Prefab: {fileID: 1993459587590395623, guid: d946d8f932cf9a6488cf5c273e6fc3ee, type: 3}
+  _tombo_Tactico_Pool_Default_Capacity: 20
+  _tombo_Tactico_Pool_Max_Capacity: 30
+  _tombo_Tactico_Pool_Collection_Check: 0
+  _tombo_Con_Perro_Prefab: {fileID: 6276957664225705339, guid: d479b263f195d674fb51811fc09d1c0b, type: 3}
+  _tombo_Con_Pero_Pool_Default_Capacity: 20
+  _tombo_Con_Pero_Pool_Max_Capacity: 30
+  _tombo_Con_Perro_Pool_Collection_Check: 0
+  _esmad_Prefab: {fileID: 7108776506125598023, guid: 545830e300f553b4a84128a6c0dada64, type: 3}
+  _esmad_Pool_Default_Capacity: 20
+  _esmad_Pool_Max_Capacity: 30
+  _esmad_Pool_Collection_Check: 0
 --- !u!4 &275491067
 Transform:
   m_ObjectHideFlags: 0
@@ -161,7 +180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275491065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.0947814, y: 6.1949644, z: 0.2708647}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -413,6 +432,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1828161104}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &560144041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 560144043}
+  - component: {fileID: 560144042}
+  m_Layer: 0
+  m_Name: Wave_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &560144042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560144041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e61319240babf04f9a62f41ea60fc7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wave_Index: 0
+  _wave:
+    _bachitombo_Count: 0
+    _tombo_Count: 0
+    _tombo_Tactico_Count: 0
+    _tombo_Con_Perro_Count: 0
+    _esmad_Count: 0
+--- !u!4 &560144043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560144041}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8552691, y: 9.284054, z: 0.85591024}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &567037005
 GameObject:
