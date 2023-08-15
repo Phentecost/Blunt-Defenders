@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
 using UnityEngine.Pool;
+using TMPro;
 
 public class Enemy_Spawn_System : MonoBehaviour
 {
@@ -52,6 +53,9 @@ public class Enemy_Spawn_System : MonoBehaviour
 
     public static Enemy_Spawn_System Instance {get; private set;} = null;
     public static event Action OnWaveEnd;
+
+    public TextMeshProUGUI text;
+    private int puntaje= 0;
 
     void Awake()
     {
@@ -119,6 +123,8 @@ public class Enemy_Spawn_System : MonoBehaviour
         _spawned_Enemy_Wave = new List<Enemy>();
 
         //Fill_Pools();
+
+        text.text = "Points: " + puntaje;
     }
 
     void Update()
@@ -226,9 +232,13 @@ public class Enemy_Spawn_System : MonoBehaviour
         _active_Wave = true;
     }
 
-    private void OnDeath(Enemy enemy)
+    private void OnDeath(Enemy enemy, int i)
     {
         _spawned_Enemy_Wave.Remove(enemy);
+
+        puntaje += i;
+
+        text.text = "Points: " + puntaje;
 
         if(enemy is Bachitombo){_bachitombo_Pool.Release((Bachitombo)enemy);}
         else if (enemy is Tombo){_tombo_Pool.Release((Tombo)enemy);}

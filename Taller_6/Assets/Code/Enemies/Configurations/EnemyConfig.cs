@@ -11,5 +11,6 @@ namespace Enemies
         public float door_Damage;
         public int Life;
         public int path_Index;
+        public int points;
     }
 }

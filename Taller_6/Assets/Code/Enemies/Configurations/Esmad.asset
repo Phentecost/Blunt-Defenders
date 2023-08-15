@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   door_Damage: 0
-  Life: 1
+  Life: 3
   path_Index: 1
+  points: 5

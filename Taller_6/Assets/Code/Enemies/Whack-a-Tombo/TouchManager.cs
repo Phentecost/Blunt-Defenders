@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Enemies;
 using UnityEngine;
 
 public class TouchManager : MonoBehaviour
@@ -8,6 +10,9 @@ public class TouchManager : MonoBehaviour
 
     private Vector2 _screen_Position;
     private Vector2 _world_Position;
+
+    private float time_Between_Touches = 0.2f;
+    private float _timer;
     void Awake()
     {
         if(Instance != null)
@@ -22,11 +27,11 @@ public class TouchManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.touchCount > 0)
+        if(Input.touchCount > 0 && _timer <= 0)
         {
             _screen_Position = Input.GetTouch(0).position;
         }
-        else if( Input.GetMouseButton(0))
+        else if( Input.GetMouseButton(0) && _timer <= 0)
         {
             Vector3 mouse_Pos = Input.mousePosition;
             _screen_Position = new Vector2(mouse_Pos.x,mouse_Pos.y);
@@ -34,6 +39,7 @@ public class TouchManager : MonoBehaviour
         }
         else
         {
+            _timer -= Time.deltaTime;
             return;
         }
 
@@ -43,7 +49,13 @@ public class TouchManager : MonoBehaviour
 
         if(hit.collider != null)
         {
-            //hit.collider.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            Enemy x = hit.collider.GetComponent<Enemy>();
+
+            if(x != null)
+            {
+                x.OnTouched();
+                _timer = time_Between_Touches;
+            }
         }
     }
 }

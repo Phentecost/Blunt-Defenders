@@ -15,7 +15,8 @@ namespace Enemies
         protected int way_Point_Index;
         protected Transform target;
         private int path_Index;
-        private Action<Enemy> _OnDeath;
+        private Action<Enemy,int> _OnDeath;
+        private int points;
 
         protected enum BehaviourParams
         {
@@ -69,10 +70,14 @@ namespace Enemies
             {
                 Behaviour();
             }
+            else if(Life <= 0)
+            {
+                Death();
+            }
         }
 
-        private void Death(){_OnDeath(this);}
-        public void Config(Action<Enemy> _OnDeath)
+        private void Death(){_OnDeath(this,points);}
+        public void Config(Action<Enemy, int> _OnDeath)
         {
             this.speed = config.speed;
             this.door_Damage = config.door_Damage;
@@ -83,7 +88,14 @@ namespace Enemies
             way_Point_Index++; 
             target = WayPointManager.Paths[path_Index][way_Point_Index];
             this._OnDeath = _OnDeath;
+            this.points = config.points;
             currentBehaviour = BehaviourParams.Moving_Towars_Target;
+        }
+
+        public void OnTouched()
+        {
+            Life --;
+            Debug.Log("Me dieron");
         }
 
         void OnTriggerEnter2D(Collider2D col)
