@@ -1,3 +1,4 @@
+using Enemies;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,11 @@ using UnityEngine;
 public class TrapsFather : MonoBehaviour
 {
 
-    [SerializeField] int healt;
-    [SerializeField] int ammo;
-    Rigidbody2D rgbd2D;
-    [SerializeField] GameObject Projectile;
+    [SerializeField] protected int healt;
+    [SerializeField] protected int ammo;
+    [SerializeField] protected GameObject Projectile;
+    protected Rigidbody2D Rigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,4 +22,18 @@ public class TrapsFather : MonoBehaviour
     {
 
     }
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        Enemy enemycontroller = collision.gameObject.GetComponent<Enemy>();
+        if (enemycontroller != null)
+        {
+            DoSomething();
+        }
+    }
+
+    public void DoSomething()
+    {
+
+    }
+
 }
