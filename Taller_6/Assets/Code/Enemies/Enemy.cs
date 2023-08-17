@@ -15,7 +15,9 @@ namespace Enemies
         protected int way_Point_Index;
         protected Transform target;
         private int path_Index;
-        private Action<Enemy> _OnDeath;
+        private Action<Enemy,int> _OnDeath,_OnReach;
+        private int points;
+        private int damage_To_Player;
 
         protected enum BehaviourParams
         {
@@ -35,7 +37,7 @@ namespace Enemies
                       way_Point_Index = 0;
                       target = WayPointManager.Paths[path_Index][way_Point_Index];
                       currentBehaviour = BehaviourParams.Moving_Towars_Target;*/
-                      Death();
+                      Reach();
                       break;
                     }
 
@@ -69,21 +71,35 @@ namespace Enemies
             {
                 Behaviour();
             }
+            else if(Life <= 0)
+            {
+                Death();
+            }
         }
 
-        private void Death(){_OnDeath(this);}
-        public void Config(Action<Enemy> _OnDeath)
+        private void Death(){_OnDeath(this,points);}
+        private void Reach(){_OnReach(this,damage_To_Player);}
+        public void Config(Action<Enemy, int> _OnDeath, Action<Enemy, int> _OnReach)
         {
             this.speed = config.speed;
             this.door_Damage = config.door_Damage;
             this.Life = config.Life;
+            this.damage_To_Player = config.damage_To_Player;
             way_Point_Index = 0;
             path_Index = config.path_Index;
             transform.position = WayPointManager.Paths[path_Index][way_Point_Index].position;
             way_Point_Index++; 
             target = WayPointManager.Paths[path_Index][way_Point_Index];
             this._OnDeath = _OnDeath;
+            this._OnReach = _OnReach;
+            this.points = config.points;
             currentBehaviour = BehaviourParams.Moving_Towars_Target;
+        }
+
+        public void OnTouched()
+        {
+            Life --;
+            Debug.Log("Me dieron");
         }
 
         void OnTriggerEnter2D(Collider2D col)

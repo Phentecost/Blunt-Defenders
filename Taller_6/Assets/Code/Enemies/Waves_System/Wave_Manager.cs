@@ -2,14 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Wave_Manager : MonoBehaviour
 {
     public static Wave_Manager Instance {get;private set;} = null;
 
-    public int _wave_Index = 0;
+    private int _wave_Index = 0;
 
-    public Wave _wave;
+    private Wave _wave;
+
+    public TextMeshProUGUI txt;
 
     void Awake()
     {
@@ -20,6 +23,8 @@ public class Wave_Manager : MonoBehaviour
         }
 
         Instance = this;
+
+        _wave = new Wave();
     }
 
     void Start()
@@ -36,14 +41,14 @@ public class Wave_Manager : MonoBehaviour
     void StartWave()
     {
         _wave_Index++;
-        Debug.Log("Ronda: "+_wave_Index);
+        txt.text = "Round: " + _wave_Index;
         Increase_Dificulty();
         StartCoroutine(Enemy_Spawn_System.Instance.SpawnWave(_wave));
     }
 
     void OnWaveEnds()
     {
-        StartWave();
+        StartCoroutine(NextWave());
     }
 
     IEnumerator NextWave()

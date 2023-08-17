@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
 using UnityEngine.Pool;
+using TMPro;
 
 public class Enemy_Spawn_System : MonoBehaviour
 {
@@ -52,6 +53,9 @@ public class Enemy_Spawn_System : MonoBehaviour
 
     public static Enemy_Spawn_System Instance {get; private set;} = null;
     public static event Action OnWaveEnd;
+
+    public TextMeshProUGUI text;
+    private int puntaje= 0;
 
     void Awake()
     {
@@ -119,6 +123,8 @@ public class Enemy_Spawn_System : MonoBehaviour
         _spawned_Enemy_Wave = new List<Enemy>();
 
         //Fill_Pools();
+
+        text.text = "Points: " + puntaje;
     }
 
     void Update()
@@ -175,7 +181,7 @@ public class Enemy_Spawn_System : MonoBehaviour
             {
                 var enemy = _bachitombo_Pool.Get();
                 _spawned_Enemy_Wave.Add(enemy);
-                enemy.Config(OnDeath);
+                enemy.Config(OnDeath,OnReach);
                 yield return new WaitForSeconds(0.2f);
             }
         }
@@ -186,7 +192,7 @@ public class Enemy_Spawn_System : MonoBehaviour
             {
                 var enemy = _tombo_Pool.Get();
                 _spawned_Enemy_Wave.Add(enemy);
-                enemy.Config(OnDeath);
+                enemy.Config(OnDeath,OnReach);
                 yield return new WaitForSeconds(0.2f);
             }
         }
@@ -197,7 +203,7 @@ public class Enemy_Spawn_System : MonoBehaviour
             {
                 var enemy = _tombo_Tactico_Pool.Get();
                 _spawned_Enemy_Wave.Add(enemy);
-                enemy.Config(OnDeath);
+                enemy.Config(OnDeath,OnReach);
                 yield return new WaitForSeconds(0.2f);
             }
         }
@@ -208,7 +214,7 @@ public class Enemy_Spawn_System : MonoBehaviour
             {
                 var enemy = _tombo_Con_Pero_Pool.Get();
                 _spawned_Enemy_Wave.Add(enemy);
-                enemy.Config(OnDeath);
+                enemy.Config(OnDeath,OnReach);
                 yield return new WaitForSeconds(0.2f);
             }
         }
@@ -219,17 +225,30 @@ public class Enemy_Spawn_System : MonoBehaviour
             {
                 var enemy = _esmad_Pool.Get();
                 _spawned_Enemy_Wave.Add(enemy);
-                enemy.Config(OnDeath);
+                enemy.Config(OnDeath,OnReach);
                 yield return new WaitForSeconds(0.2f);
             }
         }
         _active_Wave = true;
     }
 
-    private void OnDeath(Enemy enemy)
+    private void OnDeath(Enemy enemy, int i)
+    {
+        puntaje += i;
+        text.text = "Points: " + puntaje;
+
+        RemoveEnemy(enemy);
+    }
+
+    private void OnReach(Enemy enemy, int i)
+    {
+        Health.Instance.TakeDamage(i);
+        RemoveEnemy(enemy);
+    }
+
+    private void RemoveEnemy(Enemy enemy)
     {
         _spawned_Enemy_Wave.Remove(enemy);
-
         if(enemy is Bachitombo){_bachitombo_Pool.Release((Bachitombo)enemy);}
         else if (enemy is Tombo){_tombo_Pool.Release((Tombo)enemy);}
         else if (enemy is Tombo_Tactico){_tombo_Tactico_Pool.Release((Tombo_Tactico)enemy);}

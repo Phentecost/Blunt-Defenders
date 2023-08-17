@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WayPointManager : MonoBehaviour
 {
-    public Path_Container[] path_Containers;
+    private Path_Container[] path_Containers;
     public static List<Transform>[] Paths {get; private set;}
 
     void Awake()
