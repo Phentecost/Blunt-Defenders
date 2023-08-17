@@ -8,7 +8,6 @@ public class TrapsFather : MonoBehaviour
 
     [SerializeField] protected int healt;
     [SerializeField] protected int ammo;
-    [SerializeField] protected GameObject Projectile;
     protected Rigidbody2D Rigidbody;
 
     // Start is called before the first frame update
