@@ -1,38 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using TMPro;
+using Unity.VisualScripting;
 
 public class Health : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int health;
+    [SerializeField] private int maxHealth = 100;
+    private int health;
+    [SerializeField] private TextMeshProUGUI _health_TXT;
+    public static Health Instance {get; private set;} = null;
 
-    private void Start()
-    {
-        health = maxHealth;
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("PJ")) 
+
+    private void Awake()
+    {   
+        if(Instance != null)
         {
-            TakeDamage(10); 
+            Destroy(this.gameObject);
+            return;
         }
+
+        Instance = this;
+
+        health = maxHealth;
+        _health_TXT.text = "Life: "+health.ToString();
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
 
         if (health <= 0)
         {
             health = 0;
-           
-            Destroy(gameObject);
+
+            UI_Manager.Instance.OnLose();
         }
 
-        Debug.Log("Vida actual: " + health);
+        _health_TXT.text = "Life: "+health.ToString();
     }
 }
