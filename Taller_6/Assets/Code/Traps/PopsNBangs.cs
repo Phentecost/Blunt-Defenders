@@ -16,27 +16,21 @@ public class PopsNBangs : TrapsFather
         range = 6;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void DoSomething()
     {
-        
-    }
-
-    protected void DoSomething()
-    {
-        StartCoroutine(Exploit());
+        //StartCoroutine(Exploit());
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
         foreach (GameObject enemy in enemies)
         {
             if(range >= Vector2.Distance(this.transform.position, enemy.GetComponent<Rigidbody2D>().position))
             {
                 if(enemy.GetComponent<Tombo_Con_Perro>() != null){
-                    /*hacer 1 de daño
+                    /*hacer 1 de daï¿½o
                     espantar al perro*/
                     }
                 else
                 {
-                    //hacer 0.5f de daño
+                    //hacer 0.5f de daï¿½o
                 }
 
             }

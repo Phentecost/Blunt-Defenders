@@ -9,10 +9,4 @@ public class BowlingBall : BulletFather
     {
         this.Damage = 3;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
