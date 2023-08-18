@@ -10,10 +10,4 @@ public class Marble : BulletFather
         this.Damage = 1;
         this.Power = 400;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

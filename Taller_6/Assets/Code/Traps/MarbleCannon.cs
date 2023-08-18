@@ -14,7 +14,7 @@ public class MarbleCannon : TrapsFather
         this.ammo = 10;
     }
 
-    public void DoSomething()
+    protected override void DoSomething()
     {
         Marble bullet = Instantiate(this.Projectile, this.transform.position, Quaternion.identity);
         Vector2 EnemyLocation = this.target.GetComponent<Rigidbody2D>().position;
@@ -22,18 +22,5 @@ public class MarbleCannon : TrapsFather
         bullet.Launch(EnemyLocation);
 
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.GetComponent<Enemy>()!= null)
-        {
-            this.target=collision.gameObject;
-            DoSomething();
-        }
-    }
-
-    IEnumerator cooldown()
-    {
-        yield return new WaitForSeconds(CDTime);
-    }
+    
 }

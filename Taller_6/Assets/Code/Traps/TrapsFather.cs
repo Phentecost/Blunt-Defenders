@@ -6,33 +6,35 @@ using UnityEngine;
 public class TrapsFather : MonoBehaviour
 {
 
-    [SerializeField] protected int healt;
     [SerializeField] protected int ammo;
-    protected Rigidbody2D Rigidbody;
+    private List<Enemy> _Enemy_Inside;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemycontroller = collision.gameObject.GetComponent<Enemy>();
         if (enemycontroller != null)
         {
+            _Enemy_Inside.Add(enemycontroller);
+        }
+    }
+
+    protected void OnTriggerExit(Collider2D collision)
+    {
+        Enemy enemycontroller = collision.gameObject.GetComponent<Enemy>();
+        if (enemycontroller != null)
+        {
+            _Enemy_Inside.Remove(enemycontroller);
+        }
+    }
+
+    void Update()
+    {
+        if(_Enemy_Inside.Count > 0)
+        {
             DoSomething();
         }
     }
 
-    public void DoSomething()
-    {
-
-    }
+    protected virtual void DoSomething(){}
 
 }
