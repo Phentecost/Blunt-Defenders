@@ -18,14 +18,14 @@ public class TrapsFather : MonoBehaviour
         }
     }
 
-    protected void OnTriggerExit(Collider2D collision)
+    /*protected void OnTriggerExit(Collider2D collision)
     {
         Enemy enemycontroller = collision.gameObject.GetComponent<Enemy>();
         if (enemycontroller != null)
         {
             _Enemy_Inside.Remove(enemycontroller);
         }
-    }
+    }*/
 
     void Update()
     {

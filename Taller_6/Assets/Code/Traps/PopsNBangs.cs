@@ -38,11 +38,6 @@ public class PopsNBangs : TrapsFather
         }
 
     }
-    
-    IEnumerator Exploit()
-    {
-        yield return new WaitForSeconds(3f);
-    }
 
  
 }

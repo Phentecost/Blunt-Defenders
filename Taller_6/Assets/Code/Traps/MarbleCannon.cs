@@ -7,8 +7,6 @@ public class MarbleCannon : TrapsFather
 {
     [SerializeField] Marble Projectile;
     GameObject target;
-    float CDTime = 4f;
-
     void Start()
     {
         this.ammo = 10;
