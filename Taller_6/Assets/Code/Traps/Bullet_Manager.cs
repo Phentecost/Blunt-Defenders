@@ -9,16 +9,16 @@ public class Bullet_Manager : MonoBehaviour
     [SerializeField] private Marble marblePrefab;
     [SerializeField] private int marblePool_DefaultCapacity;
     [SerializeField] private int marblePool_MaxCpacity;
-    [SerializeField] private bool marblePool_Check;
+    [SerializeField] public static bool marblePool_Check;
 
     [Header("Bowling Balls")]
     [SerializeField] private BowlingBall bowlPrefab;
     [SerializeField] private int bowlPool_DefaultCapacity;
     [SerializeField] private int bowlPool_MaxCpacity;
-    [SerializeField] private bool bowlPool_Check;
+    [SerializeField] public static bool bowlPool_Check;
 
-    private ObjectPool<Marble> marblePool;
-    private ObjectPool<BowlingBall> bowlPool;
+    public static ObjectPool<Marble> marblePool;
+    public static ObjectPool<BowlingBall> bowlPool;
     public static Bullet_Manager Instance { get; private set; } = null;
 
 
