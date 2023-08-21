@@ -31,6 +31,7 @@ public class BulletFather : MonoBehaviour
         {
             e.OnTouched();
         }
+        Destroy(gameObject);
     }
 
 
