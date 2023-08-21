@@ -14,7 +14,7 @@ public class BowlingCannon : TrapsFather
     protected override void DoSomething()
     {
         BowlingBall bullet = Bullet_Manager.bowlPool_Check ? Bullet_Manager.bowlPool.Get() : Instantiate(this.Projectile, this.transform.position, Quaternion.identity);
-        Vector2 EnemyLocation = this.target.GetComponent<Rigidbody2D>().position;
+        Vector2 EnemyLocation = this.target.transform.position;
         EnemyLocation.Normalize();
         bullet.Launch(EnemyLocation);
 
