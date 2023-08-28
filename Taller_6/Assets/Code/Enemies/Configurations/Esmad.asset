@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Esmad
   m_EditorClassIdentifier: 
   speed: 3
-  door_Damage: 0
+  door_Damage: 20
   Life: 3
   damage_To_Player: 5
-  path_Index: 1
+  path_Index: 0
   points: 5

@@ -29,10 +29,10 @@ public class TrapsFather : MonoBehaviour
 
     void Update()
     {
-        if(_Enemy_Inside.Count > 0)
+        /*if(_Enemy_Inside.Count > 0)
         {
             DoSomething();
-        }
+        }*/
     }
 
     protected virtual void DoSomething(){}

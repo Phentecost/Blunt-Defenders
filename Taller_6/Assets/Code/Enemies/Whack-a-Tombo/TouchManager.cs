@@ -27,6 +27,8 @@ public class TouchManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Game_Manager._Current_Game_State == Game_Manager.Game_State.Preparation) return;
+
         if(Input.touchCount > 0 && _timer <= 0)
         {
             _screen_Position = Input.GetTouch(0).position;

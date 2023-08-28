@@ -12,7 +12,9 @@ public class Wave_Manager : MonoBehaviour
 
     private Wave _wave;
 
-    public TextMeshProUGUI txt;
+    private int waves_left;
+
+    private event Action OnEnding;
 
     void Awake()
     {
@@ -30,7 +32,6 @@ public class Wave_Manager : MonoBehaviour
     void Start()
     {
         Enemy_Spawn_System.OnWaveEnd += OnWaveEnds;
-        StartCoroutine(NextWave());
     }
 
     void OnDisable()
@@ -38,22 +39,37 @@ public class Wave_Manager : MonoBehaviour
         Enemy_Spawn_System.OnWaveEnd -= OnWaveEnds;
     }
 
+    public void Config(int i, Action OnEnding)
+    {
+        waves_left = i;
+        this.OnEnding = OnEnding;
+        StartCoroutine(NextWave());
+    }
+
     void StartWave()
     {
         _wave_Index++;
-        txt.text = "Round: " + _wave_Index;
+        //txt.text = "Round: " + _wave_Index;
         Increase_Dificulty();
         StartCoroutine(Enemy_Spawn_System.Instance.SpawnWave(_wave));
     }
 
     void OnWaveEnds()
     {
-        StartCoroutine(NextWave());
+        if(waves_left == 0)
+        {
+            OnEnding();
+        }
+        else
+        {
+            StartCoroutine(NextWave());
+        }
     }
 
     IEnumerator NextWave()
     {
         yield return new WaitForSeconds(2);
+        waves_left --;
         StartWave();
     }
 
