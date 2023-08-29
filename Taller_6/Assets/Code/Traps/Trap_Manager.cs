@@ -33,9 +33,32 @@ public class Trap_Manager : MonoBehaviour
     private ObjectPool<BowlingCannon> BowlingCannonPool;
     private ObjectPool<PopsNBangs> FirecrackerPool;
     private ObjectPool<Bribery> BriberyPool;
+    public static Trap_Manager Instance {get; private set;} = null;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     private void Start()
     {
-        
+         MarbleCannonPool = new ObjectPool<MarbleCannon>(() =>
+        {
+            return Instantiate(mCannon_Prefab);
+        }, MarbleCannon =>
+        {
+            MarbleCannon.gameObject.SetActive(true);
+        }, MarbleCannon =>
+        {
+            MarbleCannon.gameObject.SetActive(false);
+        }, MarbleCannon =>
+        {
+            Destroy(MarbleCannon.gameObject);
+        }, mCannon_Check, mCannon_DefaultCapacity, mCannon_MaxCapacity);
     }
-}
+} 
