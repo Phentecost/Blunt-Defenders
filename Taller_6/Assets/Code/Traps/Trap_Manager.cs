@@ -60,5 +60,47 @@ public class Trap_Manager : MonoBehaviour
         {
             Destroy(MarbleCannon.gameObject);
         }, mCannon_Check, mCannon_DefaultCapacity, mCannon_MaxCapacity);
+
+        BowlingCannonPool = new ObjectPool<BowlingCannon>(()=>
+        {
+            return Instantiate(bCannon_Prefab);
+        }, BowlingCannon =>
+        {
+            BowlingCannon.gameObject.SetActive(true);
+        }, BowlingCannon =>
+        {
+            BowlingCannon.gameObject.SetActive(false);
+        }, BowlingCannon =>
+        {
+            Destroy(BowlingCannon.gameObject);
+        }, bCannon_Check, bCannon_DefaultCapacity, bCannon_MaxCapacity);
+
+        BriberyPool = new ObjectPool<Bribery>(() =>
+        {
+            return Instantiate(bribery_Prefab);
+        }, Bribery =>
+        {
+            Bribery.gameObject.SetActive(true);
+        }, Bribery =>
+        {
+            Bribery.gameObject.SetActive(false);
+        }, Bribery =>
+        {
+            Destroy(Bribery.gameObject);
+        }, bribery_Check, bribery_DefaultCapacity, bribery_MaxCapacity);
+
+        FirecrackerPool = new ObjectPool<Firecracker>(()=>
+        {
+            return Instantiate(firecracker_Prefab);
+        }, Firecracker =>
+        {
+            Firecracker.gameObject.SetActive(true);
+        }, Firecracker =>
+        {
+            Firecracker.gameObject.SetActive(false);
+        }, Firecracker =>
+        {
+            Destroy(Firecracker.gameObject);
+        }, firecracker_Check, firecracker_DefaultCapacity, firecracker_MaxCapacity);
     }
 } 

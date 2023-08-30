@@ -14,10 +14,10 @@ public class MarbleCannon : TrapsFather
 
     protected override void DoSomething()
     {
-        Marble bullet = Bullet_Manager.marblePool_Check ? Bullet_Manager.marblePool.Get(): Instantiate(this.Projectile, this.transform.position, Quaternion.identity);
+        Projectile = Bullet_Manager.marblePool_Check ? Bullet_Manager.marblePool.Get(): Instantiate(this.Projectile, this.transform.position, Quaternion.identity);
         Vector2 EnemyLocation = this.target.transform.position;
         EnemyLocation.Normalize();
-        bullet.Launch(EnemyLocation);
+        Projectile.Launch(EnemyLocation);
 
     }
     

@@ -22,7 +22,7 @@ public class PopsNBangs : TrapsFather
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
         foreach (GameObject enemy in enemies)
         {
-            if(range >= Vector2.Distance(this.transform.position, enemy.GetComponent<Rigidbody2D>().position))
+            if(range >= Vector2.Distance(this.transform.position, enemy.transform.position))
             {
                 if(enemy.GetComponent<Tombo_Con_Perro>() != null){
                     /*hacer 1 de da�o
