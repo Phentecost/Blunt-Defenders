@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PJ : MonoBehaviour
@@ -40,6 +42,17 @@ public class PJ : MonoBehaviour
         }
     }
 
+    public Collider roomCollider; 
+    public CameraController cameraController;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other == roomCollider)
+        {
+            cameraController.target = roomCollider.transform;
+        }
+    }
+ 
     public void SetCanMove(bool canMove)
     {
         this.canMove = canMove;
