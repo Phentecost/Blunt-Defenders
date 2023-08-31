@@ -43,7 +43,7 @@ public class PJ : MonoBehaviour
     }
 
     public Collider roomCollider; 
-    public CameraController cameraController;
+    public Habitaciones cameraController;
 
     private void OnTriggerEnter(Collider other)
     {

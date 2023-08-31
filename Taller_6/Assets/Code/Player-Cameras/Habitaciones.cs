@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class Habitaciones: MonoBehaviour
 {
     public Transform target; 
     public float smoothSpeed = 0.125f; 
