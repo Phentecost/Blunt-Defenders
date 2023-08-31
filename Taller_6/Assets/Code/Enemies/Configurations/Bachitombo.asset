@@ -16,5 +16,5 @@ MonoBehaviour:
   door_Damage: 1
   Life: 1
   damage_To_Player: 1
-  path_Index: 0
+  Max_Path: 4
   points: 1

@@ -11,7 +11,12 @@ namespace Enemies
         public int door_Damage;
         public int Life;
         public int damage_To_Player;
-        public int path_Index;
+        public int Max_Path;
         public int points;
+
+        public int GetRandomPath()
+        {
+            return Random.Range(0,Max_Path);
+        }
     }
 }

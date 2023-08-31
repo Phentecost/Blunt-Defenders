@@ -118,7 +118,7 @@ namespace Enemies
             this.Life = config.Life;
             this.damage_To_Player = config.damage_To_Player;
             way_Point_Index = 0;
-            path_Index = config.path_Index;
+            path_Index = config.GetRandomPath();
             transform.position = WayPointManager.Paths[path_Index][way_Point_Index].transform.position;
             way_Point_Index++; 
             target = WayPointManager.Paths[path_Index][way_Point_Index];

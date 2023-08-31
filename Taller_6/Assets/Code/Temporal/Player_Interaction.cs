@@ -37,6 +37,11 @@ public class Player_Interaction : MonoBehaviour
 
         if(_current_Interaction == Type_Of_Interaction.Deploy)
         {
+            if(!_Can_Deploy)
+            {
+                img.color = Color.black;
+                return;
+            }
             img.color = Color.red;
         }
         else if (_current_Interaction == Type_Of_Interaction.Upgrade)
@@ -49,7 +54,7 @@ public class Player_Interaction : MonoBehaviour
         }
     }
 
-    void Interaction()
+    public void Interaction()
     {
         switch(_current_Interaction)
         {
