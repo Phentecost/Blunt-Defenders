@@ -139,16 +139,6 @@ namespace Enemies
         public void OnTouched()
         {
             Life --;
-            Debug.Log("Me dieron");
-        }
-
-        void OnTriggerEnter2D(Collider2D col)
-        {
-            Life -= 1;
-            if(Life <= 0)
-            {
-                Death();
-            }
         }
     }
 }

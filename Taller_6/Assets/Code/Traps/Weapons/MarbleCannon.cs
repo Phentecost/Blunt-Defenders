@@ -9,7 +9,7 @@ public class MarbleCannon : TrapsFather
     GameObject target;
     void Start()
     {
-        this.ammo = 10;
+        //this.ammo = 10;
     }
 
     protected override void DoSomething()

@@ -61,7 +61,7 @@ public class Bullet_Manager : MonoBehaviour
             Destroy(bowling.gameObject);
         }, bowlPool_Check, bowlPool_DefaultCapacity, bowlPool_MaxCpacity);
 
-        StartPool();
+        //StartPool();
     }
 
     private void StartPool()

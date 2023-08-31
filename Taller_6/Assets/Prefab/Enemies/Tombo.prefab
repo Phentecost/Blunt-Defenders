@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2314976613341694732}
   - component: {fileID: 8051348774956833821}
   - component: {fileID: 1078090096992806674}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tombo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 17344c29403bf9140a2f0d8ae3a0da3b, type: 2}
+  currentBehaviour: 0
 --- !u!61 &1078090096992806674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -57,7 +58,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.004164219, y: -0.02185613}
@@ -83,7 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7883685111610370960}
   - component: {fileID: 4097068668311303884}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

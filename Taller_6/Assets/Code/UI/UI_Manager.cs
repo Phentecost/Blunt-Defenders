@@ -51,10 +51,4 @@ public class UI_Manager : MonoBehaviour
             Deploy_Panel.SetActive(true);
         }
     }
-
-    public void dawdasda()
-    {
-        Instantiate(trap,Player_Interaction.Deploy_Pos,Quaternion.identity);
-        Deploy_Panel_Activation();
-    }
 }

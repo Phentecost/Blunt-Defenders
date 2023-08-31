@@ -12,7 +12,7 @@ public class PopsNBangs : TrapsFather
     // Start is called before the first frame update
     void Start()
     {
-        this.ammo = 1;
+        //this.ammo = 1;
         range = 6;
     }
 

@@ -7,7 +7,7 @@ public class BulletFather : MonoBehaviour
 {
     protected Rigidbody2D RB2D;
     protected float Damage;
-    protected float Power;
+    [SerializeField]protected float Power;
     private void Awake()
     {
         RB2D = GetComponent<Rigidbody2D>();
@@ -21,7 +21,7 @@ public class BulletFather : MonoBehaviour
 
     public void Launch(Vector2 Direction)
     {
-        RB2D.AddForce(Direction * Power);
+        RB2D.AddForce(Direction * Power, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

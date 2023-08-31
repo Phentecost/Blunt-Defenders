@@ -6,25 +6,25 @@ using UnityEngine.Pool;
 public class Trap_Manager : MonoBehaviour
 {
     [Header("Marble Cannon")]
-    [SerializeField] private GameObject mCannon_Prefab;
+    [SerializeField] private MarbleCannon mCannon_Prefab;
     [SerializeField] private int mCannon_DefaultCapacity;
     [SerializeField] private int mCannon_MaxCapacity;
     [SerializeField] private bool mCannon_Check;
 
     [Header("Bowling Ball Cannon")]
-    [SerializeField] private GameObject bCannon_Prefab;
+    [SerializeField] private BowlingCannon bCannon_Prefab;
     [SerializeField] private int bCannon_DefaultCapacity;
     [SerializeField] private int bCannon_MaxCapacity;
     [SerializeField] private bool bCannon_Check;
 
     [Header("Firecracker")]
-    [SerializeField] private GameObject firecracker_Prefab;
+    [SerializeField] private PopsNBangs firecracker_Prefab;
     [SerializeField] private int firecracker_DefaultCapacity;
     [SerializeField] private int firecracker_MaxCapacity;
     [SerializeField] private bool firecracker_Check;
 
     [Header("Bribery")]
-    [SerializeField] private GameObject bribery_Prefab;
+    [SerializeField] private Bribery bribery_Prefab;
     [SerializeField] private int bribery_DefaultCapacity;
     [SerializeField] private int bribery_MaxCapacity;
     [SerializeField] private bool bribery_Check;
@@ -34,6 +34,8 @@ public class Trap_Manager : MonoBehaviour
     private ObjectPool<PopsNBangs> FirecrackerPool;
     private ObjectPool<Bribery> BriberyPool;
     public static Trap_Manager Instance {get; private set;} = null;
+
+    public Vector2 pos;
 
     private void Awake()
     {
@@ -89,7 +91,7 @@ public class Trap_Manager : MonoBehaviour
             Destroy(Bribery.gameObject);
         }, bribery_Check, bribery_DefaultCapacity, bribery_MaxCapacity);
 
-        FirecrackerPool = new ObjectPool<Firecracker>(()=>
+        FirecrackerPool = new ObjectPool<PopsNBangs>(()=>
         {
             return Instantiate(firecracker_Prefab);
         }, Firecracker =>
@@ -102,5 +104,41 @@ public class Trap_Manager : MonoBehaviour
         {
             Destroy(Firecracker.gameObject);
         }, firecracker_Check, firecracker_DefaultCapacity, firecracker_MaxCapacity);
+    }
+
+    public void GetTrap(int i)
+    {
+        switch(i)
+        {
+            case 0:
+
+             MarbleCannon trap_01 = MarbleCannonPool.Get();
+             trap_01.transform.position = pos;
+             trap_01.Config();
+
+            break;
+
+            case 1:
+            
+            BowlingCannon trap_02 = BowlingCannonPool.Get();
+            trap_02.transform.position = pos;
+            trap_02.Config();
+
+            break;
+
+            case 2:
+            
+            Bribery trap_03 = BriberyPool.Get();
+            trap_03.transform.position = pos;
+            trap_03.Config();
+
+            break;
+
+            case 3:
+            PopsNBangs trap_04 = FirecrackerPool.Get();
+            trap_04.transform.position = pos;
+            trap_04.Config();
+            break;
+        }
     }
 } 

@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 6fdad08b968f082488513734f646c87e, type: 2}
+  currentBehaviour: 0
 --- !u!58 &319473559983075375
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -57,7 +58,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

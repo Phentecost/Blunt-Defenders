@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Player_Interaction : MonoBehaviour
 {
 
-    public static Vector3 Deploy_Pos;
     public bool _Can_Deploy = true;
     private TrapsFather _trap;
     private Way_Point _door;
@@ -59,7 +58,7 @@ public class Player_Interaction : MonoBehaviour
                 if(_Can_Deploy)
                 {
                     
-                    Deploy_Pos = transform.position;
+                    Trap_Manager.Instance.pos = transform.position;
                     UI_Manager.Instance.Deploy_Panel_Activation();
                 }
                 else
@@ -67,8 +66,6 @@ public class Player_Interaction : MonoBehaviour
                     Debug.Log("No se puede");
                 }
                 
-                
-
                 break;
 
             case Type_Of_Interaction.Upgrade:

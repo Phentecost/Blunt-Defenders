@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Trap_Creator : MonoBehaviour
 {
-    [SerializeField] GameObject MarbleBallCannon;
+    /*[SerializeField] GameObject MarbleBallCannon;
     [SerializeField] GameObject BowlingBallCannon;
     [SerializeField] GameObject Pops;
     [SerializeField] GameObject CorruptCops;
 
     public void CreateMCannon(Vector2 location)
     {
-        MarbleCannon thistrap = Trap_Manager.mCannon_check ? Trap_Manager.MarbleCannonPool.get() : Instantiate(MarbleBallCannon, location, Quaternion.identity);
+        MarbleCannon thistrap =  Trap_Manager.MarbleCannonPool.get() ;
     }
 
     public void CreateBCannon(Vector2 location)
@@ -28,5 +28,5 @@ public class Trap_Creator : MonoBehaviour
     {
         Firecracker thistrap = Trap_Manager.firecracker_Check ? Trap_Manager.FirecrackerPool.get() : Instantiate(Pops, location, Quaternion.identity);
     }
-
+*/
 }

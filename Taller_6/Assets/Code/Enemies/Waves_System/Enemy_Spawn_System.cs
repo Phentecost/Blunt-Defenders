@@ -67,7 +67,7 @@ public class Enemy_Spawn_System : MonoBehaviour
 
         Instance = this;
     }
-
+ 
     void Start()
     {
         _bachitombo_Pool = new ObjectPool<Bachitombo>(()=> {
