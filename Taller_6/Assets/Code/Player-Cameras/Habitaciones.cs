@@ -9,6 +9,7 @@ public class Habitaciones: MonoBehaviour
 
     private void LateUpdate()
     {
+        if(Game_Manager._Current_Game_State == Game_Manager.Game_State.Defending) return;
         if (target != null)
         {
             Vector3 desiredPosition = target.position + offset;
