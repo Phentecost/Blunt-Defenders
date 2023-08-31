@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PJ : MonoBehaviour
 {
@@ -12,13 +9,9 @@ public class PJ : MonoBehaviour
     private Vector2 touchOrigin = -Vector2.one;
     private bool canMove = true;
 
-    public PlayerInput playerInput;
-
     void Update()
     {
-        if(Game_Manager._Current_Game_State == Game_Manager.Game_State.Defending)return;
-
-       /* if (Input.touchCount > 0 && canMove)
+        if (Input.touchCount > 0 && canMove)
         {
             Touch touch = Input.GetTouch(0);
 
@@ -34,6 +27,7 @@ public class PJ : MonoBehaviour
 
                 Vector2 movement = touchDirection * moveSpeed * Time.deltaTime;
 
+                
                 playerRigidbody.MovePosition(playerRigidbody.position + movement);
 
                 Vector3 cameraPosition = new Vector3(playerRigidbody.position.x, playerRigidbody.position.y, mainCamera.transform.position.z);
@@ -43,17 +37,16 @@ public class PJ : MonoBehaviour
             if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {
                 touchOrigin = -Vector2.one;
-            }*/
-
-
-        //}
-
-        Vector2 dir = playerInput.actions["Walk"].ReadValue<Vector2>();
-        dir *= moveSpeed * Time.deltaTime;
-        playerRigidbody.MovePosition(playerRigidbody.position + dir);
-        Vector3 cameraPosition = new Vector3(playerRigidbody.position.x, playerRigidbody.position.y, mainCamera.transform.position.z);
-        mainCamera.transform.position = cameraPosition;
+            }
+        }
     }
+
+    public void SetCanMove(bool canMove)
+    {
+        this.canMove = canMove;
+    }
+
+
 
     public Collider roomCollider; 
     public Habitaciones cameraController;
@@ -65,9 +58,5 @@ public class PJ : MonoBehaviour
             cameraController.target = roomCollider.transform;
         }
     }
- 
-    public void SetCanMove(bool canMove)
-    {
-        this.canMove = canMove;
-    }
-}
+
+ }
