@@ -2217,7 +2217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1629002743}
   smoothSpeed: 0.125
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &537778609
 GameObject:
   m_ObjectHideFlags: 0
@@ -7720,9 +7720,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f370046c5f45d4e971b38b31efbbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 50
   playerRigidbody: {fileID: 1629002746}
   mainCamera: {fileID: 519420031}
+  playerInput: {fileID: 1629002748}
   roomCollider: {fileID: 1084796586}
   cameraController: {fileID: 519420033}
 --- !u!1 &1636588333
