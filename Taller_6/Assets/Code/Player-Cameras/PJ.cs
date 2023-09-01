@@ -12,6 +12,8 @@ public class PJ : MonoBehaviour
 
     public PlayerInput playerInput;
 
+    
+
     void Update()
     {
         if(Game_Manager._Current_Game_State == Game_Manager.Game_State.Defending) return;
@@ -31,15 +33,28 @@ public class PJ : MonoBehaviour
 
 
 
-    public Collider roomCollider; 
-    public Habitaciones cameraController;
+    public Transform newCameraPosition; // La nueva posición de la cámara.
+    public float transitionSpeed = 5.0f; // Velocidad de transición de la cámara.
 
-    private void OnTriggerEnter(Collider other)
+    private Camera Habitaciones; // Referencia a la cámara principal.
+
+    private void Start()
     {
-        if (other == roomCollider)
-        {
-            cameraController.target = roomCollider.transform;
-        }
+        // Obtén la referencia a la cámara principal.
+        Habitaciones = Camera.main;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Comprueba si el collider ha colisionado con el jugador u otro objeto que puedas definir como desencadenante.
+        if (other.CompareTag("Player")) // Asegúrate de ajustar la etiqueta según tu caso.
+        {
+            // Cambia la posición de la cámara hacia la nueva posición con suavizado.
+            Vector3 targetPosition = newCameraPosition.position;
+            Habitaciones.transform.position = Vector3.Lerp(Habitaciones.transform.position, targetPosition, Time.deltaTime * transitionSpeed);
+        }
+
+    }
+        
+    
  }
