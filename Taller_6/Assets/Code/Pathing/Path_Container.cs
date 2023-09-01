@@ -15,7 +15,6 @@ public class Path_Container : MonoBehaviour
         if(controller != null)
         {
             controller._Can_Deploy = true;
-            Debug.Log(controller.gameObject.name);
         }
     }
 
@@ -25,7 +24,6 @@ public class Path_Container : MonoBehaviour
         if(controller != null)
         {
             controller._Can_Deploy = false;
-            Debug.Log(controller.gameObject.name);
         }
     }
 }

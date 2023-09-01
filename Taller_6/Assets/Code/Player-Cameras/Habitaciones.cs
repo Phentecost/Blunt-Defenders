@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Habitaciones: MonoBehaviour
 {
-    public Transform target; // El objeto hacia el cual la cámara se moverá.
+    /*public Transform target; // El objeto hacia el cual la cámara se moverá.
     public float smoothSpeed = 5f; // Velocidad de suavizado del movimiento de la cámara.
     public Vector3 offset = new Vector3(0f, 2f, -5f); // Offset de la cámara respecto al personaje.
 
@@ -35,5 +35,5 @@ public class Habitaciones: MonoBehaviour
     public void StopFollowing()
     {
         isFollowing = false;
-    }
+    }*/
 }
