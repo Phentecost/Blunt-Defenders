@@ -37,10 +37,43 @@ public class Cam_Player_System : MonoBehaviour
         PJ controller = other.GetComponentInChildren<PJ>();
         if(controller != null)
         {
-            Camera_Manager.Instance.Change_Camera(cam_to_Go);
+            
             last_Entry = transform.InverseTransformDirection(other.transform.position - transform.position);
-            Debug.Log(last_Entry);
-            invert();
+            
+            switch(Axis)
+            {
+                case Dir.X:
+                
+                if(last_Entry.x < 0)
+                {
+                    
+                    cam_to_Go = cam_01;
+                }
+                else if(last_Entry.x > 0)
+                {
+                    
+                    cam_to_Go = cam_02;
+                }
+
+                break;
+
+                case Dir.Y:
+
+                if(last_Entry.y < 0)
+                {
+                    
+                    cam_to_Go = cam_01;
+                }
+                else if(last_Entry.y > 0)
+                {
+                    
+                    cam_to_Go = cam_02;
+                }
+
+                break;
+            }
+
+            Camera_Manager.Instance.Change_Camera(cam_to_Go);
         }
     }
 
@@ -50,22 +83,19 @@ public class Cam_Player_System : MonoBehaviour
         if(controller != null)
         {
             var direction = transform.InverseTransformDirection(other.transform.position - transform.position);
-            Debug.Log(direction);
             switch(Axis)
             {
                 case Dir.X:
                 
                 if(direction.x < 0 && last_Entry.x < 0)
                 {
-                    
-                    Camera_Manager.Instance.Change_Camera(cam_to_Go);
                     invert();
+                    Camera_Manager.Instance.Change_Camera(cam_to_Go);
                 }
                 else if(direction.x > 0 && last_Entry.x > 0)
                 {
-                    
-                    Camera_Manager.Instance.Change_Camera(cam_to_Go);
                     invert();
+                    Camera_Manager.Instance.Change_Camera(cam_to_Go);
                 }
 
                 break;
@@ -74,15 +104,13 @@ public class Cam_Player_System : MonoBehaviour
 
                 if(direction.y < 0 && last_Entry.y < 0)
                 {
-                    
-                    Camera_Manager.Instance.Change_Camera(cam_to_Go);
                     invert();
+                    Camera_Manager.Instance.Change_Camera(cam_to_Go);
                 }
                 else if(direction.y > 0 && last_Entry.y > 0)
                 {
-                    
-                    Camera_Manager.Instance.Change_Camera(cam_to_Go);
                     invert();
+                    Camera_Manager.Instance.Change_Camera(cam_to_Go);
                 }
 
                 break;

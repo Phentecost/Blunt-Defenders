@@ -58,6 +58,7 @@ public class Game_Manager : MonoBehaviour
 
     private void Prep_Fase()
     {
+        Camera_Manager.Instance.Change_Camera(0);
         _Player.SetActive(true);
         _Player.transform.position = Vector2.zero;
         timer = Preparation_fase_Time;
@@ -68,6 +69,7 @@ public class Game_Manager : MonoBehaviour
 
     private void Defending_Fase()
     {
+        Camera_Manager.Instance.Change_Camera(0);
         _Player.SetActive(false);
         UI_Manager.Instance.Change_To_Game();
         _Current_Game_State = Game_State.Defending; 

@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 
 public class PJ : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Rigidbody2D playerRigidbody; 
-    public Camera mainCamera; 
     public PlayerInput playerInput;
+    Vector2 movement;
 
     void Update()
     {
@@ -14,7 +15,12 @@ public class PJ : MonoBehaviour
 
         Vector2 touchDirection = playerInput.actions["Walk"].ReadValue<Vector2>();
         touchDirection.Normalize();
-        Vector2 movement = touchDirection * moveSpeed * Time.deltaTime; 
-        playerRigidbody.MovePosition(playerRigidbody.position + movement);
+        movement = touchDirection * moveSpeed * Time.deltaTime; 
+        
     }   
+    
+    void FixedUpdate()
+    {
+        playerRigidbody.MovePosition(playerRigidbody.position + movement);
+    }
  }

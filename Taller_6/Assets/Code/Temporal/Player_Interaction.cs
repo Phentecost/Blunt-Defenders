@@ -82,6 +82,8 @@ public class Player_Interaction : MonoBehaviour
             case Type_Of_Interaction.Repare:
                 
                 _door.life = 100;
+                if(!_door.spriteRenderer.gameObject.activeInHierarchy)_door.spriteRenderer.gameObject.SetActive(true);
+                _door.spriteRenderer.color = Color.green;
                 Debug.Log("Se ha reparado la puerta");
 
                 break;
