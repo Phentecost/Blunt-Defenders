@@ -7558,7 +7558,7 @@ MonoBehaviour:
   mCannon_DefaultCapacity: 5
   mCannon_MaxCapacity: 10
   mCannon_Check: 0
-  bCannon_Prefab: {fileID: 1598553747704755799, guid: 32f7520dab1d29845b323227718d9ab4, type: 3}
+  bCannon_Prefab: {fileID: 8881587088733428890, guid: 32f7520dab1d29845b323227718d9ab4, type: 3}
   bCannon_DefaultCapacity: 5
   bCannon_MaxCapacity: 10
   bCannon_Check: 0
@@ -8216,7 +8216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629002741}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.29, y: 0.04, z: 0}
+  m_LocalPosition: {x: -0.82, y: -0.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8550,9 +8550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff329f23a56d481498cba5da77579f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Preparation_fase_Time: 30
+  Preparation_fase_Time: 10
   _Player: {fileID: 1629002741}
-  _nWaves: 3
+  _nWaves: 1
   txt: {fileID: 1729303781}
 --- !u!4 &1705432748
 Transform:

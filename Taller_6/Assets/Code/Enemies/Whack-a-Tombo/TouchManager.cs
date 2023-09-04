@@ -55,7 +55,7 @@ public class TouchManager : MonoBehaviour
 
             if(x != null)
             {
-                x.OnTouched();
+                x.OnTouched(-1);
                 _timer = time_Between_Touches;
             }
         }

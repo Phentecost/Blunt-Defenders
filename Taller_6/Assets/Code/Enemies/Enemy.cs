@@ -136,9 +136,9 @@ namespace Enemies
             currentBehaviour = BehaviourParams.Tired;
         }
 
-        public void OnTouched()
+        public void OnTouched(int i)
         {
-            Life --;
+            Life += i;
         }
     }
 }

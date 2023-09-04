@@ -9,6 +9,7 @@ public class Player_Interaction : MonoBehaviour
 
     public bool _Can_Deploy = true;
     private TrapsFather _trap;
+    bool Show_Outlines;
     private Way_Point _door;
 
     [SerializeField] private Image img;
@@ -29,12 +30,6 @@ public class Player_Interaction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            
-            Interaction();
-        }
-
         if(_current_Interaction == Type_Of_Interaction.Deploy)
         {
             if(!_Can_Deploy)
@@ -46,7 +41,9 @@ public class Player_Interaction : MonoBehaviour
         }
         else if (_current_Interaction == Type_Of_Interaction.Upgrade)
         {
+
             img.color = Color.blue;
+            
         }
         else if(_current_Interaction == Type_Of_Interaction.Repare)
         {
@@ -75,7 +72,7 @@ public class Player_Interaction : MonoBehaviour
 
             case Type_Of_Interaction.Upgrade:
 
-                Debug.Log("La Torreta" + _trap.name + " Mejoro");
+                _trap.Level_Up();
 
                 break;
             
@@ -92,15 +89,17 @@ public class Player_Interaction : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        
-        TrapsFather controller = other.GetComponent<TrapsFather>();
+        Debug.Log("XD");
+        TrapsFather controller = other.GetComponentInParent<TrapsFather>();
         if(controller != null)
         {
             _current_Interaction = Type_Of_Interaction.Deploy;
+            _trap.Show_Outlines();
+            Show_Outlines = false;
             _trap = null;
         }
 
-        Way_Point door = other.GetComponent<Way_Point>();
+        Way_Point door = other.GetComponentInParent<Way_Point>();
         if(door!= null)
         {
             _current_Interaction = Type_Of_Interaction.Deploy;
@@ -110,14 +109,20 @@ public class Player_Interaction : MonoBehaviour
 
     void OnTriggerStay2D (Collider2D other)
     {
-        TrapsFather controller = other.GetComponent<TrapsFather>();
+        Debug.Log("XD");
+        TrapsFather controller = other.GetComponentInParent<TrapsFather>();
         if(controller != null)
         {
             _current_Interaction = Type_Of_Interaction.Upgrade;
             _trap = controller;
+            if(!Show_Outlines)
+            {
+                _trap.Show_Outlines();
+                Show_Outlines = true;
+            }
         }
 
-        Way_Point door = other.GetComponent<Way_Point>();
+        Way_Point door = other.GetComponentInParent<Way_Point>();
         if(door!= null)
         {
             _current_Interaction = Type_Of_Interaction.Repare;
@@ -127,15 +132,17 @@ public class Player_Interaction : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {     
-
-        TrapsFather controller = other.GetComponent<TrapsFather>();
+        Debug.Log("XD");
+        TrapsFather controller = other.GetComponentInParent<TrapsFather>();
         if(controller != null)
         {
             _current_Interaction = Type_Of_Interaction.Upgrade;
             _trap = controller;
+            _trap.Show_Outlines();
+            Show_Outlines = true;
         }
 
-        Way_Point door = other.GetComponent<Way_Point>();
+        Way_Point door = other.GetComponentInParent<Way_Point>();
         if(door!= null)
         {
             _current_Interaction = Type_Of_Interaction.Repare;
