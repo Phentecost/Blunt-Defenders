@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemies;
+using TMPro;
 
 public class Way_Point : MonoBehaviour
 {
     public bool Door;
-    public int life;
+    public float life;
     public List<Enemy> atk_Enemies;
     private float scalar = 0.2f;
     private float timer = 0;
-
+    [SerializeField] private TextMeshPro txt;
     public SpriteRenderer spriteRenderer;
 
     void Update()
     {
         if(!Door || Game_Manager._Current_Game_State == Game_Manager.Game_State.Preparation) return;
+
+        txt.text = "Life: " + life;
 
         if(life/100 < 0.5f)
         {
@@ -51,5 +54,25 @@ public class Way_Point : MonoBehaviour
     public void Register(Enemy enemy)
     {
         atk_Enemies.Add(enemy);
+    }
+
+    public void Show_Text()
+    {
+        if(txt.gameObject.activeInHierarchy)
+        {
+            txt.gameObject.SetActive(false);
+        }
+        else
+        {
+            txt.gameObject.SetActive(true);
+        }
+    }
+
+    public void OnRepear()
+    {
+        life = 100;
+        txt.text = "Life: " + life;
+        if(!spriteRenderer.gameObject.activeInHierarchy)spriteRenderer.gameObject.SetActive(true);
+        spriteRenderer.color = Color.green;
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class TrapsFather : MonoBehaviour
 {
     protected List<Enemy> _Enemy_Inside;
-    [SerializeField] private float wait;
+    private float wait;
     private float timer;
     [SerializeField] private Traps_Config traps_Config;
     private int Current_Level;

@@ -11,6 +11,7 @@ public class Player_Interaction : MonoBehaviour
     private TrapsFather _trap;
     bool Show_Outlines;
     private Way_Point _door;
+    bool Show_Text;
 
     [SerializeField] private Image img;
 
@@ -78,9 +79,8 @@ public class Player_Interaction : MonoBehaviour
             
             case Type_Of_Interaction.Repare:
                 
-                _door.life = 100;
-                if(!_door.spriteRenderer.gameObject.activeInHierarchy)_door.spriteRenderer.gameObject.SetActive(true);
-                _door.spriteRenderer.color = Color.green;
+                _door.OnRepear();
+                
                 Debug.Log("Se ha reparado la puerta");
 
                 break;
@@ -89,7 +89,6 @@ public class Player_Interaction : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("XD");
         TrapsFather controller = other.GetComponentInParent<TrapsFather>();
         if(controller != null)
         {
@@ -103,13 +102,14 @@ public class Player_Interaction : MonoBehaviour
         if(door!= null)
         {
             _current_Interaction = Type_Of_Interaction.Deploy;
+            _door.Show_Text();
+            Show_Text = false;
             _door = null;
         }
     }
 
     void OnTriggerStay2D (Collider2D other)
     {
-        Debug.Log("XD");
         TrapsFather controller = other.GetComponentInParent<TrapsFather>();
         if(controller != null)
         {
@@ -127,12 +127,16 @@ public class Player_Interaction : MonoBehaviour
         {
             _current_Interaction = Type_Of_Interaction.Repare;
             _door = door;
+            if(!Show_Text)
+            {
+                _door.Show_Text();
+                Show_Text = true;
+            }
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {     
-        Debug.Log("XD");
         TrapsFather controller = other.GetComponentInParent<TrapsFather>();
         if(controller != null)
         {
@@ -147,6 +151,8 @@ public class Player_Interaction : MonoBehaviour
         {
             _current_Interaction = Type_Of_Interaction.Repare;
             _door = door;
+            Show_Text = true;
+            _door.Show_Text();
         }
     }
 }

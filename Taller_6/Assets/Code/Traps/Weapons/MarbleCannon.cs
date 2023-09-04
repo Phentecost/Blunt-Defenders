@@ -5,20 +5,17 @@ using UnityEngine;
 
 public class MarbleCannon : TrapsFather
 {
-    [SerializeField] Marble Projectile;
     GameObject target;
-    void Start()
-    {
-        //this.ammo = 10;
-    }
 
     protected override void DoSomething()
     {
-        Projectile = Bullet_Manager.Instance.GetMarble();
-        Vector2 EnemyLocation = this.target.transform.position;
+        Marble Projectile = Bullet_Manager.Instance.GetMarble();
+        Projectile.config(bullet_Damage,bullet_Power);
+        Projectile.transform.position = transform.position;
+        target = _Enemy_Inside[0].gameObject;
+        Vector2 EnemyLocation = target.transform.position - transform.position;
         EnemyLocation.Normalize();
         Projectile.Launch(EnemyLocation);
-
     }
     
 }
