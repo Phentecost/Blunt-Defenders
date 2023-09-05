@@ -10,24 +10,28 @@ public class Trap_Manager : MonoBehaviour
     [SerializeField] private int mCannon_DefaultCapacity;
     [SerializeField] private int mCannon_MaxCapacity;
     [SerializeField] private bool mCannon_Check;
+    [SerializeField] private Traps_Config Marbel_Cannon_Configuration;
 
     [Header("Bowling Ball Cannon")]
     [SerializeField] private BowlingCannon bCannon_Prefab;
     [SerializeField] private int bCannon_DefaultCapacity;
     [SerializeField] private int bCannon_MaxCapacity;
     [SerializeField] private bool bCannon_Check;
+    [SerializeField] private Traps_Config Bowling_Ball_Cannon_Configuration;
 
     [Header("Firecracker")]
     [SerializeField] private PopsNBangs firecracker_Prefab;
     [SerializeField] private int firecracker_DefaultCapacity;
     [SerializeField] private int firecracker_MaxCapacity;
     [SerializeField] private bool firecracker_Check;
+    [SerializeField] private Traps_Config Fire_Craker_Configuration;
 
     [Header("Bribery")]
     [SerializeField] private Bribery bribery_Prefab;
     [SerializeField] private int bribery_DefaultCapacity;
     [SerializeField] private int bribery_MaxCapacity;
     [SerializeField] private bool bribery_Check;
+    [SerializeField] private Traps_Config Bribery_Configuration;
 
     private ObjectPool<MarbleCannon> MarbleCannonPool;
     private ObjectPool<BowlingCannon> BowlingCannonPool;
@@ -112,32 +116,53 @@ public class Trap_Manager : MonoBehaviour
         {
             case 0:
 
-             MarbleCannon trap_01 = MarbleCannonPool.Get();
-             trap_01.transform.position = pos;
-             trap_01.Config();
+                if(Player_Interaction.Instance.Can_Puchase(Marbel_Cannon_Configuration.levels[0].Coins,Marbel_Cannon_Configuration.levels[0].Weed))
+                {
+                    MarbleCannon trap_01 = MarbleCannonPool.Get();
+                    trap_01.transform.position = pos;
+                    trap_01.Config();
+                }
 
             break;
 
             case 1:
             
-            BowlingCannon trap_02 = BowlingCannonPool.Get();
-            trap_02.transform.position = pos;
-            trap_02.Config();
+            if(Player_Interaction.Instance.Can_Puchase(Bowling_Ball_Cannon_Configuration.levels[0].Coins,Bowling_Ball_Cannon_Configuration.levels[0].Weed))
+            {
+
+                BowlingCannon trap_02 = BowlingCannonPool.Get();
+                trap_02.transform.position = pos;
+                trap_02.Config();
+
+            }
 
             break;
 
             case 2:
             
-            Bribery trap_03 = BriberyPool.Get();
-            trap_03.transform.position = pos;
-            trap_03.Config();
+            if(Player_Interaction.Instance.Can_Puchase(Bribery_Configuration.levels[0].Coins,Bribery_Configuration.levels[0].Weed))
+            {
+
+                Bribery trap_03 = BriberyPool.Get();
+                trap_03.transform.position = pos;
+                trap_03.Config();
+                
+            }
 
             break;
 
             case 3:
-            PopsNBangs trap_04 = FirecrackerPool.Get();
-            trap_04.transform.position = pos;
-            trap_04.Config();
+
+            if(Player_Interaction.Instance.Can_Puchase(Fire_Craker_Configuration.levels[0].Coins,Fire_Craker_Configuration.levels[0].Weed))
+            {
+
+                PopsNBangs trap_04 = FirecrackerPool.Get();
+                trap_04.transform.position = pos;
+                trap_04.Config();
+
+            }
+
+            
             break;
         }
     }

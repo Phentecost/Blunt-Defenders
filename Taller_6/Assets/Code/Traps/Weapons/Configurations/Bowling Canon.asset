@@ -17,29 +17,29 @@ MonoBehaviour:
     CoolDown: 0.5
     Damage: 10
     Power: 10
-    Coins: 0
+    Coins: 20
     Weed: 0
   - Range: 5
     CoolDown: 0.5
     Damage: 5
     Power: 10
-    Coins: 0
+    Coins: 20
     Weed: 0
   - Range: 7
     CoolDown: 0.5
     Damage: 7
     Power: 10
-    Coins: 0
+    Coins: 20
     Weed: 0
   - Range: 9
     CoolDown: 0.5
     Damage: 10
     Power: 10
-    Coins: 0
+    Coins: 20
     Weed: 0
   - Range: 14
     CoolDown: 0.5
     Damage: 20
     Power: 10
-    Coins: 0
+    Coins: 30
     Weed: 0

@@ -10,10 +10,14 @@ public abstract class TrapsFather : MonoBehaviour
     private float wait;
     private float timer;
     [SerializeField] private Traps_Config traps_Config;
-    private int Current_Level;
+    public int Current_Level {get; private set;}
     private CircleCollider2D fire_Range;
     protected int bullet_Damage;
     protected float bullet_Power;
+
+    public int _level_Up_Money_Cost {get; private set;}
+    public int _level_Up_Weed_Cost {get; private set;}
+
     [SerializeField]private GameObject out_Line;
     protected abstract void DoSomething();
 
@@ -49,7 +53,8 @@ public abstract class TrapsFather : MonoBehaviour
         out_Line.transform.localScale = scale_Outlines;
         bullet_Damage = traps_Config.levels[Current_Level-1].Damage;
         bullet_Power = traps_Config.levels[Current_Level-1].Power;
-
+        _level_Up_Money_Cost = traps_Config.levels[Current_Level].Coins;
+        _level_Up_Weed_Cost = traps_Config.levels[Current_Level].Weed;
     }
 
     public void Level_Up()
@@ -62,6 +67,11 @@ public abstract class TrapsFather : MonoBehaviour
         out_Line.transform.localScale = scale_Outlines;
         bullet_Damage = traps_Config.levels[Current_Level-1].Damage;
         bullet_Power = traps_Config.levels[Current_Level-1].Power;
+        if(Current_Level < 5)
+        {
+            _level_Up_Money_Cost = traps_Config.levels[Current_Level].Coins;
+            _level_Up_Weed_Cost = traps_Config.levels[Current_Level].Weed;
+        }
     }
 
     public void Show_Outlines()

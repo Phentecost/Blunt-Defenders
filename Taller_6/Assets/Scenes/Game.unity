@@ -468,7 +468,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Can_Deploy: 0
   img: {fileID: 420963891}
-  _current_Interaction: 0
 --- !u!50 &102837087
 Rigidbody2D:
   serializedVersion: 4
@@ -8027,21 +8026,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mCannon_Prefab: {fileID: 3023237590909532918, guid: daaac26a2cfc8d0459d830f7fc3868b2, type: 3}
-  mCannon_DefaultCapacity: 5
-  mCannon_MaxCapacity: 10
+  mCannon_DefaultCapacity: 20
+  mCannon_MaxCapacity: 30
   mCannon_Check: 0
+  Marbel_Cannon_Configuration: {fileID: 11400000, guid: 553b78716ad1af04cbbb479072373b7e, type: 2}
   bCannon_Prefab: {fileID: 8881587088733428890, guid: 32f7520dab1d29845b323227718d9ab4, type: 3}
-  bCannon_DefaultCapacity: 5
-  bCannon_MaxCapacity: 10
+  bCannon_DefaultCapacity: 20
+  bCannon_MaxCapacity: 30
   bCannon_Check: 0
+  Bowling_Ball_Cannon_Configuration: {fileID: 11400000, guid: 371ab7768b3e806489c671a7c24a8ae3, type: 2}
   firecracker_Prefab: {fileID: 0}
   firecracker_DefaultCapacity: 5
   firecracker_MaxCapacity: 10
   firecracker_Check: 0
+  Fire_Craker_Configuration: {fileID: 0}
   bribery_Prefab: {fileID: 0}
   bribery_DefaultCapacity: 5
   bribery_MaxCapacity: 10
   bribery_Check: 0
+  Bribery_Configuration: {fileID: 0}
   pos: {x: 0, y: 0}
 --- !u!4 &1522640697
 Transform:
@@ -9003,7 +9006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff329f23a56d481498cba5da77579f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Preparation_fase_Time: 20
+  Preparation_fase_Time: 1000
   _Player: {fileID: 1629002741}
   _nWaves: 3
   txt: {fileID: 1729303781}

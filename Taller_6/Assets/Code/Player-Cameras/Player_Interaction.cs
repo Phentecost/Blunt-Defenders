@@ -12,20 +12,30 @@ public class Player_Interaction : MonoBehaviour
     bool Show_Outlines;
     private Way_Point _door;
     bool Show_Text;
-
     [SerializeField] private Image img;
+
+    public int _current_Money {get; private set;} = 100;
+    public int _current_Weed {get; private set;} = 0;
 
     private enum Type_Of_Interaction
     {
         Deploy, Upgrade, Repare
     }
 
-    [SerializeField]private Type_Of_Interaction _current_Interaction = Type_Of_Interaction.Deploy;
+    private Type_Of_Interaction _current_Interaction = Type_Of_Interaction.Deploy;
 
-    // Start is called before the first frame update
-    void Start()
+    public static Player_Interaction Instance {get;private set;} = null;
+
+    void Awake()
     {
-        _Can_Deploy = true;
+        if(Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        Instance = this;
+        Debug.Log(_current_Money);
     }
 
     // Update is called once per frame
@@ -73,7 +83,22 @@ public class Player_Interaction : MonoBehaviour
 
             case Type_Of_Interaction.Upgrade:
 
-                _trap.Level_Up();
+                if(_trap.Current_Level < 5)
+                {
+                    if(Can_Puchase(_trap._level_Up_Money_Cost,_trap._level_Up_Weed_Cost))
+                    {
+                        _trap.Level_Up();
+                    }
+                    else
+                    {
+                        Debug.Log("No Hay Plata");
+                    }
+                    
+                }
+                else
+                {
+                    Debug.Log("Trampa al Maximo");
+                }
 
                 break;
             
@@ -84,6 +109,31 @@ public class Player_Interaction : MonoBehaviour
                 Debug.Log("Se ha reparado la puerta");
 
                 break;
+        }
+    }
+
+    public void GetCoins(int i)
+    {
+        _current_Money += i;
+    }
+
+    public void GetWeed(int i)
+    {
+        _current_Weed += i;
+    }
+
+    public bool Can_Puchase(int m, int w)
+    {
+        if ( _current_Money >= m && _current_Weed >= w)
+        {
+            _current_Money -= m;
+            _current_Weed -= w;
+            Debug.Log(_current_Money);
+            return true;        
+        }
+        else
+        {
+            return false;
         }
     }
 
