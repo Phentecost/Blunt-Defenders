@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Tombo_Tactico
   m_EditorClassIdentifier: 
   speed: 5
-  door_Damage: 0
-  Life: 1
-  damage_To_Player: 1
-  path_Index: 1
+  door_Damage: 5
+  Life: 2
+  damage_To_Player: 5
+  Max_Path: 4
   points: 1

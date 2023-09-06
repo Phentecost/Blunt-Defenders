@@ -1,4 +1,5 @@
 using Enemies;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,22 +7,31 @@ using UnityEngine;
 public class BulletFather : MonoBehaviour
 {
     protected Rigidbody2D RB2D;
-    protected float Damage;
+    protected int Damage;
     protected float Power;
-    private void Awake()
+    
+    Action<BulletFather> OnDestroy;
+    public void config(int Damage, float Power)
     {
+        this.Damage = Damage;
+        this.Power = Power;
         RB2D = GetComponent<Rigidbody2D>();
+    }
+
+    public void config(Action<BulletFather> OnDestroy)
+    {
+        this.OnDestroy = OnDestroy;
     }
 
     protected void Update()
     {
         if (transform.position.magnitude > 1000f)
-            Destroy(gameObject);
+            OnDestroy(this);
     }
 
     public void Launch(Vector2 Direction)
     {
-        RB2D.AddForce(Direction * Power);
+        RB2D.AddForce(Direction * Power, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,9 +39,9 @@ public class BulletFather : MonoBehaviour
         Enemy e = collision.collider.GetComponent<Enemy>();
         if ( e!=null )
         {
-            e.OnTouched();
+            e.OnTouched(-Damage);
         }
-        Destroy(gameObject);
+        OnDestroy(this);
     }
 
 

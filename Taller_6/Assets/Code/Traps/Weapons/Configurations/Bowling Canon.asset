@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e9999ccbddb18e4e87822e6ff13f83c, type: 3}
+  m_Name: Bowling Canon
+  m_EditorClassIdentifier: 
+  levels:
+  - Range: 3
+    CoolDown: 0.5
+    Damage: 10
+    Power: 10
+    Coins: 20
+    Weed: 0
+  - Range: 5
+    CoolDown: 0.5
+    Damage: 5
+    Power: 10
+    Coins: 20
+    Weed: 0
+  - Range: 7
+    CoolDown: 0.5
+    Damage: 7
+    Power: 10
+    Coins: 20
+    Weed: 0
+  - Range: 9
+    CoolDown: 0.5
+    Damage: 10
+    Power: 10
+    Coins: 20
+    Weed: 0
+  - Range: 14
+    CoolDown: 0.5
+    Damage: 20
+    Power: 10
+    Coins: 30
+    Weed: 0

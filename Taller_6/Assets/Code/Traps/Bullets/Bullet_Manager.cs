@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -17,8 +18,8 @@ public class Bullet_Manager : MonoBehaviour
     [SerializeField] private int bowlPool_MaxCpacity;
     [SerializeField] public static bool bowlPool_Check;
 
-    public static ObjectPool<Marble> marblePool;
-    public static ObjectPool<BowlingBall> bowlPool;
+    private  ObjectPool<Marble> marblePool;
+    private  ObjectPool<BowlingBall> bowlPool;
     public static Bullet_Manager Instance { get; private set; } = null;
 
 
@@ -61,7 +62,27 @@ public class Bullet_Manager : MonoBehaviour
             Destroy(bowling.gameObject);
         }, bowlPool_Check, bowlPool_DefaultCapacity, bowlPool_MaxCpacity);
 
-        StartPool();
+        //StartPool();
+    }
+
+    public BowlingBall GetBowlingBall()
+    {
+        BowlingBall ball = bowlPool.Get();
+        ball.config(OnDestroy_ball);
+        return ball;
+    }
+
+    public Marble GetMarble()
+    {
+        Marble ball = marblePool.Get();
+        ball.config(OnDestroy_ball);
+        return ball;
+    }
+
+    private void OnDestroy_ball(BulletFather bullet)
+    {
+        if(bullet is BowlingBall) bowlPool.Release((BowlingBall)bullet);
+        if(bullet is Marble) marblePool.Release((Marble)bullet);
     }
 
     private void StartPool()

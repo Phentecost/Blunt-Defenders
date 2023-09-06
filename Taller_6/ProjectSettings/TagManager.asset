@@ -11,12 +11,12 @@ TagManager:
   - Enemy
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Path
+  - Interaction
+  - Door
+  - Trap
+  - Bullet
   - 
   - 
   - 

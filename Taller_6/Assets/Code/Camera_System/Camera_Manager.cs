@@ -30,6 +30,7 @@ public class Camera_Manager : MonoBehaviour
         }
 
         _main_Camera = Camera.main.transform;
+        Change_Camera(0);
     }
 
     public void Change_Camera(int i)

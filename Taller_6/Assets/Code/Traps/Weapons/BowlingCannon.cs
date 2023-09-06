@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class BowlingCannon : TrapsFather
 {
-    [SerializeField] BowlingBall Projectile;
+    //[SerializeField] BowlingBall Projectile;
     GameObject target;
-    void Start()
-    {
-        this.ammo = 10;
-    }
 
     protected override void DoSomething()
     {
-        BowlingBall bullet = Bullet_Manager.bowlPool_Check ? Bullet_Manager.bowlPool.Get() : Instantiate(this.Projectile, this.transform.position, Quaternion.identity);
-        Vector2 EnemyLocation = this.target.transform.position;
+        BowlingBall Projectile =  Bullet_Manager.Instance.GetBowlingBall();
+        Projectile.config(bullet_Damage,bullet_Power);
+        Projectile.transform.position = transform.position;
+        target = _Enemy_Inside[0].gameObject;
+        Vector2 EnemyLocation = target.transform.position - transform.position;
         EnemyLocation.Normalize();
-        bullet.Launch(EnemyLocation);
-
+        Projectile.Launch(EnemyLocation);
     }
 }
