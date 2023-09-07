@@ -35,7 +35,12 @@ public class Player_Interaction : MonoBehaviour
         }
 
         Instance = this;
-        Debug.Log(_current_Money);
+    }
+
+    void Start()
+    {
+        UI_Manager.Instance.UpdateCoins(_current_Money);
+        UI_Manager.Instance.UpdateWeed(_current_Weed);
     }
 
     // Update is called once per frame
@@ -115,11 +120,13 @@ public class Player_Interaction : MonoBehaviour
     public void GetCoins(int i)
     {
         _current_Money += i;
+        UI_Manager.Instance.UpdateCoins(_current_Money);
     }
 
     public void GetWeed(int i)
     {
         _current_Weed += i;
+        UI_Manager.Instance.UpdateWeed(_current_Weed);
     }
 
     public bool Can_Puchase(int m, int w)
@@ -128,7 +135,8 @@ public class Player_Interaction : MonoBehaviour
         {
             _current_Money -= m;
             _current_Weed -= w;
-            Debug.Log(_current_Money);
+            UI_Manager.Instance.UpdateWeed(_current_Weed);
+            UI_Manager.Instance.UpdateCoins(_current_Money);
             return true;        
         }
         else

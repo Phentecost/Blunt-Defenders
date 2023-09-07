@@ -8,7 +8,6 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
     private int health;
-    [SerializeField] private TextMeshProUGUI _health_TXT;
     public static Health Instance {get; private set;} = null;
 
 
@@ -24,7 +23,11 @@ public class Health : MonoBehaviour
         Instance = this;
 
         health = maxHealth;
-        _health_TXT.text = "Life: "+health.ToString();
+    }
+
+    void Start()
+    {
+        UI_Manager.Instance.UpdateLife(health);
     }
 
     public void TakeDamage(int damage)
@@ -38,6 +41,6 @@ public class Health : MonoBehaviour
             UI_Manager.Instance.OnLose();
         }
 
-        _health_TXT.text = "Life: "+health.ToString();
+        UI_Manager.Instance.UpdateLife(health);
     }
 }

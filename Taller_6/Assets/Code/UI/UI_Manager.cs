@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UI_Manager : MonoBehaviour
@@ -11,8 +13,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject Deploy_Panel;
     [SerializeField] private GameObject How_To_Panel;
     [SerializeField] private GameObject Main_Panel;
-
-    [SerializeField] private GameObject trap;
+    [SerializeField] private TextMeshProUGUI coins_TXT, life_TXT, weed_TXT;
     void Awake()
     {
         if(Instance != null)
@@ -76,5 +77,20 @@ public class UI_Manager : MonoBehaviour
         {
             Main_Panel.SetActive(true);
         }
+    }
+
+    public void UpdateLife(int i)
+    {
+        life_TXT.text = "Life: " + i;
+    }
+
+    public void UpdateCoins(int i)
+    {
+        coins_TXT.text = "Coins: " + i;
+    }
+
+    public void UpdateWeed(int i)
+    {
+        weed_TXT.text = "Weed: " + i;
     }
 }
