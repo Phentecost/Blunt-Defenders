@@ -18,8 +18,15 @@ public class Bullet_Manager : MonoBehaviour
     [SerializeField] private int bowlPool_MaxCpacity;
     [SerializeField] public static bool bowlPool_Check;
 
-    private  ObjectPool<Marble> marblePool;
-    private  ObjectPool<BowlingBall> bowlPool;
+    [Header("Teaser Cables")]
+    [SerializeField] private TeaserCables cablePrefab;
+    [SerializeField] private int cablePool_DefaultCapacity;
+    [SerializeField] private int cablePool_MaxCpacity;
+    [SerializeField] public static bool cablePool_Check;
+
+    private ObjectPool<Marble> marblePool;
+    private ObjectPool<BowlingBall> bowlPool;
+    private ObjectPool<TeaserCables> cablePool;
     public static Bullet_Manager Instance { get; private set; } = null;
 
 
@@ -62,6 +69,20 @@ public class Bullet_Manager : MonoBehaviour
             Destroy(bowling.gameObject);
         }, bowlPool_Check, bowlPool_DefaultCapacity, bowlPool_MaxCpacity);
 
+        cablePool = new ObjectPool<TeaserCables>(() =>
+        {
+            return Instantiate(cablePrefab);
+        }, cable =>
+        {
+            cable.gameObject.SetActive(true);
+        }, cable =>
+        {
+            cable.gameObject.SetActive(false);
+        }, cable =>
+        {
+            Destroy(cable.gameObject);
+        }, cablePool_Check, cablePool_DefaultCapacity, cablePool_MaxCpacity);
+
         //StartPool();
     }
 
@@ -79,10 +100,18 @@ public class Bullet_Manager : MonoBehaviour
         return ball;
     }
 
+    public TeaserCables GetCable()
+    {
+        TeaserCables bullet = cablePool.Get();
+        bullet.config(OnDestroy_ball);
+        return bullet;
+    }
+
     private void OnDestroy_ball(BulletFather bullet)
     {
         if(bullet is BowlingBall) bowlPool.Release((BowlingBall)bullet);
         if(bullet is Marble) marblePool.Release((Marble)bullet);
+        if(bullet is TeaserCables) cablePool.Release((TeaserCables)bullet);
     }
 
     private void StartPool()
@@ -96,6 +125,11 @@ public class Bullet_Manager : MonoBehaviour
         {
             var bullet = bowlPool.Get();
             bowlPool.Release(bullet);
+        }
+        for (int i = 0; i < cablePool_DefaultCapacity; i++)
+        {
+            var bullet = cablePool.Get();
+            cablePool.Release(bullet);
         }
     }
 }

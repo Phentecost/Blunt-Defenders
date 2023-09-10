@@ -10,7 +10,7 @@ public class BulletFather : MonoBehaviour
     protected int Damage;
     protected float Power;
     
-    Action<BulletFather> OnDestroy;
+    protected Action<BulletFather> OnDestroy;
     public void config(int Damage, float Power)
     {
         this.Damage = Damage;

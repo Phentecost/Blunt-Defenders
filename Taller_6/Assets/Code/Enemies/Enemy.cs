@@ -140,6 +140,15 @@ namespace Enemies
         {
             Life += i;
         }
+
+        public IEnumerator onTeaserHit(float Shocked)
+        {
+            float fixedSpeed = this.speed;
+            this.speed = 0;
+            yield return new WaitForSeconds(Shocked);
+            this.speed = fixedSpeed;
+
+        }
     }
 }
 
