@@ -20,6 +20,11 @@ public class Way_Point : MonoBehaviour
 
         txt.text = "Life: " + life;
 
+        if(life <= 0)
+        {
+            OnBreakDown();
+        }
+
         if(life/100 < 0.5f)
         {
             if(life/100 < 0.25)
@@ -35,11 +40,12 @@ public class Way_Point : MonoBehaviour
             spriteRenderer.color = Color.green;
         }
 
-        if(life <= 0)OnBreakDown();
+        
     }
 
     private void OnBreakDown()
     {
+        Debug.Log("XD");
         Door = false;
         foreach(Enemy enemy in atk_Enemies)
         {
