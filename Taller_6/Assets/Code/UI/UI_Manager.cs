@@ -10,7 +10,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject Lose_Panel;
     [SerializeField] private GameObject Game_Panel;
     [SerializeField] private GameObject Prep_Panel; 
-    [SerializeField] private GameObject Deploy_Panel;
+    
     [SerializeField] private GameObject How_To_Panel;
     [SerializeField] private GameObject Main_Panel;
     [SerializeField] private TextMeshProUGUI coins_TXT, life_TXT, weed_TXT;
@@ -43,17 +43,7 @@ public class UI_Manager : MonoBehaviour
         Game_Panel.SetActive(true);
     }
 
-    public void Deploy_Panel_Activation()
-    {
-        if(Deploy_Panel.activeInHierarchy)
-        {
-            Deploy_Panel.SetActive(false);
-        }
-        else
-        {
-            Deploy_Panel.SetActive(true);
-        }
-    }
+    
 
     public void How_To_Panel_Activation()
     {

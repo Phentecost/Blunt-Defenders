@@ -110,7 +110,7 @@ public class Trap_Manager : MonoBehaviour
         }, firecracker_Check, firecracker_DefaultCapacity, firecracker_MaxCapacity);
     }
 
-    public void GetTrap(int i)
+    public void Deploy_Trap(int i)
     {
         switch(i)
         {
@@ -120,20 +120,17 @@ public class Trap_Manager : MonoBehaviour
                 {
                     MarbleCannon trap_01 = MarbleCannonPool.Get();
                     trap_01.transform.position = pos;
-                    trap_01.Config();
+                    trap_01.Config(true);
                 }
 
             break;
-
             case 1:
             
             if(Player_Interaction.Instance.Can_Puchase(Bowling_Ball_Cannon_Configuration.levels[0].Coins,Bowling_Ball_Cannon_Configuration.levels[0].Weed))
             {
-
                 BowlingCannon trap_02 = BowlingCannonPool.Get();
                 trap_02.transform.position = pos;
-                trap_02.Config();
-
+                trap_02.Config(true);
             }
 
             break;
@@ -142,11 +139,9 @@ public class Trap_Manager : MonoBehaviour
             
             if(Player_Interaction.Instance.Can_Puchase(Bribery_Configuration.levels[0].Coins,Bribery_Configuration.levels[0].Weed))
             {
-
                 Bribery trap_03 = BriberyPool.Get();
                 trap_03.transform.position = pos;
-                trap_03.Config();
-                
+                trap_03.Config(true);
             }
 
             break;
@@ -158,12 +153,53 @@ public class Trap_Manager : MonoBehaviour
 
                 PopsNBangs trap_04 = FirecrackerPool.Get();
                 trap_04.transform.position = pos;
-                trap_04.Config();
-
+                trap_04.Config(true);
             }
 
-            
             break;
         }
+    }
+
+    public TrapsFather Get_Trap_To_Preveiw(int i)
+    {
+        switch(i)
+        {
+            case 0:
+            
+            MarbleCannon trap_01 = MarbleCannonPool.Get();
+            trap_01.transform.position = pos;
+            trap_01.Config(false);
+            return trap_01;
+
+            case 1:
+
+            BowlingCannon trap_02 = BowlingCannonPool.Get();
+            trap_02.transform.position = pos;
+            trap_02.Config(false);
+            return trap_02;
+
+            case 2:
+            
+            Bribery trap_03 = BriberyPool.Get();
+            trap_03.transform.position = pos;
+            trap_03.Config(false);
+            return trap_03;
+
+            case 3:
+            PopsNBangs trap_04 = FirecrackerPool.Get();
+            trap_04.transform.position = pos;
+            trap_04.Config(false);
+            return trap_04;
+
+            default: return null;
+        }
+    }
+
+    public void Realice_Trap_To_Preveiw(TrapsFather trap)
+    {
+        if(trap is MarbleCannon){ MarbleCannonPool.Release((MarbleCannon)trap);}
+        else if(trap is BowlingCannon){BowlingCannonPool.Release((BowlingCannon)trap);}
+        else if(trap is Bribery){BriberyPool.Release((Bribery)trap);}
+        else if (trap is PopsNBangs){FirecrackerPool.Release((PopsNBangs)trap);}
     }
 } 

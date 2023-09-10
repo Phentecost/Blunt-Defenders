@@ -75,9 +75,7 @@ public class Player_Interaction : MonoBehaviour
                 
                 if(_Can_Deploy)
                 {
-                    
-                    Trap_Manager.Instance.pos = transform.position;
-                    UI_Manager.Instance.Deploy_Panel_Activation();
+                    UI_WS_Manager.Instance.Deploy_Panel_Activation();
                 }
                 else
                 {
