@@ -54,9 +54,6 @@ public class Enemy_Spawn_System : MonoBehaviour
     public static Enemy_Spawn_System Instance {get; private set;} = null;
     public static event Action OnWaveEnd;
 
-    public TextMeshProUGUI text;
-    private int puntaje= 0;
-
     void Awake()
     {
         if(Instance != null)
@@ -123,8 +120,6 @@ public class Enemy_Spawn_System : MonoBehaviour
         _spawned_Enemy_Wave = new List<Enemy>();
 
         //Fill_Pools();
-
-        text.text = "Points: " + puntaje;
     }
 
     void Update()
@@ -234,9 +229,7 @@ public class Enemy_Spawn_System : MonoBehaviour
 
     private void OnDeath(Enemy enemy, int i)
     {
-        puntaje += i;
-        text.text = "Points: " + puntaje;
-
+        Player_Interaction.Instance.GetCoins(i);
         RemoveEnemy(enemy);
     }
 
