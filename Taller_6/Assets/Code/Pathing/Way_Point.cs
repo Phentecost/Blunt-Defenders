@@ -7,6 +7,7 @@ using TMPro;
 public class Way_Point : MonoBehaviour
 {
     public bool Door;
+    public bool TP;
     public float life;
     public List<Enemy> atk_Enemies;
     private float scalar = 0.2f;
@@ -45,7 +46,6 @@ public class Way_Point : MonoBehaviour
 
     private void OnBreakDown()
     {
-        Debug.Log("XD");
         Door = false;
         foreach(Enemy enemy in atk_Enemies)
         {

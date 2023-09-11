@@ -34,13 +34,14 @@ public class BulletFather : MonoBehaviour
         RB2D.AddForce(Direction * Power, ForceMode2D.Impulse);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         Enemy e = collision.collider.GetComponent<Enemy>();
         if ( e!=null )
         {
             e.OnTouched(-Damage);
         }
+        
         OnDestroy(this);
     }
 

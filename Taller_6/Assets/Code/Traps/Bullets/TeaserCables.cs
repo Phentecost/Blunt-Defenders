@@ -6,20 +6,15 @@ using UnityEngine;
 
 public class TeaserCables : BulletFather
 {
-    [SerializeField] float ShockPower;
-    private void Start()
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        this.Damage = 2;
-        ShockPower = 1;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Enemy e = collision.GetComponent<Enemy>();
-        if (e != null)
+        Enemy e = collision.collider.GetComponent<Enemy>();
+        if ( e!=null )
         {
-            e.onTeaserHit(ShockPower);
+            e.OnTouched(-Damage);
+            e.stun(1);
         }
-
+        
+        OnDestroy(this);
     }
 }

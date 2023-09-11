@@ -16,6 +16,7 @@ public abstract class TrapsFather : MonoBehaviour
     protected float bullet_Power;
     public int _level_Up_Money_Cost {get; private set;}
     public int _level_Up_Weed_Cost {get; private set;}
+    protected bool Disable;
     [SerializeField]private GameObject out_Line;
     [SerializeField] private SpriteRenderer spriteRenderer;
     protected abstract void DoSomething();
@@ -24,7 +25,7 @@ public abstract class TrapsFather : MonoBehaviour
     {
 
         if(Game_Manager._Current_Game_State == Game_Manager.Game_State.Preparation) return;
-
+        if(Disable) return;
         if(timer <= 0)
         {
             if(_Enemy_Inside.Count > 0)
@@ -100,7 +101,7 @@ public abstract class TrapsFather : MonoBehaviour
         }
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemycontroller = collision.gameObject.GetComponent<Enemy>();
         if (enemycontroller != null)
@@ -109,7 +110,7 @@ public abstract class TrapsFather : MonoBehaviour
         }
     }
 
-    protected void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         Enemy enemycontroller = collision.gameObject.GetComponent<Enemy>();
         if (enemycontroller != null)

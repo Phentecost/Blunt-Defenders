@@ -13,7 +13,7 @@ namespace Enemies
         private float door_Timer;
         protected int Life;
         [SerializeField] private EnemyConfig config;
-        protected int way_Point_Index;
+        [SerializeField]protected int way_Point_Index;
         protected Way_Point target;
         private int path_Index;
         private Action<Enemy,int> _OnDeath,_OnReach;
@@ -21,11 +21,15 @@ namespace Enemies
         private int damage_To_Player;
         private float wait_Timer;
         private bool door;
+        private bool tp;
+        private bool traitor;
+        private Bribery money;
         [SerializeField] private Animator animator;
 
+        private float stun_Timer;
         public enum BehaviourParams
         {
-            Recognize_The_Area, Moving_Towars_Target, Breaking_In, Tired
+            Recognize_The_Area, Moving_Towars_Target, Breaking_In, Tired, Go_Out,Stuned
         }
 
         public BehaviourParams currentBehaviour;
@@ -44,7 +48,7 @@ namespace Enemies
                     way_Point_Index ++;
                     target = WayPointManager.Paths[path_Index][way_Point_Index];
                     if(target.Door) door = true;
-
+                    if(target.TP) tp = true;
                     if(animator != null)
                     {
                         Vector2 moveDir = target.transform.position - transform.position;
@@ -62,15 +66,40 @@ namespace Enemies
 
                     if(Vector2.Distance(transform.position,target.transform.position) <= 0.2f)
                     {
+                        if(traitor)
+                        {
+                            if(tp)
+                            {
+                                way_Point_Index--;
+                                target = WayPointManager.Paths[path_Index][way_Point_Index];
+                                transform.position = target.transform.position;
+                                tp=false;
+
+                            }
+                            
+                            currentBehaviour = BehaviourParams.Go_Out;
+                            
+                            return;
+                        }
+
                         if(door)
                         {
                             target.atk_Enemies.Add(this);
                             currentBehaviour = BehaviourParams.Breaking_In;
+                            return;
                         }
-                        else
+
+                        if(tp)
                         {
-                            currentBehaviour = BehaviourParams.Recognize_The_Area;
+                            way_Point_Index++;
+                            target = WayPointManager.Paths[path_Index][way_Point_Index];
+                            transform.position = target.transform.position;
+                            tp=false;
+                            
                         }
+                        
+                        currentBehaviour = BehaviourParams.Recognize_The_Area;
+                        
                         
                     }
 
@@ -100,6 +129,42 @@ namespace Enemies
                     }
 
                     break;
+
+                case BehaviourParams.Go_Out:
+
+                    if(way_Point_Index == 0)
+                    {
+                        Trap_Manager.Instance.Realice_Trap_To_Preveiw(money);
+                        Death();
+                        break;
+                    }
+
+                    way_Point_Index --;
+                    target = WayPointManager.Paths[path_Index][way_Point_Index];
+                    if(target.TP) tp = true;
+                    if(animator != null)
+                    {
+                        Vector2 moveDir = target.transform.position - transform.position;
+                        ChangerAnim(moveDir);
+                    }
+                    
+                    currentBehaviour = BehaviourParams.Moving_Towars_Target;
+
+                break;
+
+                case BehaviourParams.Stuned:
+
+                if(stun_Timer<= 0)
+                {
+                    speed = config.speed;
+                    currentBehaviour = BehaviourParams.Moving_Towars_Target;
+                }
+                else
+                {
+                    stun_Timer -= Time.deltaTime;
+                }
+
+                break;
             }
         }
 
@@ -129,10 +194,17 @@ namespace Enemies
             transform.position = WayPointManager.Paths[path_Index][way_Point_Index].transform.position;
             way_Point_Index++; 
             target = WayPointManager.Paths[path_Index][way_Point_Index];
+            if(animator != null)
+            {
+                Vector2 moveDir = target.transform.position - transform.position;
+                ChangerAnim(moveDir);
+            }
             this._OnDeath = _OnDeath;
             this._OnReach = _OnReach;
             points = config.points;
             door = false;
+            traitor=false;
+            gameObject.layer = 3;
             currentBehaviour = BehaviourParams.Moving_Towars_Target;
         }
 
@@ -148,38 +220,67 @@ namespace Enemies
             Life += i;
         }
 
-        public IEnumerator onTeaserHit(float Shocked)
+        public void stun(float i)
         {
-            float fixedSpeed = speed;
-            speed = 0;
-            yield return new WaitForSeconds(Shocked);
-            speed = fixedSpeed;
-
+            speed= 0;
+            stun_Timer = i;
+            currentBehaviour = BehaviourParams.Stuned;
         }
+
+        public void OnBribery(Bribery bribery)
+        {
+            traitor = true;
+            speed *= 2;
+            money = bribery;
+            gameObject.layer = 13;
+            currentBehaviour = BehaviourParams.Go_Out;
+        }
+
+        public void Hit(){Death();}
 
         void ChangerAnim(Vector2 dir)
         {
             dir = Vector2Int.RoundToInt(dir);
 
-            if(dir.x >= 0.5) //Rigth
+            if(dir.x > dir.y)
             {
-                animator.SetTrigger("Side");
-                transform.localScale = new Vector2(1,1);
+                if(dir.x >= 0.5) //Rigth
+                {
+                    animator.SetTrigger("Side");
+                    transform.localScale = new Vector2(1,1);
+                }
+                else if(dir.x <= -0.5) //Left
+                {
+                    animator.SetTrigger("Side");
+                    transform.localScale = new Vector2(-1,1);
+                }
             }
-            else if(dir.x <= -0.5) //Left
+            else
             {
-                animator.SetTrigger("Side");
-                transform.localScale = new Vector2(-1,1);
+                if(dir.y >= 0.5) // Up
+                {
+                    animator.SetTrigger("Up");
+                }
+                else if (dir.y <= -0.5) //Down
+                {
+                    animator.SetTrigger("Down");
+                }
             }
-            else if(dir.y >= 0.5) // Up
+            
+        }
+
+        void OnCollisionEnter2D(Collision2D col)
+        {
+            if(!traitor) return;
+            Debug.Log("XD");
+            Enemy en = col.collider.GetComponent<Enemy>();
+            if(en != null)
             {
-                animator.SetTrigger("Up");
-            }
-            else if (dir.y <= -0.5) //Down
-            {
-                animator.SetTrigger("Down");
+                en.Hit();
             }
         }
 
     }
+
+    
 }

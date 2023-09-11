@@ -36,7 +36,7 @@ public class PopsNBangs : TrapsFather
                 }
                 else
                 {
-                    //hacer 0.5f de da�o
+                    //hacer 0.5f de daño
                 }
 
             }

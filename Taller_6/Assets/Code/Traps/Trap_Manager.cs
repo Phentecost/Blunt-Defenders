@@ -33,10 +33,19 @@ public class Trap_Manager : MonoBehaviour
     [SerializeField] private bool bribery_Check;
     [SerializeField] private Traps_Config Bribery_Configuration;
 
+    [Header("Teaser")]
+
+    [SerializeField] private Teaser teaser_Prefab;
+    [SerializeField] private int teaser_DefaultCapacity;
+    [SerializeField] private int teaser_MaxCapacity;
+    [SerializeField] private bool teaser_Check;
+    [SerializeField] private Traps_Config teaser_Configuration;
+
     private ObjectPool<MarbleCannon> MarbleCannonPool;
     private ObjectPool<BowlingCannon> BowlingCannonPool;
     private ObjectPool<PopsNBangs> FirecrackerPool;
     private ObjectPool<Bribery> BriberyPool;
+    private ObjectPool<Teaser> teaserPool;
     public static Trap_Manager Instance {get; private set;} = null;
 
     public Vector2 pos;
@@ -108,6 +117,20 @@ public class Trap_Manager : MonoBehaviour
         {
             Destroy(Firecracker.gameObject);
         }, firecracker_Check, firecracker_DefaultCapacity, firecracker_MaxCapacity);
+
+        teaserPool = new ObjectPool<Teaser>(()=> 
+        {
+            return Instantiate(teaser_Prefab);
+        }, teaser => 
+        {
+            teaser.gameObject.SetActive(true);
+        }, teaser => 
+        {
+            teaser.gameObject.SetActive(false);
+        }, teaser => 
+        {
+            Destroy(teaser.gameObject);
+        }, teaser_Check,teaser_DefaultCapacity,teaser_MaxCapacity);
     }
 
     public void Deploy_Trap(int i)
@@ -157,6 +180,18 @@ public class Trap_Manager : MonoBehaviour
             }
 
             break;
+
+            case 4:
+
+            if(Player_Interaction.Instance.Can_Puchase(teaser_Configuration.levels[0].Coins,teaser_Configuration.levels[0].Weed))
+            {
+
+                Teaser trap_05 = teaserPool.Get();
+                trap_05.transform.position = pos;
+                trap_05.Config(true);
+            }
+
+            break;
         }
     }
 
@@ -191,6 +226,13 @@ public class Trap_Manager : MonoBehaviour
             trap_04.Config(false);
             return trap_04;
 
+            case 4:
+
+            Teaser trap_05 = teaserPool.Get();
+            trap_05.transform.position = pos;
+            trap_05.Config(false);
+            return trap_05;
+
             default: return null;
         }
     }
@@ -201,5 +243,6 @@ public class Trap_Manager : MonoBehaviour
         else if(trap is BowlingCannon){BowlingCannonPool.Release((BowlingCannon)trap);}
         else if(trap is Bribery){BriberyPool.Release((Bribery)trap);}
         else if (trap is PopsNBangs){FirecrackerPool.Release((PopsNBangs)trap);}
+        else if(trap is Teaser){teaserPool.Release((Teaser)trap);}
     }
 } 

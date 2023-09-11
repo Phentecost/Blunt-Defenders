@@ -18,6 +18,8 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private GameObject _Player;
     [SerializeField] private int _nWaves;
     [SerializeField] private TextMeshProUGUI txt;
+
+    [SerializeField] private Vector2 _Start_Pos;
     public float timer {get;private set;} = 0;
     void Awake()
     {
@@ -58,9 +60,9 @@ public class Game_Manager : MonoBehaviour
 
     private void Prep_Fase()
     {
-        Camera_Manager.Instance.Change_Camera(0);
+        Camera_Manager.Instance.Change_Camera(1);
         _Player.SetActive(true);
-        _Player.transform.position = Vector2.zero;
+        _Player.transform.position = _Start_Pos;
         timer = Preparation_fase_Time;
         UI_Manager.Instance.Change_To_Prep();
         _Current_Game_State = Game_State.Preparation;

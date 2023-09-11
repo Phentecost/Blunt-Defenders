@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e9999ccbddb18e4e87822e6ff13f83c, type: 3}
+  m_Name: Teaser
+  m_EditorClassIdentifier: 
+  levels:
+  - Range: 2
+    CoolDown: 3
+    levelSprite: {fileID: 21300000, guid: 997ddcec0f2e7644494bf2a3f8a18d91, type: 3}
+    Damage: 2
+    Power: 10
+    Coins: 30
+    Weed: 0
+  - Range: 2
+    CoolDown: 3
+    levelSprite: {fileID: 21300000, guid: 234de8698daaea844b61147018cd1cb0, type: 3}
+    Damage: 2
+    Power: 10
+    Coins: 30
+    Weed: 0
+  - Range: 2
+    CoolDown: 3
+    levelSprite: {fileID: 21300000, guid: 6b966adab3e060e4ba765d3fa737d209, type: 3}
+    Damage: 2
+    Power: 10
+    Coins: 30
+    Weed: 0
+  - Range: 2
+    CoolDown: 3
+    levelSprite: {fileID: 21300000, guid: c2c2aac734bf63546a9ab32f3805cc7f, type: 3}
+    Damage: 2
+    Power: 10
+    Coins: 30
+    Weed: 0
+  - Range: 2
+    CoolDown: 3
+    levelSprite: {fileID: 21300000, guid: 2807a7d9968f80c44910de66c578bc09, type: 3}
+    Damage: 2
+    Power: 10
+    Coins: 30
+    Weed: 0

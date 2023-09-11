@@ -13,6 +13,7 @@ public class Player_Interaction : MonoBehaviour
     private Way_Point _door;
     bool Show_Text;
     [SerializeField] private Image img;
+    [SerializeField] private GameObject Deply_Icon,Cant_Icon,Up_Icon,Repair_Icon;
 
     public int _current_Money {get; private set;} = 100;
     public int _current_Weed {get; private set;} = 0;
@@ -41,6 +42,7 @@ public class Player_Interaction : MonoBehaviour
     {
         UI_Manager.Instance.UpdateCoins(_current_Money);
         UI_Manager.Instance.UpdateWeed(_current_Weed);
+        _Can_Deploy = true;
     }
 
     // Update is called once per frame
@@ -51,18 +53,36 @@ public class Player_Interaction : MonoBehaviour
             if(!_Can_Deploy)
             {
                 img.color = Color.black;
+                Cant_Icon.SetActive(true);
+                Deply_Icon.SetActive(false);
+                Up_Icon.SetActive(false);
+                Repair_Icon.SetActive(false);
                 return;
             }
+            
+            
             img.color = Color.red;
+            Cant_Icon.SetActive(false);
+            Deply_Icon.SetActive(true);
+            Up_Icon.SetActive(false);
+            Repair_Icon.SetActive(false);
         }
         else if (_current_Interaction == Type_Of_Interaction.Upgrade)
         {
-
+            
             img.color = Color.blue;
+            Cant_Icon.SetActive(false);
+            Deply_Icon.SetActive(false);
+            Up_Icon.SetActive(true);
+            Repair_Icon.SetActive(false);
             
         }
         else if(_current_Interaction == Type_Of_Interaction.Repare)
         {
+            Cant_Icon.SetActive(false);
+            Deply_Icon.SetActive(false);
+            Up_Icon.SetActive(false);
+            Repair_Icon.SetActive(true);
             img.color = Color.green;
         }
     }
@@ -143,6 +163,13 @@ public class Player_Interaction : MonoBehaviour
         }
     }
 
+    public void Deny_Deply()
+    {
+        _Can_Deploy = !_Can_Deploy;
+        Deply_Icon.SetActive(!Deply_Icon.activeInHierarchy);
+        Cant_Icon.SetActive(!Cant_Icon.activeInHierarchy);
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
         TrapsFather controller = other.GetComponentInParent<TrapsFather>();
@@ -152,15 +179,18 @@ public class Player_Interaction : MonoBehaviour
             _trap.Show_Outlines();
             Show_Outlines = false;
             _trap = null;
+            
         }
 
         Way_Point door = other.GetComponentInParent<Way_Point>();
         if(door!= null)
         {
             _current_Interaction = Type_Of_Interaction.Deploy;
+            
             _door.Show_Text();
             Show_Text = false;
             _door = null;
+            
         }
     }
 
@@ -187,6 +217,7 @@ public class Player_Interaction : MonoBehaviour
             {
                 _door.Show_Text();
                 Show_Text = true;
+                
             }
         }
     }
