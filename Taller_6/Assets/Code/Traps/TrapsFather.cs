@@ -16,8 +16,8 @@ public abstract class TrapsFather : MonoBehaviour
     protected float bullet_Power;
     public int _level_Up_Money_Cost {get; private set;}
     public int _level_Up_Weed_Cost {get; private set;}
-
     [SerializeField]private GameObject out_Line;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     protected abstract void DoSomething();
 
     void Update()
@@ -55,6 +55,7 @@ public abstract class TrapsFather : MonoBehaviour
             bullet_Power = traps_Config.levels[Current_Level-1].Power;
             _level_Up_Money_Cost = traps_Config.levels[Current_Level].Coins;
             _level_Up_Weed_Cost = traps_Config.levels[Current_Level].Weed;
+            spriteRenderer.sprite = traps_Config.levels[Current_Level-1].levelSprite;
             transform.GetChild(0).gameObject.SetActive(true);
 
         }
@@ -64,6 +65,7 @@ public abstract class TrapsFather : MonoBehaviour
             float range = traps_Config.levels[0].Range;
             Vector2 scale_Outlines = new Vector2(range / 2.5f, range/2.5f);
             out_Line.transform.localScale = scale_Outlines;
+            spriteRenderer.sprite = traps_Config.levels[0].levelSprite;
         }
         
     }
@@ -78,6 +80,7 @@ public abstract class TrapsFather : MonoBehaviour
         out_Line.transform.localScale = scale_Outlines;
         bullet_Damage = traps_Config.levels[Current_Level-1].Damage;
         bullet_Power = traps_Config.levels[Current_Level-1].Power;
+        spriteRenderer.sprite = traps_Config.levels[Current_Level-1].levelSprite;
         if(Current_Level < 5)
         {
             _level_Up_Money_Cost = traps_Config.levels[Current_Level].Coins;

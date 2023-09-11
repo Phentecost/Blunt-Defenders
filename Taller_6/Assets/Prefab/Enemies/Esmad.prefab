@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3542053847874579948}
   - component: {fileID: 1632476902203934129}
+  - component: {fileID: 2455773195446720006}
   m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
@@ -84,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2455773195446720006
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803383898902366389}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8382dbd2411e03742945ec0a69a53d1b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4247545306988837137
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +117,7 @@ GameObject:
   - component: {fileID: 7155615525630803797}
   - component: {fileID: 7108776506125598023}
   - component: {fileID: -198848680694118890}
+  - component: {fileID: 7085609838950435782}
   m_Layer: 3
   m_Name: Esmad
   m_TagString: Untagged
@@ -131,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 2e3083ed1de96fa438756a3509c5eeb9, type: 2}
+  animator: {fileID: 2455773195446720006}
   currentBehaviour: 0
 --- !u!61 &-198848680694118890
 BoxCollider2D:
@@ -158,3 +182,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &7085609838950435782
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4247545306988837137}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

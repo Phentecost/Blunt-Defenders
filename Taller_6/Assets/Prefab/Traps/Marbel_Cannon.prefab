@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traps_Config: {fileID: 11400000, guid: 553b78716ad1af04cbbb479072373b7e, type: 2}
   out_Line: {fileID: 1232710268008364414}
+  spriteRenderer: {fileID: 259134719671558884}
 --- !u!58 &1469023109627948101
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -298,7 +299,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

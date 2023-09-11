@@ -8,6 +8,7 @@ public class PJ : MonoBehaviour
     public Rigidbody2D playerRigidbody; 
     public PlayerInput playerInput;
     Vector2 movement;
+    [SerializeField] private Animator animator;
 
     void Update()
     {
@@ -16,7 +17,16 @@ public class PJ : MonoBehaviour
         Vector2 touchDirection = playerInput.actions["Walk"].ReadValue<Vector2>();
         touchDirection.Normalize();
         movement = touchDirection * moveSpeed * Time.deltaTime; 
-        
+        animator.SetFloat("X",touchDirection.x);
+        animator.SetFloat("Y",touchDirection.y);
+        if(touchDirection != Vector2.zero) 
+        {
+            animator.SetBool("Moving",true);
+        }
+        else
+        {
+            animator.SetBool("Moving",false);
+        }
     }   
     
     void FixedUpdate()

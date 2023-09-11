@@ -21,6 +21,7 @@ namespace Enemies
         private int damage_To_Player;
         private float wait_Timer;
         private bool door;
+        [SerializeField] private Animator animator;
 
         public enum BehaviourParams
         {
@@ -44,6 +45,12 @@ namespace Enemies
                     target = WayPointManager.Paths[path_Index][way_Point_Index];
                     if(target.Door) door = true;
 
+                    if(animator != null)
+                    {
+                        Vector2 moveDir = target.transform.position - transform.position;
+                        ChangerAnim(moveDir);
+                    }
+                    
                     currentBehaviour = BehaviourParams.Moving_Towars_Target;
 
                     break;
@@ -113,10 +120,10 @@ namespace Enemies
         private void Reach(){_OnReach(this,damage_To_Player);}
         public void Config(Action<Enemy, int> _OnDeath, Action<Enemy, int> _OnReach)
         {
-            this.speed = config.speed;
-            this.door_Damage = config.door_Damage;
-            this.Life = config.Life;
-            this.damage_To_Player = config.damage_To_Player;
+            speed = config.speed;
+            door_Damage = config.door_Damage;
+            Life = config.Life;
+            damage_To_Player = config.damage_To_Player;
             way_Point_Index = 0;
             path_Index = config.GetRandomPath();
             transform.position = WayPointManager.Paths[path_Index][way_Point_Index].transform.position;
@@ -124,7 +131,7 @@ namespace Enemies
             target = WayPointManager.Paths[path_Index][way_Point_Index];
             this._OnDeath = _OnDeath;
             this._OnReach = _OnReach;
-            this.points = config.points;
+            points = config.points;
             door = false;
             currentBehaviour = BehaviourParams.Moving_Towars_Target;
         }
@@ -143,12 +150,36 @@ namespace Enemies
 
         public IEnumerator onTeaserHit(float Shocked)
         {
-            float fixedSpeed = this.speed;
-            this.speed = 0;
+            float fixedSpeed = speed;
+            speed = 0;
             yield return new WaitForSeconds(Shocked);
-            this.speed = fixedSpeed;
+            speed = fixedSpeed;
 
         }
+
+        void ChangerAnim(Vector2 dir)
+        {
+            dir = Vector2Int.RoundToInt(dir);
+
+            if(dir.x >= 0.5) //Rigth
+            {
+                animator.SetTrigger("Side");
+                transform.localScale = new Vector2(1,1);
+            }
+            else if(dir.x <= -0.5) //Left
+            {
+                animator.SetTrigger("Side");
+                transform.localScale = new Vector2(-1,1);
+            }
+            else if(dir.y >= 0.5) // Up
+            {
+                animator.SetTrigger("Up");
+            }
+            else if (dir.y <= -0.5) //Down
+            {
+                animator.SetTrigger("Down");
+            }
+        }
+
     }
 }
-

@@ -16,6 +16,7 @@ public class Level_Configurations
     [Space(5)]
     public float Range;
     public float CoolDown;
+    public Sprite levelSprite;
     
     [Header("Bullet")]
     [Space(5)]

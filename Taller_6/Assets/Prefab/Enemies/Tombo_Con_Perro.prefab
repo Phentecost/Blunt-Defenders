@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7231789078937403021}
   - component: {fileID: 6276957664225705339}
   - component: {fileID: 7456643989750257959}
+  - component: {fileID: -3752488795147394283}
   m_Layer: 3
   m_Name: Tombo_Con_Perro
   m_TagString: Untagged
@@ -126,3 +127,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.80911636, y: 0.38994092}
   m_EdgeRadius: 0
+--- !u!50 &-3752488795147394283
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113621010281632759}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

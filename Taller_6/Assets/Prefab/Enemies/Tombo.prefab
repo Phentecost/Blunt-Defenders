@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2314976613341694732}
   - component: {fileID: 8051348774956833821}
   - component: {fileID: 1078090096992806674}
+  - component: {fileID: 2245089399080387346}
   m_Layer: 3
   m_Name: Tombo
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 17344c29403bf9140a2f0d8ae3a0da3b, type: 2}
+  animator: {fileID: 3845779111164863386}
   currentBehaviour: 0
 --- !u!61 &1078090096992806674
 BoxCollider2D:
@@ -74,6 +76,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.833436, y: 0.9000616}
   m_EdgeRadius: 0
+--- !u!50 &2245089399080387346
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498675421385154418}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5817481211592503003
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7883685111610370960}
   - component: {fileID: 4097068668311303884}
+  - component: {fileID: 3845779111164863386}
   m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
@@ -158,3 +182,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3845779111164863386
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817481211592503003}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 78a4bb44f897df54aae6089813cfe2e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

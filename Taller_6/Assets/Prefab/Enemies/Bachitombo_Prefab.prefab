@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 319473559983075374}
   - component: {fileID: 319473559983075376}
   - component: {fileID: 319473559983075375}
+  - component: {fileID: 5365911317987374584}
   m_Layer: 3
   m_Name: Bachitombo_Prefab
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 6fdad08b968f082488513734f646c87e, type: 2}
+  animator: {fileID: 565161743110783276}
   currentBehaviour: 0
 --- !u!58 &319473559983075375
 CircleCollider2D:
@@ -64,6 +66,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!50 &5365911317987374584
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319473559983075379}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7640548022554627949
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7955025574016674574}
   - component: {fileID: 1315627920137616082}
+  - component: {fileID: 565161743110783276}
   m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
@@ -148,3 +172,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &565161743110783276
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7640548022554627949}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94634ea39ae2eff45a95ea72118598a2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

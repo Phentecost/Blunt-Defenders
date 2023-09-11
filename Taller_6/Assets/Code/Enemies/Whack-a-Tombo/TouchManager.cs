@@ -11,6 +11,8 @@ public class TouchManager : MonoBehaviour
     private Vector2 _screen_Position;
     private Vector2 _world_Position;
 
+    [SerializeField] private LayerMask layerMask;
+
     private float time_Between_Touches = 0.2f;
     private float _timer;
     void Awake()
