@@ -453,7 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  storyText: 'Tenemos Que Preparanos Mejor Por Si Llegan Refuerzos  {w=1.3} '
+  storyText: 'Tenemos que preparanos mejor por si llegan refuerzos.  {w=1.3} '
   description: 
   character: {fileID: 1460441917}
   portrait: {fileID: 21300000, guid: 5fc79019a87cfc44192fa9ed55f14366, type: 3}
@@ -480,8 +480,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  storyText: Uffff!! Parece Que Ya no Quedan Policias y El Cultivo No Fue Destruido
-    Lo logramos, Pero Por ahora
+  storyText: Uffff!! Parece que ya no quedan policias y el cultivo no fue destruido.
+    Lo logramos, por ahora.
   description: 
   character: {fileID: 1460441917}
   portrait: {fileID: 21300000, guid: 5fc79019a87cfc44192fa9ed55f14366, type: 3}
@@ -509,7 +509,7 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 68
-    y: 68
+    y: 67
     width: 77
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -773,8 +773,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  storyText: Bueno Las Trampas Se Podran Colocar Por La casa, Pero No En Todos Lados,
-    Te Aparecera Un Icono Donde Las Puedes Colocar
+  storyText: "Bueno, las trampas se podran colocar por la casa, pero no en todos
+    lados. Aparecer\xE1 un \xEDcono cuando las puedes colocar."
   description: 
   character: {fileID: 1460441917}
   portrait: {fileID: 21300000, guid: 5fc79019a87cfc44192fa9ed55f14366, type: 3}
@@ -835,7 +835,7 @@ MonoBehaviour:
   scrollPos: {x: 315, y: 134}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 400
+  blockViewHeight: 402
   zoom: 1
   scrollViewRect:
     serializedVersion: 2
@@ -886,7 +886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: Por Otro Lado Tenemos Las Puertas De La Casa.
+  storyText: Por otro lado, tenemos las puertas de la casa.
   description: 
   character: {fileID: 1460441917}
   portrait: {fileID: 21300000, guid: 5fc79019a87cfc44192fa9ed55f14366, type: 3}
@@ -913,7 +913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  storyText: Tambien Las Podras Ir Mejorando Las Trampas Ha Medida Que Derrotes Policias
+  storyText: "Tambien \xB4podr\xE1s mejorarlas a medida que derrotes tombos"
   description: 
   character: {fileID: 1460441917}
   portrait: {fileID: 21300000, guid: 5fc79019a87cfc44192fa9ed55f14366, type: 3}
@@ -1098,8 +1098,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  storyText: ' Las Cuales Detendran Algunos Policias, Pero No Por Mucho Tiempo. Si
-    Una Puerta Es Destruida Podras Repararla.'
+  storyText: "Estas detrendr\xE1n a los tombos por un periodo de tiempo hasta que
+    las puedan romper. Aunque si las rompen podr\xE1s repararlas una vez acabes con
+    todos los tombos que hayan entrado."
   description: 
   character: {fileID: 1460441917}
   portrait: {fileID: 21300000, guid: 5fc79019a87cfc44192fa9ed55f14366, type: 3}
@@ -1896,7 +1897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 435, y: 181}
+  scrollPos: {x: 523.693, y: 211.32529}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
@@ -1935,7 +1936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  storyText: Hola Bienvenido!! esta es mi casa en la cual ocurre toda la magia.
+  storyText: Hola Bienvenido!! Esta es mi casa, en la cual ocurre toda la magia.
   description: 
   character: {fileID: 1460441917}
   portrait: {fileID: 21300000, guid: 5fc79019a87cfc44192fa9ed55f14366, type: 3}
@@ -2009,8 +2010,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: Aca Tengo Mis Cultivos, Por Ahora Son Pocos Pero Se Que Con Tu Ayuda
-    Van a Mejorar!!
+  storyText: "Aca tengo mis cultivos. Por ahora son pocos pero s\xE9 que con tu ayuda
+    van a Mejorar!"
   description: 
   character: {fileID: 1460441917}
   portrait: {fileID: 21300000, guid: 5fc79019a87cfc44192fa9ed55f14366, type: 3}
@@ -2037,8 +2038,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 4
   indentLevel: 0
-  storyText: Necesito a Que Me Ayudes a Defenderla Por Si Llegan a Entrar, Para Eso
-    Prepare Unas Trampas Que Podras Poner Para Detenerlos
+  storyText: "Necesito que me ayudes a defenderla en caso tal de que lleguen a entrar.
+    Para eso prepare unas trampas que podr\xE1s poner para detenerlos."
   description: 
   character: {fileID: 1460441917}
   portrait: {fileID: 21300000, guid: 5fc79019a87cfc44192fa9ed55f14366, type: 3}
@@ -2065,8 +2066,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: Pero Bueno a Lo Que Vinimos, Solicite Tu Ayuda Debido a Que Ultimamente
-    He Visto Varias Patrullas Mereodiando Mi Casa.
+  storyText: "Pero bueno, a lo que vinimos. Solicit\xE9 tu ayuda debido a que \xFAltimamente
+    he visto varias patrullas merodeando mi casa."
   description: 
   character: {fileID: 1460441917}
   portrait: {fileID: 21300000, guid: 5fc79019a87cfc44192fa9ed55f14366, type: 3}
@@ -2093,7 +2094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  text: 'Podrias Repetir '
+  text: "\xBFPodrias repetir?"
   description: 
   targetBlock: {fileID: 1111104942}
   hideIfVisited: 0
@@ -2146,7 +2147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 0
-  text: Todo Claro? Entonces Empecemos.
+  text: "\xBFTodo claro? Entonces empecemos."
   description: 
   targetBlock: {fileID: 1111104944}
   hideIfVisited: 0
@@ -2172,7 +2173,7 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 270
-    y: 78
+    y: 77
     width: 87
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -2219,7 +2220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: No Te Quedo Claro? Ok Te Lo Repetire
+  storyText: "\xBFNo te qued\xF3 claro? Est\xE1 bien, vamos con todo desde el principio."
   description: 
   character: {fileID: 1460441917}
   portrait: {fileID: 21300000, guid: 5fc79019a87cfc44192fa9ed55f14366, type: 3}
@@ -2246,11 +2247,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 12
   indentLevel: 0
-  storyText: '{punch=40,0.5}{color=red}OHHH NO ESTAN LLEGANDO POLICIAS!!!{flash=0.5} 
-    Rapido a La Casa'
+  storyText: "{punch=40,0.5}{color=red}OH NO ESTAN LLEGANDO TOMBOS!!!{flash=0.5} 
+    R\xE1pido! a la casa!"
   description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
+  character: {fileID: 1460441917}
+  portrait: {fileID: 21300000, guid: 5fc79019a87cfc44192fa9ed55f14366, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2262,7 +2263,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1111104949
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
