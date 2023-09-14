@@ -13,37 +13,37 @@ MonoBehaviour:
   m_Name: Bowling Canon
   m_EditorClassIdentifier: 
   levels:
-  - Range: 3
-    CoolDown: 0.5
-    levelSprite: {fileID: 21300000, guid: ef210018924bd444aa460a93f8c7cfa8, type: 3}
-    Damage: 10
+  - Range: 2
+    CoolDown: 1
+    levelSprite: {fileID: 21300000, guid: 9b9e9435149076743bd3505bb7bc479f, type: 3}
+    Damage: 2
     Power: 10
-    Coins: 20
+    Coins: 10
     Weed: 0
-  - Range: 5
-    CoolDown: 0.5
-    levelSprite: {fileID: 21300000, guid: 5ada73e0ca4f9d54bb9c7ba61bd73c26, type: 3}
+  - Range: 3
+    CoolDown: 0.9
+    levelSprite: {fileID: 21300000, guid: 9b9e9435149076743bd3505bb7bc479f, type: 3}
     Damage: 5
     Power: 10
-    Coins: 20
+    Coins: 15
     Weed: 0
-  - Range: 7
-    CoolDown: 0.5
-    levelSprite: {fileID: 21300000, guid: f9b2c71de72304843ab73fd3412230a7, type: 3}
+  - Range: 4
+    CoolDown: 0.8
+    levelSprite: {fileID: 21300000, guid: 9b9e9435149076743bd3505bb7bc479f, type: 3}
     Damage: 7
     Power: 10
     Coins: 20
     Weed: 0
-  - Range: 9
-    CoolDown: 0.5
-    levelSprite: {fileID: 21300000, guid: 56df8b68b805b8d44b6320e6a63d9ee5, type: 3}
+  - Range: 5
+    CoolDown: 0.7
+    levelSprite: {fileID: 21300000, guid: 9b9e9435149076743bd3505bb7bc479f, type: 3}
     Damage: 10
     Power: 10
-    Coins: 20
+    Coins: 25
     Weed: 0
-  - Range: 14
-    CoolDown: 0.5
-    levelSprite: {fileID: 21300000, guid: 7f4f6dd4ee4364a4cbcc9b1bd1d6744b, type: 3}
+  - Range: 6
+    CoolDown: 0.6
+    levelSprite: {fileID: 21300000, guid: 9b9e9435149076743bd3505bb7bc479f, type: 3}
     Damage: 20
     Power: 10
     Coins: 30

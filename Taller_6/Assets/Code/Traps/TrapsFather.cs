@@ -1,6 +1,7 @@
 using Enemies;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ public abstract class TrapsFather : MonoBehaviour
     protected bool Disable;
     [SerializeField]private GameObject out_Line;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private TextMeshPro coin_TXT;
     protected abstract void DoSomething();
 
     void Update()
@@ -55,6 +57,7 @@ public abstract class TrapsFather : MonoBehaviour
             bullet_Damage = traps_Config.levels[Current_Level-1].Damage;
             bullet_Power = traps_Config.levels[Current_Level-1].Power;
             _level_Up_Money_Cost = traps_Config.levels[Current_Level].Coins;
+            coin_TXT.text = "Coins: "+_level_Up_Money_Cost;
             _level_Up_Weed_Cost = traps_Config.levels[Current_Level].Weed;
             spriteRenderer.sprite = traps_Config.levels[Current_Level-1].levelSprite;
             transform.GetChild(0).gameObject.SetActive(true);
@@ -67,6 +70,7 @@ public abstract class TrapsFather : MonoBehaviour
             Vector2 scale_Outlines = new Vector2(range / 2.5f, range/2.5f);
             out_Line.transform.localScale = scale_Outlines;
             spriteRenderer.sprite = traps_Config.levels[0].levelSprite;
+            coin_TXT.text = "Coins: " + traps_Config.levels[0].Coins;
         }
         
     }
@@ -85,7 +89,12 @@ public abstract class TrapsFather : MonoBehaviour
         if(Current_Level < 5)
         {
             _level_Up_Money_Cost = traps_Config.levels[Current_Level].Coins;
+            coin_TXT.text = "Coins: "+_level_Up_Money_Cost;
             _level_Up_Weed_Cost = traps_Config.levels[Current_Level].Weed;
+        }
+        else
+        {
+            coin_TXT.text = "MAX LEVEL";
         }
     }
 
@@ -94,10 +103,12 @@ public abstract class TrapsFather : MonoBehaviour
         if(out_Line.activeInHierarchy)
         {
             out_Line.SetActive(false);
+            coin_TXT.gameObject.SetActive(false);
         }
         else
         {
             out_Line.SetActive(true);
+            coin_TXT.gameObject.SetActive(true);
         }
     }
 

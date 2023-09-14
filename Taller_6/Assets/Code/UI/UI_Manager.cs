@@ -13,7 +13,11 @@ public class UI_Manager : MonoBehaviour
     
     [SerializeField] private GameObject How_To_Panel;
     [SerializeField] private GameObject Main_Panel;
+    [SerializeField] private GameObject Cant_Buy_Panel;
+    private bool panel_Active;
+    private float timer = 1;
     [SerializeField] private TextMeshProUGUI coins_TXT, life_TXT, weed_TXT;
+
     void Awake()
     {
         if(Instance != null)
@@ -23,6 +27,21 @@ public class UI_Manager : MonoBehaviour
         }
         
         Instance = this;
+    }
+
+    void Update()
+    {
+        if(!panel_Active)return;
+
+        if(timer <= 0)
+        {
+            panel_Active = false;
+            Cant_Buy_Panel.SetActive(false);
+        }
+        else
+        {
+            timer -= Time.deltaTime;
+        }
     }
 
     public void OnLose()
@@ -82,5 +101,12 @@ public class UI_Manager : MonoBehaviour
     public void UpdateWeed(int i)
     {
         weed_TXT.text = "Weed: " + i;
+    }
+
+    public void Cant_Buy_Panel_Activation()
+    {
+        timer = 1;
+        panel_Active = true;
+        Cant_Buy_Panel.SetActive(true);
     }
 }

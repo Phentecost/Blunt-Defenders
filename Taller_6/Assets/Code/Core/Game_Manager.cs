@@ -74,6 +74,7 @@ public class Game_Manager : MonoBehaviour
         Camera_Manager.Instance.Change_Camera(0);
         _Player.SetActive(false);
         UI_Manager.Instance.Change_To_Game();
+        UI_WS_Manager.Instance.Cancel_Preview();
         _Current_Game_State = Game_State.Defending; 
         Wave_Manager.Instance.Config(_nWaves, Prep_Fase);
     }
