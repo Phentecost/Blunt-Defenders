@@ -17,6 +17,7 @@ public class Wave_Manager : MonoBehaviour
 
     private event Action OnEnding;
 
+    bool Flowchart_Displayed;
     [SerializeField] Flowchart onWin;
 
     void Awake()
@@ -29,6 +30,7 @@ public class Wave_Manager : MonoBehaviour
 
         Instance = this;
 
+        Flowchart_Displayed = false;
         _wave = new Wave();
     }
 
@@ -61,7 +63,7 @@ public class Wave_Manager : MonoBehaviour
     {
         if(waves_left == 0)
         {
-            onWin.ExecuteBlock("win");
+            if(!Flowchart_Displayed){onWin.ExecuteBlock("win"); Flowchart_Displayed = true;}
             OnEnding();
         }
         else

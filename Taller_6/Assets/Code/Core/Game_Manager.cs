@@ -21,6 +21,7 @@ public class Game_Manager : MonoBehaviour
 
     [SerializeField] private Vector2 _Start_Pos;
     public float timer {get;private set;} = 0;
+    public bool OnPouse;
     void Awake()
     {
         if(Instance != null)
@@ -30,15 +31,28 @@ public class Game_Manager : MonoBehaviour
         }
 
         Instance = this;
+        OnPouse = false;
     }
 
     void Start()
     {
         Prep_Fase();
+        Pause();
+    }
+
+    public void Pause()
+    {
+        OnPouse = !OnPouse;
+    }
+
+    public void Ready()
+    {
+        timer = 0;
     }
 
     void Update()
     {
+        if(OnPouse) return;
         if(_Current_Game_State == Game_State.Preparation)
         {
             if(timer <= 0)

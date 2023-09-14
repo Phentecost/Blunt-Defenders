@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Enemies
 {
@@ -25,8 +26,9 @@ namespace Enemies
         private bool traitor;
         private Bribery money;
         [SerializeField] private Animator animator;
+        private SpriteRenderer _renderer;
 
-        private float stun_Timer;
+        private float stun_Timer,ColRed_timer;
         public enum BehaviourParams
         {
             Recognize_The_Area, Moving_Towars_Target, Breaking_In, Tired, Go_Out,Stuned
@@ -35,6 +37,15 @@ namespace Enemies
         public BehaviourParams currentBehaviour;
         protected virtual void Behaviour()
         {
+            if(ColRed_timer <= 0)
+            {
+                _renderer.color = Color.white;
+            }
+            else
+            {
+                ColRed_timer -= Time.deltaTime;
+            }
+
             switch(currentBehaviour)
             {
                 case BehaviourParams.Recognize_The_Area:
@@ -206,6 +217,7 @@ namespace Enemies
             traitor=false;
             tp = false;
             gameObject.layer = 3;
+            _renderer = GetComponentInChildren<SpriteRenderer>();
             currentBehaviour = BehaviourParams.Moving_Towars_Target;
         }
 
@@ -219,6 +231,12 @@ namespace Enemies
         public void OnTouched(int i)
         {
             Life += i;
+            ColRed();
+        }
+        void ColRed()
+        {
+            _renderer.color = Color.red;
+            ColRed_timer = 0.2f;
         }
 
         public void stun(float i)
