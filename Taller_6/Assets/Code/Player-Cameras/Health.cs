@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using Fungus;
 
 public class Health : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Health : MonoBehaviour
     private int health;
     public static Health Instance {get; private set;} = null;
 
-
+    [SerializeField] Flowchart loseMessage;
 
     private void Awake()
     {   
@@ -37,10 +38,11 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-
+            loseMessage.ExecuteBlock("lose");
             UI_Manager.Instance.OnLose();
         }
 
         UI_Manager.Instance.UpdateLife(health);
     }
+
 }

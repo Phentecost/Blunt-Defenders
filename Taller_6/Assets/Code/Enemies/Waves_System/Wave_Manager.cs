@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Fungus;
 
 public class Wave_Manager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Wave_Manager : MonoBehaviour
     private int waves_left;
 
     private event Action OnEnding;
+
+    [SerializeField] Flowchart onWin;
 
     void Awake()
     {
@@ -58,6 +61,7 @@ public class Wave_Manager : MonoBehaviour
     {
         if(waves_left == 0)
         {
+            onWin.ExecuteBlock("win");
             OnEnding();
         }
         else

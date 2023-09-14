@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Fungus;
 
 public class Player_Interaction : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Player_Interaction : MonoBehaviour
     bool Show_Text;
     [SerializeField] private Image img;
     [SerializeField] private GameObject Deply_Icon,Cant_Icon,Up_Icon,Repair_Icon;
+
+    private bool firstTime;
+    [SerializeField] Flowchart trapsTutorial;
 
     public int _current_Money {get; private set;} = 100;
     public int _current_Weed {get; private set;} = 0;
@@ -43,6 +47,7 @@ public class Player_Interaction : MonoBehaviour
         UI_Manager.Instance.UpdateCoins(_current_Money);
         UI_Manager.Instance.UpdateWeed(_current_Weed);
         _Can_Deploy = true;
+        firstTime = true;
     }
 
     // Update is called once per frame
@@ -95,6 +100,11 @@ public class Player_Interaction : MonoBehaviour
                 
                 if(_Can_Deploy)
                 {
+                    if(firstTime == true)
+                    {
+                        trapsTutorial.ExecuteBlock("Explicacion");
+                        firstTime = false;
+                    }
                     UI_WS_Manager.Instance.Deploy_Panel_Activation();
                 }
                 else

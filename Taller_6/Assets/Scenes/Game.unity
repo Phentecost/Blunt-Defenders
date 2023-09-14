@@ -616,6 +616,7 @@ MonoBehaviour:
   Cant_Icon: {fileID: 830358774}
   Up_Icon: {fileID: 549653881}
   Repair_Icon: {fileID: 1022319741}
+  trapsTutorial: {fileID: 172158026}
 --- !u!50 &102837087
 Rigidbody2D:
   serializedVersion: 4
@@ -1008,7 +1009,6 @@ GameObject:
   - component: {fileID: 172158014}
   - component: {fileID: 172158013}
   - component: {fileID: 172158012}
-  - component: {fileID: 172158028}
   m_Layer: 0
   m_Name: Mecanicas
   m_TagString: Untagged
@@ -1360,7 +1360,7 @@ MonoBehaviour:
   itemId: 0
   blockName: Explicacion
   description: 
-  eventHandler: {fileID: 172158028}
+  eventHandler: {fileID: 0}
   commandList:
   - {fileID: 172158024}
   - {fileID: 172158023}
@@ -1423,21 +1423,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &172158028
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172158011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10eaeba5e91be479e95d4fa48679f549, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentBlock: {fileID: 172158025}
-  suppressBlockAutoSelect: 0
-  targetButton: {fileID: 420963894}
 --- !u!1 &176936834
 GameObject:
   m_ObjectHideFlags: 0
@@ -4404,6 +4389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e61319240babf04f9a62f41ea60fc7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onWin: {fileID: 0}
 --- !u!4 &560144043
 Transform:
   m_ObjectHideFlags: 0
@@ -5202,7 +5188,6 @@ GameObject:
   - component: {fileID: 672113913}
   - component: {fileID: 672113912}
   - component: {fileID: 672113911}
-  - component: {fileID: 672113916}
   m_Layer: 0
   m_Name: Victoria
   m_TagString: Untagged
@@ -5280,14 +5265,14 @@ MonoBehaviour:
     serializedVersion: 2
     x: 70
     y: 69
-    width: 70
+    width: 69.99999
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 0
   blockName: win
   description: 
-  eventHandler: {fileID: 672113916}
+  eventHandler: {fileID: 0}
   commandList:
   - {fileID: 672113912}
   - {fileID: 672113911}
@@ -5305,11 +5290,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 462, y: 218}
+  scrollPos: {x: 673.11725, y: 298.88248}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 1
+  zoom: 0.7000003
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -5345,21 +5330,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &672113916
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672113910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d7d417659cd54a6787f70f763950c34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentBlock: {fileID: 672113913}
-  suppressBlockAutoSelect: 0
-  message: Win
 --- !u!1 &673348537
 GameObject:
   m_ObjectHideFlags: 0
@@ -5737,7 +5707,6 @@ GameObject:
   - component: {fileID: 719421537}
   - component: {fileID: 719421536}
   - component: {fileID: 719421535}
-  - component: {fileID: 719421540}
   m_Layer: 0
   m_Name: Derrota
   m_TagString: Untagged
@@ -5814,7 +5783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 67
+    x: 68
     y: 70
     width: 73
     height: 40
@@ -5823,7 +5792,7 @@ MonoBehaviour:
   itemId: 0
   blockName: lose
   description: 
-  eventHandler: {fileID: 719421540}
+  eventHandler: {fileID: 0}
   commandList:
   - {fileID: 719421536}
   - {fileID: 719421535}
@@ -5841,7 +5810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 447.5, y: 180}
+  scrollPos: {x: 312.1621, y: 204.66733}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
@@ -5852,7 +5821,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 719421537}
   selectedCommands: []
   variables: []
   description: 
@@ -5880,21 +5850,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &719421540
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719421534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d7d417659cd54a6787f70f763950c34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentBlock: {fileID: 719421537}
-  suppressBlockAutoSelect: 0
-  message: Lose
 --- !u!1 &720880036
 GameObject:
   m_ObjectHideFlags: 0
@@ -7560,7 +7515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -78.7}
+  m_AnchoredPosition: {x: -5, y: 102}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &866784868
@@ -9545,7 +9500,7 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1020955443}
+  - {fileID: 1020955448}
   selectedCommands: []
   variables: []
   description: 
@@ -12082,7 +12037,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -63.19995}
+  m_AnchoredPosition: {x: -5, y: -13}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1351874007
@@ -14614,7 +14569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1020955449}
+  selectedFlowchart: {fileID: 172158026}
 --- !u!4 &1698699644
 Transform:
   m_ObjectHideFlags: 1
@@ -15245,6 +15200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  loseMessage: {fileID: 719421538}
 --- !u!4 &1776375679
 Transform:
   m_ObjectHideFlags: 0
