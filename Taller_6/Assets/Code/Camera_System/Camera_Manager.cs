@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Camera_Manager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Camera_Manager : MonoBehaviour
     private Vector3[] _cameras;
 
     private Transform _main_Camera;
+    Camera_UI CurrentPOV;
     void Awake()
     {
         if (Instance != null)
@@ -36,5 +38,13 @@ public class Camera_Manager : MonoBehaviour
     public void Change_Camera(int i)
     {
         _main_Camera.position = _cameras[i];
+    }
+
+    public void onPov(Camera_UI Cam)
+    {
+        Debug.Log("xd");
+        Cam.POV = true;
+        if (CurrentPOV != null) CurrentPOV.POV = false ;
+        CurrentPOV = Cam;
     }
 }

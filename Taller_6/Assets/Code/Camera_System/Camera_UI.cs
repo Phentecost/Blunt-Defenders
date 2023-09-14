@@ -9,6 +9,7 @@ public class Camera_UI : MonoBehaviour
 {
     [SerializeField] private Image image;
     private List<Enemy> enemies_Inside;
+    public bool POV;
 
     void Start()
     {
@@ -19,13 +20,13 @@ public class Camera_UI : MonoBehaviour
     {
         if(Game_Manager._Current_Game_State != Game_Manager.Game_State.Defending) return;
         
-        if(enemies_Inside.Count != 0)
+        if(!POV&&enemies_Inside.Count != 0)
         {
-            image.color = Color.red;
+            image.color = new Color(1,0,0,0.5f);
         }
         else
         {
-            image.color = Color.white;
+            image.color = POV ? new Color(0, 1, 0, 0.5f) : new Color(0, 0, 0, 0);
         }
     }
 
