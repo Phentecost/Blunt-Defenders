@@ -124,9 +124,13 @@ public class Player_Interaction : MonoBehaviour
                     }
                     else
                     {
-                        UI_Manager.Instance.Cant_Buy_Panel_Activation();
+                        Debug.Log("No Hay Plata");
                     }
                     
+                }
+                else
+                {
+                    Debug.Log("Trampa al Maximo");
                 }
 
                 break;

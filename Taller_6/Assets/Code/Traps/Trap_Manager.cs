@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -146,10 +145,6 @@ public class Trap_Manager : MonoBehaviour
                     trap_01.transform.position = pos;
                     trap_01.Config(true);
                 }
-                else
-                {
-                    UI_Manager.Instance.Cant_Buy_Panel_Activation();
-                }
 
             break;
             case 1:
@@ -159,10 +154,6 @@ public class Trap_Manager : MonoBehaviour
                 BowlingCannon trap_02 = BowlingCannonPool.Get();
                 trap_02.transform.position = pos;
                 trap_02.Config(true);
-            }
-            else
-            {
-                UI_Manager.Instance.Cant_Buy_Panel_Activation();
             }
 
             break;
@@ -174,10 +165,6 @@ public class Trap_Manager : MonoBehaviour
                 Bribery trap_03 = BriberyPool.Get();
                 trap_03.transform.position = pos;
                 trap_03.Config(true);
-            }
-            else
-            {
-                UI_Manager.Instance.Cant_Buy_Panel_Activation();
             }
 
             break;
@@ -191,10 +178,6 @@ public class Trap_Manager : MonoBehaviour
                 trap_04.transform.position = pos;
                 trap_04.Config(true);
             }
-            else
-            {
-                UI_Manager.Instance.Cant_Buy_Panel_Activation();
-            }
 
             break;
 
@@ -206,10 +189,6 @@ public class Trap_Manager : MonoBehaviour
                 Teaser trap_05 = teaserPool.Get();
                 trap_05.transform.position = pos;
                 trap_05.Config(true);
-            }
-            else
-            {
-                UI_Manager.Instance.Cant_Buy_Panel_Activation();
             }
 
             break;

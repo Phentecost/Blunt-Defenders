@@ -16,35 +16,35 @@ MonoBehaviour:
   - Range: 2
     CoolDown: 3
     levelSprite: {fileID: 21300000, guid: 997ddcec0f2e7644494bf2a3f8a18d91, type: 3}
-    Damage: 1
+    Damage: 2
     Power: 10
     Coins: 30
     Weed: 0
-  - Range: 3
-    CoolDown: 2
+  - Range: 2
+    CoolDown: 3
     levelSprite: {fileID: 21300000, guid: 234de8698daaea844b61147018cd1cb0, type: 3}
-    Damage: 1
+    Damage: 2
     Power: 10
-    Coins: 40
+    Coins: 30
     Weed: 0
-  - Range: 3.5
-    CoolDown: 1.5
+  - Range: 2
+    CoolDown: 3
     levelSprite: {fileID: 21300000, guid: 6b966adab3e060e4ba765d3fa737d209, type: 3}
     Damage: 2
     Power: 10
-    Coins: 50
+    Coins: 30
     Weed: 0
-  - Range: 3.5
-    CoolDown: 1
+  - Range: 2
+    CoolDown: 3
     levelSprite: {fileID: 21300000, guid: c2c2aac734bf63546a9ab32f3805cc7f, type: 3}
-    Damage: 3
+    Damage: 2
     Power: 10
-    Coins: 55
+    Coins: 30
     Weed: 0
-  - Range: 4
-    CoolDown: 1
+  - Range: 2
+    CoolDown: 3
     levelSprite: {fileID: 21300000, guid: 2807a7d9968f80c44910de66c578bc09, type: 3}
-    Damage: 3
+    Damage: 2
     Power: 10
-    Coins: 70
+    Coins: 30
     Weed: 0

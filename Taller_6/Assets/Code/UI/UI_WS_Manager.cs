@@ -62,14 +62,6 @@ public class UI_WS_Manager : MonoBehaviour
         Previewing_Trap = true;
     }
 
-    public void Cancel_Preview()
-    {
-        if(Previewing_Trap)
-        {
-            Confirmation(false);
-        }
-    }
-
     public void Confirmation(bool B)
     {
         if(B){Trap_Manager.Instance.pos = transform.parent.position; Trap_Manager.Instance.Deploy_Trap(trap_ID); };
