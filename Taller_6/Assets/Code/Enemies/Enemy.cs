@@ -204,6 +204,7 @@ namespace Enemies
             points = config.points;
             door = false;
             traitor=false;
+            tp = false;
             gameObject.layer = 3;
             currentBehaviour = BehaviourParams.Moving_Towars_Target;
         }
