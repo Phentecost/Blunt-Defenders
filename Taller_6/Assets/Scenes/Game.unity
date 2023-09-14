@@ -1009,6 +1009,7 @@ GameObject:
   - component: {fileID: 172158014}
   - component: {fileID: 172158013}
   - component: {fileID: 172158012}
+  - component: {fileID: 172158028}
   m_Layer: 0
   m_Name: Mecanicas
   m_TagString: Untagged
@@ -1128,7 +1129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: vale te lo repetire pero no tenemos mucho tiempo
+  storyText: "vale te lo repetir\xE9, pero no tenemos mucho tiempo."
   description: 
   character: {fileID: 1172121321}
   portrait: {fileID: 21300000, guid: 6cc622bcda7bb384c9d3348b25a57424, type: 3}
@@ -1156,8 +1157,8 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: -91
-    y: 124
-    width: 86
+    y: 122.73418
+    width: 86.70885
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1185,7 +1186,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 252
     y: 119
-    width: 78
+    width: 79.113914
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1239,7 +1240,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 4
   indentLevel: 0
-  storyText: 'tambien a medida que derrotes policias podras ir mejorando las trampas  '
+  storyText: "Adem\xE1s, a medida que consigas dinero, podr\xE1s mejorar estas trampas,
+    sabr\xE1s que puedes hacerlo si el \xEDcono te muestra una flecha hacia arriba."
   description: 
   character: {fileID: 1172121321}
   portrait: {fileID: 21300000, guid: 6cc622bcda7bb384c9d3348b25a57424, type: 3}
@@ -1266,8 +1268,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: 'existen trampas que tendran una ventja sobre algunso policias hacindo
-    que te puedas deshacer de ellos mas facil '
+  storyText: "Existen trampas que tendran una ventaja sobre algunos polic\xEDas haciendo
+    que te puedas deshacer de ellos mas facil.\nAs\xED como habr\xE1 polic\xEDas
+    inmunes a algunas trampas."
   description: 
   character: {fileID: 1172121321}
   portrait: {fileID: 21300000, guid: 6cc622bcda7bb384c9d3348b25a57424, type: 3}
@@ -1294,9 +1297,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  storyText: primero las trampas hay 5 en total las cuales podras colocar por la
-    casa cuando te se muetre el icono en verde de lo contrario es que no podras poner
-    trampas en esa ubicacion
+  storyText: "Primero las trampas hay 5 en total, las cuales podras colocar por la
+    casa cuando te se muetre el icono con la flecha hacia abajo, se pondr\xE1n justo
+    donde est\xE9s parado. Si el \xEDcono no aparece en rojo con la flecha hacia
+    abajo, significa que no es un lugar apto para poner trampas."
   description: 
   character: {fileID: 1172121321}
   portrait: {fileID: 21300000, guid: 6cc622bcda7bb384c9d3348b25a57424, type: 3}
@@ -1323,8 +1327,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  storyText: Bueno antes de que logren entrar necesitas saber ciertas cosas sobre
-    las trampas y la casa
+  storyText: Bueno, antes de que logren entrar necesitas saber ciertas cosas sobre
+    las trampas y la casa.
   description: 
   character: {fileID: 1172121321}
   portrait: {fileID: 21300000, guid: 6cc622bcda7bb384c9d3348b25a57424, type: 3}
@@ -1353,7 +1357,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 48
     y: 87
-    width: 114
+    width: 117.08859
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 1
@@ -1366,6 +1370,7 @@ MonoBehaviour:
   - {fileID: 172158023}
   - {fileID: 172158022}
   - {fileID: 172158021}
+  - {fileID: 172158028}
   - {fileID: 172158020}
   - {fileID: 172158012}
   - {fileID: 172158013}
@@ -1383,11 +1388,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 294, y: 142}
+  scrollPos: {x: 419.75073, y: 201.14233}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 1
+  zoom: 0.7900002
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -1395,8 +1400,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 172158025}
-  selectedCommands: []
+  - {fileID: 172158017}
+  selectedCommands:
+  - {fileID: 172158016}
   variables: []
   description: 
   stepPause: 0
@@ -1423,6 +1429,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &172158028
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172158011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 15
+  indentLevel: 0
+  storyText: "\xBFQue qu\xE9 hace cada trampa? La mayor\xEDa no lo s\xE9, las compr\xE9
+    por aliexpress. Pero siempre podemos dejar unos cuantos billetes con una nota
+    para sobornar a unos cuantos o dejar un poco de p\xF3lvora para espantar a los
+    perros."
+  description: 
+  character: {fileID: 1172121321}
+  portrait: {fileID: 21300000, guid: 6cc622bcda7bb384c9d3348b25a57424, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &176936834
 GameObject:
   m_ObjectHideFlags: 0
@@ -9145,6 +9181,7 @@ GameObject:
   - component: {fileID: 1020955438}
   - component: {fileID: 1020955437}
   - component: {fileID: 1020955451}
+  - component: {fileID: 1020955452}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -9346,8 +9383,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 4
   indentLevel: 0
-  storyText: Necesito que me ayudes a defender la casa por si llegan a entrar, para
-    eso prepare varias trampas que podras poner para detener a los policias
+  storyText: "Necesito que me ayudes a defenderel lugar por si llegan a entrar, para
+    eso prepar\xE9 varias trampas que podras poner para detener a los policias."
   description: 
   character: {fileID: 1172121321}
   portrait: {fileID: 21300000, guid: 6cc622bcda7bb384c9d3348b25a57424, type: 3}
@@ -9374,8 +9411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: Pero bueno a lo que vinimos, solicite tu ayuda debido a que ultimamente
-    he visto varias patrullas cerca de la casa
+  storyText: "Pero bueno a lo que vinimos, solicit\xE9 tu ayuda debido a que \xFAltimamente
+    he visto varias patrullas cerca de la casa."
   description: 
   character: {fileID: 1172121321}
   portrait: {fileID: 21300000, guid: 6cc622bcda7bb384c9d3348b25a57424, type: 3}
@@ -9402,8 +9439,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  storyText: Aca se encutran mis cultivos por ahora son pocos pero se que con tu
-    ayuda van a mejorar
+  storyText: "Ac\xE1 se encutran mis cultivos, por ahora son pocos pero se que con
+    tu ayuda van a mejorar."
   description: 
   character: {fileID: 1172121321}
   portrait: {fileID: 21300000, guid: 6cc622bcda7bb384c9d3348b25a57424, type: 3}
@@ -9430,7 +9467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  storyText: "Hola esta mi casa en la cual ocurre toda la magia\t"
+  storyText: Hola! Esta mi casa, en la cual ocurre toda la magia.
   description: 
   character: {fileID: 1172121321}
   portrait: {fileID: 21300000, guid: 6cc622bcda7bb384c9d3348b25a57424, type: 3}
@@ -9472,6 +9509,7 @@ MonoBehaviour:
   - {fileID: 1020955446}
   - {fileID: 1020955445}
   - {fileID: 1020955444}
+  - {fileID: 1020955452}
   - {fileID: 1020955438}
   - {fileID: 1020955437}
   suppressAllAutoSelections: 0
@@ -9499,8 +9537,7 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 1020955448}
+  selectedBlocks: []
   selectedCommands: []
   variables: []
   description: 
@@ -9543,6 +9580,34 @@ MonoBehaviour:
   parentBlock: {fileID: 1020955448}
   suppressBlockAutoSelect: 0
   waitForFrames: 1
+--- !u!114 &1020955452
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020955436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 12
+  indentLevel: 0
+  storyText: "Cuando veas el \xEDcono en de la flecha roja hacia abajo en la parte
+    inferior izquierda de la pantalla, p\xFAlsalo, te explicar\xE9 como funcionan."
+  description: 
+  character: {fileID: 1172121321}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &1021623102
 GameObject:
   m_ObjectHideFlags: 0
