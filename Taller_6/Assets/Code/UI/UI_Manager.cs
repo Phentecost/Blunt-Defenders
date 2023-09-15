@@ -110,7 +110,7 @@ public class UI_Manager : MonoBehaviour
 
     public void UpdateCoins(int i)
     {
-        coins_TXT.text = "Coins: " + i;
+        coins_TXT.text = i.ToString();
     }
 
     public void UpdateWeed(int i)
