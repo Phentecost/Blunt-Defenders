@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -17,6 +17,8 @@ public class UI_Manager : MonoBehaviour
     private bool panel_Active;
     private float timer = 1;
     [SerializeField] private TextMeshProUGUI coins_TXT, life_TXT, weed_TXT;
+    [SerializeField] private Image life_IMG;
+    [SerializeField] private List<Sprite> life_Sprites;
 
     void Awake()
     {
@@ -88,9 +90,22 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
-    public void UpdateLife(int i)
+    public void UpdateLife(float i)
     {
-        life_TXT.text = "Life: " + i;
+        life_TXT.text = i.ToString();
+        
+        if(i/100 < 0.75)
+        {
+            life_IMG.sprite = life_Sprites[0];
+        }
+        else if(i/100 <0.5)
+        {
+            life_IMG.sprite = life_Sprites[1];
+        }
+        else if(i/100<0.25)
+        {
+            life_IMG.sprite = life_Sprites[2];
+        }
     }
 
     public void UpdateCoins(int i)
