@@ -17,10 +17,10 @@ public abstract class TrapsFather : MonoBehaviour
     protected float bullet_Power;
     public int _level_Up_Money_Cost {get; private set;}
     public int _level_Up_Weed_Cost {get; private set;}
-    protected bool Disable;
+    protected bool Disable,PreView;
     [SerializeField]private GameObject out_Line;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private TextMeshPro coin_TXT;
+    [SerializeField] private TextMeshPro coin_TXT, mejora_TXT;
     protected abstract void DoSomething();
 
     void Update()
@@ -61,6 +61,7 @@ public abstract class TrapsFather : MonoBehaviour
             _level_Up_Weed_Cost = traps_Config.levels[Current_Level].Weed;
             spriteRenderer.sprite = traps_Config.levels[Current_Level-1].levelSprite;
             transform.GetChild(0).gameObject.SetActive(true);
+            PreView=false;
 
         }
         else
@@ -71,6 +72,7 @@ public abstract class TrapsFather : MonoBehaviour
             out_Line.transform.localScale = scale_Outlines;
             spriteRenderer.sprite = traps_Config.levels[0].levelSprite;
             coin_TXT.text = "Coins: " + traps_Config.levels[0].Coins;
+            PreView = true;
         }
         
     }
@@ -104,11 +106,13 @@ public abstract class TrapsFather : MonoBehaviour
         {
             out_Line.SetActive(false);
             coin_TXT.gameObject.SetActive(false);
+            if(!PreView)mejora_TXT.gameObject.SetActive(false);
         }
         else
         {
             out_Line.SetActive(true);
             coin_TXT.gameObject.SetActive(true);
+            if(!PreView)mejora_TXT.gameObject.SetActive(true);
         }
     }
 

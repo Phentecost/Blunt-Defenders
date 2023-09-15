@@ -167,7 +167,7 @@ public class Enemy_Spawn_System : MonoBehaviour
         }
     }
 
-    public IEnumerator SpawnWave (Wave wave)
+    public IEnumerator SpawnWave (Wave wave, bool tutorial)
     {
         
         if(wave._bachitombo_Count >0)
@@ -225,6 +225,8 @@ public class Enemy_Spawn_System : MonoBehaviour
             }
         }
         _active_Wave = true;
+
+        if(tutorial) StartCoroutine(Wave_Manager.Instance.Tutorial_Fungus(_spawned_Enemy_Wave));
     }
 
     private void OnDeath(Enemy enemy, int i)

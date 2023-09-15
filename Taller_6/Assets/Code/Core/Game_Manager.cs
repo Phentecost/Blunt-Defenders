@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Fungus;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,8 +19,11 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private GameObject _Player;
     [SerializeField] private int _nWaves;
     [SerializeField] private TextMeshProUGUI txt;
-
     [SerializeField] private Vector2 _Start_Pos;
+    [SerializeField] private bool Tutorial;
+    [SerializeField] private List<Wave> tutorial_Waves;
+    [SerializeField] private List<Flowchart> tutorial_Charts;
+    private int tutorial_Waves_Index;
     public float timer {get;private set;} = 0;
     public bool OnPouse;
     void Awake()
@@ -90,7 +94,21 @@ public class Game_Manager : MonoBehaviour
         UI_Manager.Instance.Change_To_Game();
         UI_WS_Manager.Instance.Cancel_Preview();
         _Current_Game_State = Game_State.Defending; 
-        Wave_Manager.Instance.Config(_nWaves, Prep_Fase);
+
+        if(Tutorial)
+        {
+            Wave_Manager.Instance.Config(tutorial_Waves[tutorial_Waves_Index], Prep_Fase,tutorial_Charts[tutorial_Waves_Index]);
+            tutorial_Waves_Index++;
+            if(tutorial_Waves_Index == tutorial_Waves.Count)
+            {
+                Tutorial = false;
+            }
+        }
+        else
+        {
+            Wave_Manager.Instance.Config(_nWaves, Prep_Fase);
+        }
+        
     }
 
     
