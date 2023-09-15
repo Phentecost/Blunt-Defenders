@@ -23,11 +23,11 @@ namespace Enemies
         private float wait_Timer;
         private bool door;
         private bool tp;
-        private bool traitor;
+        private bool traitor,Active;
         private Bribery money;
         [SerializeField] private Animator animator;
         private SpriteRenderer _renderer;
-
+        private ParticleSystem particle;
         private float stun_Timer,ColRed_timer;
         public enum BehaviourParams
         {
@@ -37,6 +37,7 @@ namespace Enemies
         public BehaviourParams currentBehaviour;
         protected virtual void Behaviour()
         {
+
             if(ColRed_timer <= 0)
             {
                 _renderer.color = Color.white;
@@ -146,7 +147,7 @@ namespace Enemies
                     if(way_Point_Index == 0)
                     {
                         Trap_Manager.Instance.Realice_Trap_To_Preveiw(money);
-                        Death();
+                        _OnDeath(this,points);
                         break;
                     }
 
@@ -182,17 +183,32 @@ namespace Enemies
         // Update is called once per frame
         void Update()
         {
+            if(!Active)return;
             if(Life > 0)
             {
                 Behaviour();
             }
             else if(Life <= 0)
             {
-                Death();
+                StartCoroutine(Death());
             }
         }
 
-        private void Death(){_OnDeath(this,points);}
+        public void Activation()
+        {
+            Active = !Active;
+        }
+
+        private IEnumerator Death()
+        {
+
+            particle.Play();
+            speed = 0;
+            _renderer.color = Color.red;
+            Active = false;
+            yield return new WaitForSeconds(0.2f);
+            _OnDeath(this,points);
+        }
         private void Reach(){_OnReach(this,damage_To_Player);}
         public void Config(Action<Enemy, int> _OnDeath, Action<Enemy, int> _OnReach)
         {
@@ -218,6 +234,8 @@ namespace Enemies
             tp = false;
             gameObject.layer = 3;
             _renderer = GetComponentInChildren<SpriteRenderer>();
+            particle = GetComponentInChildren<ParticleSystem>();
+            Active = true;
             currentBehaviour = BehaviourParams.Moving_Towars_Target;
         }
 

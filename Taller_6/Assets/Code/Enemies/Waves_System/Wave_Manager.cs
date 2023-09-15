@@ -4,21 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Fungus;
+using Enemies;
 
 public class Wave_Manager : MonoBehaviour
 {
     public static Wave_Manager Instance {get;private set;} = null;
-
     private int _wave_Index = 0;
-
     private Wave _wave;
-
     private int waves_left;
-
     private event Action OnEnding;
-
     bool Flowchart_Displayed;
     [SerializeField] Flowchart onWin;
+    private Flowchart tutorial_chart;
+    private List<Enemy> Tutorial_Enemies;
 
     void Awake()
     {
@@ -48,15 +46,45 @@ public class Wave_Manager : MonoBehaviour
     {
         waves_left = i;
         this.OnEnding = OnEnding;
-        StartCoroutine(NextWave());
+        StartCoroutine(NextWave(_wave,false));
     }
 
-    void StartWave()
+    public void Config(Wave wave, Action OnEnding, Flowchart chart)
+    {
+        waves_left = 1;
+        _wave_Index--;
+        this.OnEnding = OnEnding;
+        tutorial_chart = chart;
+        StartCoroutine(NextWave(wave,true));
+    }
+
+    void StartWave(Wave wave,bool tutorial)
     {
         _wave_Index++;
-        //txt.text = "Round: " + _wave_Index;
         Increase_Dificulty();
-        StartCoroutine(Enemy_Spawn_System.Instance.SpawnWave(_wave));
+        StartCoroutine(Enemy_Spawn_System.Instance.SpawnWave(wave,tutorial));
+    }
+
+    public IEnumerator Tutorial_Fungus(List<Enemy> enemies)
+    {
+        Tutorial_Enemies = enemies;
+        yield return new WaitForSeconds(3);
+        foreach(Enemy enemy in Tutorial_Enemies)
+        {
+            enemy.Activation();
+        }
+        
+        //Play al fungus
+    }
+
+    public void Finish_Fungus()
+    {
+        foreach(Enemy enemy in Tutorial_Enemies)
+        {
+            enemy.Activation();
+        }
+
+        Tutorial_Enemies.Clear();
     }
 
     void OnWaveEnds()
@@ -68,15 +96,15 @@ public class Wave_Manager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(NextWave());
+            StartCoroutine(NextWave(_wave,false));
         }
     }
 
-    IEnumerator NextWave()
+    IEnumerator NextWave(Wave wave, bool tutorial)
     {
         yield return new WaitForSeconds(2);
         waves_left --;
-        StartWave();
+        StartWave(wave, tutorial);
     }
 
     void Increase_Dificulty()
