@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BowlingCannon : TrapsFather
 {
+    public AudioClip Bolos;
+
     //[SerializeField] BowlingBall Projectile;
     GameObject target;
 
@@ -16,5 +18,11 @@ public class BowlingCannon : TrapsFather
         Vector2 EnemyLocation = target.transform.position - transform.position;
         EnemyLocation.Normalize();
         Projectile.Launch(EnemyLocation);
+
+
+         if (Bolos != null)
+        {
+            AudioSource.PlayClipAtPoint(Bolos, transform.position);
+        }
     }
 }

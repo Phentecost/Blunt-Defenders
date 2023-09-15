@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Bribery : TrapsFather
 {
+      public AudioClip Dinero;
 
     
     // Start is called before the first frame update+7
@@ -21,6 +22,11 @@ public class Bribery : TrapsFather
             enemycontroller.OnBribery(this);
             transform.parent = enemycontroller.transform;
             transform.position = Vector2.zero;
+        }
+
+        if (Dinero != null)
+        {
+            AudioSource.PlayClipAtPoint(Dinero, transform.position);
         }
     }
 

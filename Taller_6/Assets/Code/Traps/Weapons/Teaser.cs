@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Teaser : TrapsFather
 {
+    public AudioClip taser;
     GameObject target;
 
     protected override void DoSomething()
@@ -15,5 +16,11 @@ public class Teaser : TrapsFather
         Vector2 EnemyLocation = target.transform.position - transform.position;
         EnemyLocation.Normalize();
         Projectile.Launch(EnemyLocation);
+
+       if (taser != null)
+        {
+            AudioSource.PlayClipAtPoint(taser, transform.position);
+        }
+
     }
 }
