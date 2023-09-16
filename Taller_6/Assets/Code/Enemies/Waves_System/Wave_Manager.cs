@@ -73,8 +73,11 @@ public class Wave_Manager : MonoBehaviour
         {
             enemy.Activation();
         }
+
+        tutorial_chart.ExecuteBlock("Tombo");
+        yield return new WaitForSeconds(5);
+        Finish_Fungus();
         
-        //Play al fungus
     }
 
     public void Finish_Fungus()
