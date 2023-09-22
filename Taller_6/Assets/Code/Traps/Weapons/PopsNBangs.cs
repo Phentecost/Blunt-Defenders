@@ -18,31 +18,44 @@ public class PopsNBangs : TrapsFather
 
     protected override void DoSomething()
     {
-        StartCoroutine(Exploit());
+        Chargetime -= Time.deltaTime;
+        if (Chargetime < 0)
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+            foreach (GameObject enemy in enemies)
+            {
+                Tombo_Con_Perro enemyController = enemy.GetComponent<Tombo_Con_Perro>();
+                if (this.range >= Vector2.Distance(this.transform.position, enemy.transform.position))
+                {
+                    if (enemyController != null)
+                    {
+                        enemyController.Scared();
+                    }
+                }
+            }
+            Trap_Manager.Instance.Realice_Trap_To_Preveiw(this);
+                
+        }
     }
 
-    protected IEnumerator Exploit()
+    /*protected IEnumerator Exploit()
     {
         yield return new WaitForSeconds(Chargetime);
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
         foreach (GameObject enemy in enemies)
         {
+            Tombo_Con_Perro enemyController =  enemy.GetComponent<Tombo_Con_Perro>();
             if (this.range >= Vector2.Distance(this.transform.position, enemy.transform.position))
             {
-                if (enemy.GetComponent<Tombo_Con_Perro>() != null)
+                if (enemyController != null)
                 {
-                    /*hacer 1 de dano
-                    espantar al perro*/
-                }
-                else
-                {
-                    //hacer 0.5f de daño
+                    enemyController.Scared();           
                 }
 
             }
 
         }
-    }
+    }*/
 
  
 }
