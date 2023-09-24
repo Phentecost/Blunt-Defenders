@@ -21,7 +21,6 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI txt;
     [SerializeField] private Vector2 _Start_Pos;
     [SerializeField] private bool Tutorial;
-    [SerializeField] private List<Wave> tutorial_Waves;
     [SerializeField] private List<Flowchart> tutorial_Charts;
     private int tutorial_Waves_Index;
     public float timer {get;private set;} = 0;
@@ -83,8 +82,8 @@ public class Game_Manager : MonoBehaviour
         _Player.transform.position = _Start_Pos;
         timer = Preparation_fase_Time;
         UI_Manager.Instance.Change_To_Prep();
+        Target_Manager.Instance.Activate_Indicators(Wave_Manager.Instance.Check_Wave_Paths());
         _Current_Game_State = Game_State.Preparation;
-
     }
 
     private void Defending_Fase()
@@ -93,13 +92,15 @@ public class Game_Manager : MonoBehaviour
         _Player.SetActive(false);
         UI_Manager.Instance.Change_To_Game();
         UI_WS_Manager.Instance.Cancel_Preview();
+        Target_Manager.Instance.Deactivate_Indicators();
         _Current_Game_State = Game_State.Defending; 
 
         if(Tutorial)
         {
-            Wave_Manager.Instance.Config(tutorial_Waves[tutorial_Waves_Index], Prep_Fase,tutorial_Charts[tutorial_Waves_Index]);
+            int i,count;
+            Wave_Manager.Instance.Config(Prep_Fase,tutorial_Charts[tutorial_Waves_Index], out i , out count);
             tutorial_Waves_Index++;
-            if(tutorial_Waves_Index == tutorial_Waves.Count)
+            if(i == count)
             {
                 Tutorial = false;
             }

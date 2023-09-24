@@ -47,13 +47,12 @@ public class Enemy_Spawn_System : MonoBehaviour
     [SerializeField] private int _esmad_Pool_Max_Capacity;
     [SerializeField] private bool _esmad_Pool_Collection_Check;
     private ObjectPool<Esmad> _esmad_Pool;
-
     private List<Enemy> _spawned_Enemy_Wave;
     private bool _active_Wave = false;
-
     public static Enemy_Spawn_System Instance {get; private set;} = null;
     public static event Action OnWaveEnd;
-
+    private List<int> paths_Index = new List<int>();
+    int count,index;
     void Awake()
     {
         if(Instance != null)
@@ -169,14 +168,20 @@ public class Enemy_Spawn_System : MonoBehaviour
 
     public IEnumerator SpawnWave (Wave wave, bool tutorial)
     {
-        
+        index = 0;
+        count = 0;
+        int enemies_per_paths; 
+        (enemies_per_paths,paths_Index) = wave.GetPahts();
+
         if(wave._bachitombo_Count >0)
         {
             for (int i = 0; i< wave._bachitombo_Count;i++)
             {
                 var enemy = _bachitombo_Pool.Get();
                 _spawned_Enemy_Wave.Add(enemy);
-                enemy.Config(OnDeath,OnReach);
+                enemy.Config(OnDeath,OnReach,paths_Index[index]);
+                count++;
+                if(count == enemies_per_paths && index < paths_Index.Count-1) {index++; count = 0;}
                 yield return new WaitForSeconds(0.2f);
             }
         }
@@ -187,7 +192,9 @@ public class Enemy_Spawn_System : MonoBehaviour
             {
                 var enemy = _tombo_Pool.Get();
                 _spawned_Enemy_Wave.Add(enemy);
-                enemy.Config(OnDeath,OnReach);
+                enemy.Config(OnDeath,OnReach, paths_Index[index]);
+                count++;
+                if(count == enemies_per_paths && index < paths_Index.Count-1) {index++; count = 0;}
                 yield return new WaitForSeconds(0.2f);
             }
         }
@@ -198,7 +205,10 @@ public class Enemy_Spawn_System : MonoBehaviour
             {
                 var enemy = _tombo_Tactico_Pool.Get();
                 _spawned_Enemy_Wave.Add(enemy);
-                enemy.Config(OnDeath,OnReach);
+                enemy.Config(OnDeath,OnReach, paths_Index[index]);
+
+                count++;
+                if(count == enemies_per_paths && index < paths_Index.Count-1) {index++; count = 0;}
                 yield return new WaitForSeconds(0.2f);
             }
         }
@@ -209,7 +219,9 @@ public class Enemy_Spawn_System : MonoBehaviour
             {
                 var enemy = _tombo_Con_Pero_Pool.Get();
                 _spawned_Enemy_Wave.Add(enemy);
-                enemy.Config(OnDeath,OnReach);
+                enemy.Config(OnDeath,OnReach,paths_Index[index]);
+                count++;
+                if(count == enemies_per_paths && index < paths_Index.Count-1) {index++; count = 0;}
                 yield return new WaitForSeconds(0.2f);
             }
         }
@@ -220,7 +232,11 @@ public class Enemy_Spawn_System : MonoBehaviour
             {
                 var enemy = _esmad_Pool.Get();
                 _spawned_Enemy_Wave.Add(enemy);
-                enemy.Config(OnDeath,OnReach);
+                Debug.Log(paths_Index.Count);
+                Debug.Log(index);
+                enemy.Config(OnDeath,OnReach,paths_Index[index]);
+                count++;
+                if(count == enemies_per_paths && index < paths_Index.Count-1) {index++; count = 0;}
                 yield return new WaitForSeconds(0.2f);
             }
         }
@@ -260,4 +276,45 @@ public class Wave
    public int _tombo_Tactico_Count;
    public int _tombo_Con_Perro_Count;
    public int _esmad_Count;
+   public bool Path_01;
+   public bool Path_02;
+   public bool Path_03;
+   public bool Path_04;
+
+    public (int,List<int>) GetPahts()
+    {
+        int totalCount = _bachitombo_Count+ _tombo_Count +_tombo_Tactico_Count + _tombo_Con_Perro_Count + _esmad_Count;
+        List<int> paths = new List<int>();
+        int number_of_Paths = 0;
+
+        if(Path_01)
+        {
+            number_of_Paths ++;
+            paths.Add(0);
+        }
+
+        if(Path_02)
+        {
+            number_of_Paths ++;
+            paths.Add(1);
+        }
+
+        if(Path_03)
+        {
+            number_of_Paths ++;
+            paths.Add(2);
+        }
+
+        if(Path_04)
+        {
+            number_of_Paths ++;
+            paths.Add(3);
+        }
+
+        int enemy_per_Path = (int)MathF.Round(totalCount/number_of_Paths);
+
+        return(enemy_per_Path,paths);
+
+    }
+
 }

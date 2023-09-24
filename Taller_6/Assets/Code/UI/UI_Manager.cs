@@ -115,7 +115,7 @@ public class UI_Manager : MonoBehaviour
 
     public void UpdateWeed(int i)
     {
-        weed_TXT.text = "Weed: " + i;
+        //weed_TXT.text = "Weed: " + i;
     }
 
     public void Cant_Buy_Panel_Activation()

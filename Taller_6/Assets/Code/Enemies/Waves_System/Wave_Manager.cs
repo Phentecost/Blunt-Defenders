@@ -5,6 +5,8 @@ using UnityEngine;
 using TMPro;
 using Fungus;
 using Enemies;
+using System.Linq;
+using System.IO.Compression;
 
 public class Wave_Manager : MonoBehaviour
 {
@@ -17,6 +19,9 @@ public class Wave_Manager : MonoBehaviour
     [SerializeField] Flowchart onWin;
     private Flowchart tutorial_chart;
     private List<Enemy> Tutorial_Enemies;
+    [SerializeField] private List<Wave> tutorial_Waves;
+    [SerializeField] private List<Wave> Game_Waves;
+    int tutorial_index = 0;
 
     void Awake()
     {
@@ -30,6 +35,10 @@ public class Wave_Manager : MonoBehaviour
 
         Flowchart_Displayed = false;
         _wave = new Wave();
+        _wave.Path_01 = true;
+        _wave.Path_02 = true;
+        _wave.Path_03 = true;
+        _wave.Path_04 = true;
     }
 
     void Start()
@@ -42,20 +51,71 @@ public class Wave_Manager : MonoBehaviour
         Enemy_Spawn_System.OnWaveEnd -= OnWaveEnds;
     }
 
+    public bool[] Check_Wave_Paths()
+    {
+        bool[] paths = new bool[4];
+
+        if(_wave_Index + 3 > Game_Waves.Count)
+        {
+            for ( int i = 0; i<paths.Length; i++)
+            {
+                paths[i] = true;
+            }
+        }
+        else
+        {
+            for(int i = _wave_Index; i < _wave_Index + 3;i++)
+            {
+                if(Game_Waves[i].Path_01)
+                {
+                    paths[0] = true;
+                }
+
+                if(Game_Waves[i].Path_02)
+                {
+                    paths[1] = true;
+                }
+
+                if(Game_Waves[i].Path_03)
+                {
+                    paths[2] = true;
+                }
+
+                if(Game_Waves[i].Path_04)
+                {
+                    paths[3] = true;
+                }
+            }
+        }
+
+        return paths;
+    }
+
     public void Config(int i, Action OnEnding)
     {
         waves_left = i;
         this.OnEnding = OnEnding;
-        StartCoroutine(NextWave(_wave,false));
+        if(_wave_Index < Game_Waves.Count)
+        {
+            StartCoroutine(NextWave(Game_Waves[_wave_Index],false));
+        }
+        else
+        {
+            StartCoroutine(NextWave(_wave,false));
+        }
+        
     }
 
-    public void Config(Wave wave, Action OnEnding, Flowchart chart)
+    public void Config(Action OnEnding, Flowchart chart , out int i , out int count)
     {
         waves_left = 1;
         _wave_Index--;
         this.OnEnding = OnEnding;
         tutorial_chart = chart;
-        StartCoroutine(NextWave(wave,true));
+        StartCoroutine(NextWave(tutorial_Waves[tutorial_index],true));
+        tutorial_index ++;
+        i = tutorial_index;
+        count  = tutorial_Waves.Count;
     }
 
     void StartWave(Wave wave,bool tutorial)
@@ -99,7 +159,16 @@ public class Wave_Manager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(NextWave(_wave,false));
+            if(_wave_Index < Game_Waves.Count)
+            {
+                StartCoroutine(NextWave(Game_Waves[_wave_Index],false));
+            }
+            else
+            {
+                StartCoroutine(NextWave(_wave,false));
+            }
+
+            
         }
     }
 

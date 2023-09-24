@@ -9,13 +9,6 @@ public class PopsNBangs : TrapsFather
 {
     [SerializeField] int range;
     [SerializeField] float Chargetime; 
-
-    void Start()
-    {
-        //this.ammo = 1;
-        this.range = 6;
-    }
-
     protected override void DoSomething()
     {
         Chargetime -= Time.deltaTime;

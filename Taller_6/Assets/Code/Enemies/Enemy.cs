@@ -210,17 +210,17 @@ namespace Enemies
             _OnDeath(this,points);
         }
         private void Reach(){_OnReach(this,damage_To_Player);}
-        public void Config(Action<Enemy, int> _OnDeath, Action<Enemy, int> _OnReach)
+        public void Config(Action<Enemy, int> _OnDeath, Action<Enemy, int> _OnReach, int path_Index)
         {
             speed = config.speed;
             door_Damage = config.door_Damage;
             Life = config.Life;
             damage_To_Player = config.damage_To_Player;
             way_Point_Index = 0;
-            path_Index = config.GetRandomPath();
-            transform.position = WayPointManager.Paths[path_Index][way_Point_Index].transform.position;
+            this.path_Index = path_Index;
+            transform.position = WayPointManager.Paths[this.path_Index][way_Point_Index].transform.position;
             way_Point_Index++; 
-            target = WayPointManager.Paths[path_Index][way_Point_Index];
+            target = WayPointManager.Paths[this.path_Index][way_Point_Index];
             if(animator != null)
             {
                 Vector2 moveDir = target.transform.position - transform.position;
