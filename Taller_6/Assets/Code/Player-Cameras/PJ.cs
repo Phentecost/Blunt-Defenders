@@ -10,6 +10,19 @@ public class PJ : MonoBehaviour
     Vector2 movement;
     [SerializeField] private Animator animator;
 
+    public static PJ Instance {get;private set;} = null;
+
+    void Awake()
+    {
+        if(Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+
     void Update()
     {
         if(Game_Manager._Current_Game_State == Game_Manager.Game_State.Defending) return;

@@ -6,9 +6,9 @@ public class UI_WS_Manager : MonoBehaviour
 {
     public static UI_WS_Manager Instance {get; private set;} = null;
 
-    [SerializeField] private GameObject Deploy_Panel;
+    [SerializeField] public GameObject Deploy_Panel;
     [SerializeField] private GameObject Confirmation_Panel;
-    bool Previewing_Trap;
+    public bool Previewing_Trap{get; private set;}
     TrapsFather trap;
     int trap_ID;
 

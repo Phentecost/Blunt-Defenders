@@ -232,8 +232,6 @@ public class Enemy_Spawn_System : MonoBehaviour
             {
                 var enemy = _esmad_Pool.Get();
                 _spawned_Enemy_Wave.Add(enemy);
-                Debug.Log(paths_Index.Count);
-                Debug.Log(index);
                 enemy.Config(OnDeath,OnReach,paths_Index[index]);
                 count++;
                 if(count == enemies_per_paths && index < paths_Index.Count-1) {index++; count = 0;}
@@ -242,7 +240,7 @@ public class Enemy_Spawn_System : MonoBehaviour
         }
         _active_Wave = true;
 
-        if(tutorial) StartCoroutine(Wave_Manager.Instance.Tutorial_Fungus(_spawned_Enemy_Wave));
+        //if(tutorial) StartCoroutine(Wave_Manager.Instance.Tutorial_Fungus(_spawned_Enemy_Wave));
     }
 
     private void OnDeath(Enemy enemy, int i)

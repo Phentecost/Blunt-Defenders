@@ -14,7 +14,6 @@ public class Way_Point : MonoBehaviour
     private float timer = 0;
     [SerializeField] private TextMeshPro txt;
     public SpriteRenderer spriteRenderer;
-
     void Update()
     {
         if(!Door || Game_Manager._Current_Game_State == Game_Manager.Game_State.Preparation) return;
@@ -57,6 +56,15 @@ public class Way_Point : MonoBehaviour
         spriteRenderer.gameObject.SetActive(false);
     }
 
+    public void Make_Door()
+    {
+        Door = true;
+        life = 100;
+        spriteRenderer.color = Color.green;
+        spriteRenderer.gameObject.SetActive(true);
+        
+    }
+
     public void Register(Enemy enemy)
     {
         atk_Enemies.Add(enemy);
@@ -71,6 +79,19 @@ public class Way_Point : MonoBehaviour
         else
         {
             txt.gameObject.SetActive(true);
+        }
+    }
+
+    public void show_door()
+    {
+        if(spriteRenderer.gameObject.activeInHierarchy)
+        {
+            spriteRenderer.gameObject.SetActive(false);
+        }
+        else
+        {
+            spriteRenderer.color = new Color(0,1,0,0.5f);
+            spriteRenderer.gameObject.SetActive(true);
         }
     }
 

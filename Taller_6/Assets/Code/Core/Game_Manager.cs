@@ -20,7 +20,7 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private int _nWaves;
     [SerializeField] private TextMeshProUGUI txt;
     [SerializeField] private Vector2 _Start_Pos;
-    [SerializeField] private bool Tutorial;
+    [SerializeField] public bool Tutorial;
     [SerializeField] private List<Flowchart> tutorial_Charts;
     private int tutorial_Waves_Index;
     public float timer {get;private set;} = 0;
@@ -40,7 +40,7 @@ public class Game_Manager : MonoBehaviour
     void Start()
     {
         Prep_Fase();
-        Pause();
+        if(Tutorial)Pause();
     }
 
     public void Pause()
@@ -51,6 +51,7 @@ public class Game_Manager : MonoBehaviour
     public void Ready()
     {
         timer = 0;
+        OnPouse = false;
     }
 
     void Update()
@@ -97,13 +98,7 @@ public class Game_Manager : MonoBehaviour
 
         if(Tutorial)
         {
-            int i,count;
-            Wave_Manager.Instance.Config(Prep_Fase,tutorial_Charts[tutorial_Waves_Index], out i , out count);
-            tutorial_Waves_Index++;
-            if(i == count)
-            {
-                Tutorial = false;
-            }
+            Wave_Manager.Instance.Config(Prep_Fase,tutorial_Charts[tutorial_Waves_Index]);
         }
         else
         {

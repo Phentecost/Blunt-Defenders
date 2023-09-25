@@ -11,8 +11,8 @@ public class Player_Interaction : MonoBehaviour
     public bool _Can_Deploy = true;
     private TrapsFather _trap;
     bool Show_Outlines;
-    private Way_Point _door;
-    bool Show_Text;
+    public Way_Point _door;
+    bool Show_Text,Show_Door;
     [SerializeField] private Image img;
     [SerializeField] private GameObject Deply_Icon,Cant_Icon,Up_Icon,Repair_Icon;
 
@@ -22,12 +22,12 @@ public class Player_Interaction : MonoBehaviour
     public int _current_Money {get; private set;} = 100;
     public int _current_Weed {get; private set;} = 0;
 
-    private enum Type_Of_Interaction
+    public enum Type_Of_Interaction
     {
-        Deploy, Upgrade, Repare
+        Deploy, Upgrade, Repare, Build
     }
 
-    private Type_Of_Interaction _current_Interaction = Type_Of_Interaction.Deploy;
+    public Type_Of_Interaction _current_Interaction{get;private set;} = Type_Of_Interaction.Deploy;
 
     public static Player_Interaction Instance {get;private set;} = null;
 
@@ -89,6 +89,13 @@ public class Player_Interaction : MonoBehaviour
             Up_Icon.SetActive(false);
             Repair_Icon.SetActive(true);
             img.color = Color.green;
+        }else if (_current_Interaction == Type_Of_Interaction.Build)
+        {
+            Cant_Icon.SetActive(false);
+            Deply_Icon.SetActive(false);
+            Up_Icon.SetActive(false);
+            Repair_Icon.SetActive(false);
+            img.color = Color.yellow;
         }
     }
 
@@ -137,6 +144,10 @@ public class Player_Interaction : MonoBehaviour
                 
                 Debug.Log("Se ha reparado la puerta");
 
+                break;
+
+            case Type_Of_Interaction.Build:
+                 _door.Make_Door();
                 break;
         }
     }
@@ -191,13 +202,22 @@ public class Player_Interaction : MonoBehaviour
         Way_Point door = other.GetComponentInParent<Way_Point>();
         if(door!= null)
         {
+            if(door.Door)
+            {
             _current_Interaction = Type_Of_Interaction.Deploy;
-            
             _door.Show_Text();
             Show_Text = false;
             _door = null;
+            }
+            else
+            {
+                _current_Interaction =  Type_Of_Interaction.Deploy;
+                _door.show_door();
+                Show_Door = false;
+            }
             
         }
+        
     }
 
     void OnTriggerStay2D (Collider2D other)
@@ -217,13 +237,27 @@ public class Player_Interaction : MonoBehaviour
         Way_Point door = other.GetComponentInParent<Way_Point>();
         if(door!= null)
         {
-            _current_Interaction = Type_Of_Interaction.Repare;
-            _door = door;
-            if(!Show_Text)
+            if(door.Door)
             {
-                _door.Show_Text();
-                Show_Text = true;
-                
+                _current_Interaction = Type_Of_Interaction.Repare;
+                _door = door;
+                if(!Show_Text)
+                {
+                    _door.Show_Text();
+                    Show_Text = true;
+                    
+                }
+            }
+            else
+            {
+                _current_Interaction = Type_Of_Interaction.Build;
+                _door = door;
+                if(!Show_Door)
+                {
+                    _door.show_door();
+                    Show_Door = true;
+                }
+
             }
         }
     }
@@ -242,10 +276,21 @@ public class Player_Interaction : MonoBehaviour
         Way_Point door = other.GetComponentInParent<Way_Point>();
         if(door!= null)
         {
-            _current_Interaction = Type_Of_Interaction.Repare;
-            _door = door;
-            Show_Text = true;
-            _door.Show_Text();
+            if(door.Door)
+            {
+                _current_Interaction = Type_Of_Interaction.Repare;
+                _door = door;
+                Show_Text = true;
+                _door.Show_Text();
+            }
+            else
+            {
+                _current_Interaction = Type_Of_Interaction.Build;
+                _door = door;
+                Show_Door = true;
+                _door.show_door();
+            }
         }
+        
     }
 }

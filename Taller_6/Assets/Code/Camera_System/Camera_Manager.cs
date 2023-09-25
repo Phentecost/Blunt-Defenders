@@ -11,6 +11,7 @@ public class Camera_Manager : MonoBehaviour
 
     private Transform _main_Camera;
     Camera_UI CurrentPOV;
+    public int Current_Camera {get;private set;}
     void Awake()
     {
         if (Instance != null)
@@ -38,6 +39,7 @@ public class Camera_Manager : MonoBehaviour
     public void Change_Camera(int i)
     {
         _main_Camera.position = _cameras[i];
+        Current_Camera = i;
     }
 
     public void onPov(Camera_UI Cam)

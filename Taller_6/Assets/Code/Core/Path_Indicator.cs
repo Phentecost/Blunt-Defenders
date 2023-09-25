@@ -35,7 +35,6 @@ public class Path_Indicator : MonoBehaviour
             else
             {
                 Vector3 target_Viewport_Position = mainCamera.WorldToViewportPoint(Target.transform.position);
-                Debug.Log(target_Viewport_Position);
                 if(target_Viewport_Position.z > 0 && target_Viewport_Position.x > 0 && target_Viewport_Position.x < 1 && target_Viewport_Position.y > 0 && target_Viewport_Position.y<1)
                 {
                     _renderer.sortingOrder = -11;

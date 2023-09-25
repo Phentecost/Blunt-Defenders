@@ -55,38 +55,50 @@ public class Wave_Manager : MonoBehaviour
     {
         bool[] paths = new bool[4];
 
-        if(_wave_Index + 3 > Game_Waves.Count)
+        if(!Game_Manager.Instance.Tutorial)
         {
-            for ( int i = 0; i<paths.Length; i++)
+            if(_wave_Index + 3 > Game_Waves.Count)
             {
-                paths[i] = true;
+                for ( int i = 0; i<paths.Length; i++)
+                {
+                    paths[i] = true;
+                }
+            }
+            else
+            {
+                for(int i = _wave_Index; i < _wave_Index + 3;i++)
+                {
+                    if(Game_Waves[i].Path_01)
+                    {
+                        paths[0] = true;
+                    }
+
+                    if(Game_Waves[i].Path_02)
+                    {
+                        paths[1] = true;
+                    }
+
+                    if(Game_Waves[i].Path_03)
+                    {
+                        paths[2] = true;
+                    }
+
+                    if(Game_Waves[i].Path_04)
+                    {
+                        paths[3] = true;
+                    }
+                }
             }
         }
         else
         {
-            for(int i = _wave_Index; i < _wave_Index + 3;i++)
-            {
-                if(Game_Waves[i].Path_01)
+            for(int i = 0; i < 4 ;i++)
                 {
-                    paths[0] = true;
+                    paths[i] = true;
+                    paths[0] = false;
                 }
-
-                if(Game_Waves[i].Path_02)
-                {
-                    paths[1] = true;
-                }
-
-                if(Game_Waves[i].Path_03)
-                {
-                    paths[2] = true;
-                }
-
-                if(Game_Waves[i].Path_04)
-                {
-                    paths[3] = true;
-                }
-            }
         }
+        
 
         return paths;
     }
@@ -106,7 +118,7 @@ public class Wave_Manager : MonoBehaviour
         
     }
 
-    public void Config(Action OnEnding, Flowchart chart , out int i , out int count)
+    public void Config(Action OnEnding, Flowchart chart)
     {
         waves_left = 1;
         _wave_Index--;
@@ -114,8 +126,6 @@ public class Wave_Manager : MonoBehaviour
         tutorial_chart = chart;
         StartCoroutine(NextWave(tutorial_Waves[tutorial_index],true));
         tutorial_index ++;
-        i = tutorial_index;
-        count  = tutorial_Waves.Count;
     }
 
     void StartWave(Wave wave,bool tutorial)

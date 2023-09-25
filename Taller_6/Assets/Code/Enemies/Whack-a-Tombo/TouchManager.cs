@@ -7,14 +7,12 @@ using UnityEngine;
 public class TouchManager : MonoBehaviour
 {
     public static TouchManager Instance {get;private set;} = null;
-
     private Vector2 _screen_Position;
     private Vector2 _world_Position;
-
     [SerializeField] private LayerMask layerMask;
-
     private float time_Between_Touches = 0.2f;
     private float _timer;
+    public bool touche_this_Frame;
     void Awake()
     {
         if(Instance != null)
@@ -34,6 +32,7 @@ public class TouchManager : MonoBehaviour
         if(Input.touchCount > 0 && _timer <= 0)
         {
             _screen_Position = Input.GetTouch(0).position;
+            touche_this_Frame = false;
         }
         else if( Input.GetMouseButton(0) && _timer <= 0)
         {
@@ -58,6 +57,7 @@ public class TouchManager : MonoBehaviour
             if(x != null)
             {
                 x.OnTouched(-1);
+                touche_this_Frame = true;
                 _timer = time_Between_Touches;
             }
         }
