@@ -48,7 +48,7 @@ public class Path_Indicator : MonoBehaviour
                     transform.position = new Vector3(screen_Edge.x,screen_Edge.y,0);
                     Vector3 direction = Target.transform.position - transform.position;
                     float angle = Mathf.Atan2(direction.y,direction.x) * Mathf.Rad2Deg;
-                    transform.rotation = quaternion.Euler(0,0,angle);
+                    transform.rotation = quaternion.Euler(0,0,angle-90);
                 }
             }
         }

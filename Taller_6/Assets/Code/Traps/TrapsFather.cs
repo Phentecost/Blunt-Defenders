@@ -5,7 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class TrapsFather : MonoBehaviour
+public abstract class TrapsFather : MonoBehaviour , interactible_OGJ
 {
     protected List<Enemy> _Enemy_Inside;
     private float wait;
@@ -17,7 +17,7 @@ public abstract class TrapsFather : MonoBehaviour
     protected float bullet_Power;
     public int _level_Up_Money_Cost {get; private set;}
     public int _level_Up_Weed_Cost {get; private set;}
-    protected bool Disable,PreView;
+    protected bool Disable,PreView,showing_Outlines;
     [SerializeField]private GameObject out_Line;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private TextMeshPro coin_TXT, mejora_TXT;
@@ -100,22 +100,6 @@ public abstract class TrapsFather : MonoBehaviour
         }
     }
 
-    public void Show_Outlines()
-    {
-        if(out_Line.activeInHierarchy)
-        {
-            out_Line.SetActive(false);
-            coin_TXT.gameObject.SetActive(false);
-            if(!PreView)mejora_TXT.gameObject.SetActive(false);
-        }
-        else
-        {
-            out_Line.SetActive(true);
-            coin_TXT.gameObject.SetActive(true);
-            if(!PreView)mejora_TXT.gameObject.SetActive(true);
-        }
-    }
-
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemycontroller = collision.gameObject.GetComponent<Enemy>();
@@ -134,8 +118,34 @@ public abstract class TrapsFather : MonoBehaviour
         }
     }
 
-    
+    public void show_Outlines()
+    {
+        out_Line.SetActive(true);
+        coin_TXT.gameObject.SetActive(true);
+        //if(!PreView)mejora_TXT.gameObject.SetActive(true);
+        showing_Outlines=true;
+    }
 
+    public bool IsActive_OBJ()
+    {
+        return !PreView;
+    }
 
+    public bool IsActive_Outlines()
+    {
+        return showing_Outlines;
+    }
 
+    public void Off_Outlines()
+    {
+        out_Line.SetActive(false);
+        coin_TXT.gameObject.SetActive(false);
+        //if(!PreView)mejora_TXT.gameObject.SetActive(false);
+        showing_Outlines=false;
+    }
+
+    public Vector2 Pos()
+    {
+        return transform.position;
+    }
 }

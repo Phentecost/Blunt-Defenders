@@ -4,32 +4,30 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Fungus;
+using System.Linq;
 
 public class Player_Interaction : MonoBehaviour
 {
-
     public bool _Can_Deploy = true;
     private TrapsFather _trap;
     bool Show_Outlines;
     public Way_Point _door;
-    bool Show_Text,Show_Door;
+    bool OnShow;
     [SerializeField] private Image img;
     [SerializeField] private GameObject Deply_Icon,Cant_Icon,Up_Icon,Repair_Icon;
-
     private bool firstTime;
     [SerializeField] Flowchart trapsTutorial;
-
     public int _current_Money {get; private set;} = 100;
     public int _current_Weed {get; private set;} = 0;
-
+    private interactible_OGJ closest_Interactible; 
     public enum Type_Of_Interaction
     {
         Deploy, Upgrade, Repare, Build
     }
 
     public Type_Of_Interaction _current_Interaction{get;private set;} = Type_Of_Interaction.Deploy;
-
     public static Player_Interaction Instance {get;private set;} = null;
+    private List<interactible_OGJ> interactibles = new List<interactible_OGJ>();
 
     void Awake()
     {
@@ -53,6 +51,8 @@ public class Player_Interaction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        showe_Closest_Interactible_Outlines();
+
         if(_current_Interaction == Type_Of_Interaction.Deploy)
         {
             if(!_Can_Deploy)
@@ -96,6 +96,35 @@ public class Player_Interaction : MonoBehaviour
             Up_Icon.SetActive(false);
             Repair_Icon.SetActive(false);
             img.color = Color.yellow;
+        }
+    }
+
+    public void showe_Closest_Interactible_Outlines()
+    {
+        Debug.Log(interactibles.Count);
+        Debug.Log(closest_Interactible);
+
+        if(interactibles.Count > 1)
+        {
+            for (int i = 0;i < interactibles.Count; i++)
+            {
+                if(interactibles[i] == closest_Interactible) continue;
+                if(Vector2.Distance(interactibles[i].Pos(),transform.parent.position) < Vector2.Distance(closest_Interactible.Pos(),transform.parent.position))
+                {
+                    if(closest_Interactible.IsActive_Outlines()) closest_Interactible.Off_Outlines();
+                    closest_Interactible = interactibles[i];
+                    if(!closest_Interactible.IsActive_Outlines()) closest_Interactible.show_Outlines();
+                    if(closest_Interactible is TrapsFather){_trap = (TrapsFather) closest_Interactible; _current_Interaction = Type_Of_Interaction.Upgrade;}
+                    if(closest_Interactible is Way_Point){_door = (Way_Point) closest_Interactible; _current_Interaction = _door.Door? Type_Of_Interaction.Repare : Type_Of_Interaction.Build;}
+                }
+            }
+        }
+        else if(interactibles.Count == 1)
+        {
+            interactibles[0].show_Outlines();
+            closest_Interactible = interactibles[0];
+            if(closest_Interactible is TrapsFather){_trap = (TrapsFather) closest_Interactible; _current_Interaction = Type_Of_Interaction.Upgrade;}
+            if(closest_Interactible is Way_Point) {_door = (Way_Point) closest_Interactible; _current_Interaction = _door.Door? Type_Of_Interaction.Repare : Type_Of_Interaction.Build;}
         }
     }
 
@@ -147,7 +176,9 @@ public class Player_Interaction : MonoBehaviour
                 break;
 
             case Type_Of_Interaction.Build:
-                 _door.Make_Door();
+                _door.show_Outlines();
+                _door.Make_Door();
+                _door.show_Outlines();
                 break;
         }
     }
@@ -189,7 +220,7 @@ public class Player_Interaction : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        TrapsFather controller = other.GetComponentInParent<TrapsFather>();
+        /*TrapsFather controller = other.GetComponentInParent<TrapsFather>();
         if(controller != null)
         {
             _current_Interaction = Type_Of_Interaction.Deploy;
@@ -200,29 +231,26 @@ public class Player_Interaction : MonoBehaviour
         }
 
         Way_Point door = other.GetComponentInParent<Way_Point>();
-        if(door!= null)
-        {
-            if(door.Door)
-            {
-            _current_Interaction = Type_Of_Interaction.Deploy;
-            _door.Show_Text();
-            Show_Text = false;
-            _door = null;
-            }
-            else
-            {
-                _current_Interaction =  Type_Of_Interaction.Deploy;
-                _door.show_door();
-                Show_Door = false;
-            }
-            
-        }
+        */
         
+        interactible_OGJ inter = other.GetComponentInParent<interactible_OGJ>();
+        
+        _current_Interaction =  Type_Of_Interaction.Deploy;
+        if(inter.IsActive_Outlines())inter.Off_Outlines();
+        if(closest_Interactible == inter)
+        {
+            if(inter is TrapsFather) _trap = null;
+            if(inter is Way_Point) _door = null;
+        }
+        interactibles.Remove(inter);
+        if(interactibles.Count == 0)OnShow = false;
     }
 
     void OnTriggerStay2D (Collider2D other)
     {
-        TrapsFather controller = other.GetComponentInParent<TrapsFather>();
+        interactible_OGJ inter = other.GetComponentInParent<interactible_OGJ>();
+        if(!interactibles.Contains(inter)) interactibles.Add(inter);
+        /*TrapsFather controller = other.GetComponentInParent<TrapsFather>();
         if(controller != null)
         {
             _current_Interaction = Type_Of_Interaction.Upgrade;
@@ -259,38 +287,63 @@ public class Player_Interaction : MonoBehaviour
                 }
 
             }
-        }
+        }*/
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {     
-        TrapsFather controller = other.GetComponentInParent<TrapsFather>();
+        /*TrapsFather controller = other.GetComponentInParent<TrapsFather>();
         if(controller != null)
         {
-            _current_Interaction = Type_Of_Interaction.Upgrade;
-            _trap = controller;
-            _trap.Show_Outlines();
-            Show_Outlines = true;
+            
         }
+        */
 
-        Way_Point door = other.GetComponentInParent<Way_Point>();
-        if(door!= null)
+        interactible_OGJ inter = other.GetComponentInParent<interactible_OGJ>();
+        if(!interactibles.Contains(inter)) interactibles.Add(inter);
+
+        /*if(OnShow) return;
+        if(inter is Way_Point)
         {
-            if(door.Door)
+            if(inter.IsActive_OBJ())
             {
                 _current_Interaction = Type_Of_Interaction.Repare;
-                _door = door;
-                Show_Text = true;
-                _door.Show_Text();
+                _door = (Way_Point)inter;
+                inter.show_Outlines();
+                OnShow = true;
+                closest_Interactible = inter;
+                return;
             }
             else
             {
                 _current_Interaction = Type_Of_Interaction.Build;
-                _door = door;
-                Show_Door = true;
-                _door.show_door();
+                _door = (Way_Point)inter;
+                inter.show_Outlines();
+                OnShow = true;
+                closest_Interactible = inter;
+                return;
             }
         }
+
+        if(inter is TrapsFather)
+        {
+            _current_Interaction = Type_Of_Interaction.Upgrade;
+            _trap = (TrapsFather)inter;
+            inter.show_Outlines();
+            OnShow = true;
+            closest_Interactible = inter;
+        }*/
         
     }
+
+   
+}
+
+public interface interactible_OGJ
+{
+    public void show_Outlines();
+    public bool IsActive_OBJ();
+    public bool IsActive_Outlines();
+    public void Off_Outlines();
+    public Vector2 Pos();
 }

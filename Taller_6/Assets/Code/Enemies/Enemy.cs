@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Unity.Mathematics;
 
 namespace Enemies
 {
@@ -61,12 +62,6 @@ namespace Enemies
                     target = WayPointManager.Paths[path_Index][way_Point_Index];
                     if(target.Door) door = true;
                     if(target.TP) tp = true;
-                    if(animator != null)
-                    {
-                        Vector2 moveDir = target.transform.position - transform.position;
-                        ChangerAnim(moveDir);
-                    }
-                    
                     currentBehaviour = BehaviourParams.Moving_Towars_Target;
 
                     break;
@@ -75,7 +70,8 @@ namespace Enemies
 
                     Vector2 dir = target.transform.position - transform.position;
                     transform.Translate(dir.normalized * speed *Time.deltaTime,Space.World);
-
+                    animator.SetFloat("X",Mathf.Clamp(dir.x,-1,1));
+                    animator.SetFloat("Y",Mathf.Clamp(dir.y,-1,1));
                     if(Vector2.Distance(transform.position,target.transform.position) <= 0.2f)
                     {
                         if(traitor)
@@ -154,12 +150,6 @@ namespace Enemies
                     way_Point_Index --;
                     target = WayPointManager.Paths[path_Index][way_Point_Index];
                     if(target.TP) tp = true;
-                    if(animator != null)
-                    {
-                        Vector2 moveDir = target.transform.position - transform.position;
-                        ChangerAnim(moveDir);
-                    }
-                    
                     currentBehaviour = BehaviourParams.Moving_Towars_Target;
 
                 break;
@@ -221,11 +211,6 @@ namespace Enemies
             transform.position = WayPointManager.Paths[this.path_Index][way_Point_Index].transform.position;
             way_Point_Index++; 
             target = WayPointManager.Paths[this.path_Index][way_Point_Index];
-            if(animator != null)
-            {
-                Vector2 moveDir = target.transform.position - transform.position;
-                ChangerAnim(moveDir);
-            }
             this._OnDeath = _OnDeath;
             this._OnReach = _OnReach;
             points = config.points;
@@ -274,38 +259,6 @@ namespace Enemies
         }
 
         public void Hit(){Death();}
-
-        void ChangerAnim(Vector2 dir)
-        {
-            dir = Vector2Int.RoundToInt(dir);
-
-            if(dir.x > dir.y)
-            {
-                if(dir.x >= 0.5) //Rigth
-                {
-                    animator.SetTrigger("Side");
-                    transform.localScale = new Vector2(1,1);
-                }
-                else if(dir.x <= -0.5) //Left
-                {
-                    animator.SetTrigger("Side");
-                    transform.localScale = new Vector2(-1,1);
-                }
-            }
-            else
-            {
-                if(dir.y >= 0.5) // Up
-                {
-                    animator.SetTrigger("Up");
-                }
-                else if (dir.y <= -0.5) //Down
-                {
-                    animator.SetTrigger("Down");
-                }
-            }
-            
-        }
-
         void OnCollisionEnter2D(Collision2D col)
         {
             if(!traitor) return;

@@ -58,7 +58,7 @@ public class UI_WS_Manager : MonoBehaviour
     {
         trap_ID = i;
         trap = Trap_Manager.Instance.Get_Trap_To_Preveiw(trap_ID);
-        trap.Show_Outlines();
+        trap.show_Outlines();
         Previewing_Trap = true;
     }
 
@@ -73,7 +73,7 @@ public class UI_WS_Manager : MonoBehaviour
     public void Confirmation(bool B)
     {
         if(B){Trap_Manager.Instance.pos = transform.parent.position; Trap_Manager.Instance.Deploy_Trap(trap_ID); };
-        trap.Show_Outlines();
+        trap.Off_Outlines();
         Previewing_Trap = false;
         Trap_Manager.Instance.Realice_Trap_To_Preveiw(trap);
         trap = null;
