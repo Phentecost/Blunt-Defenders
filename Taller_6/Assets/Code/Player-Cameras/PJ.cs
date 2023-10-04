@@ -10,6 +10,8 @@ public class PJ : MonoBehaviour
     Vector2 movement;
     [SerializeField] private Animator animator;
 
+    [SerializeField] private ParticleSystem particulas;
+
     public static PJ Instance {get;private set;} = null;
 
     void Awake()
@@ -34,7 +36,9 @@ public class PJ : MonoBehaviour
         animator.SetFloat("Y",touchDirection.y);
         if(touchDirection != Vector2.zero) 
         {
+            particulas.Play();
             animator.SetBool("Moving",true);
+            
         }
         else
         {
@@ -45,5 +49,6 @@ public class PJ : MonoBehaviour
     void FixedUpdate()
     {
         playerRigidbody.MovePosition(playerRigidbody.position + movement);
+       
     }
  }

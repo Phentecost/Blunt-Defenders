@@ -6,10 +6,12 @@ public class Teaser : TrapsFather
 {
     public AudioClip taser;
     GameObject target;
+    [SerializeField] private ParticleSystem particulastaser;
 
     protected override void DoSomething()
     {
         TeaserCables Projectile = Bullet_Manager.Instance.GetCable();
+        particulastaser.Play();
         Projectile.config(bullet_Damage, bullet_Power);
         Projectile.transform.position = transform.position;
         target = _Enemy_Inside[0].gameObject;
