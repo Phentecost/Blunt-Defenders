@@ -10,10 +10,12 @@ namespace Enemies
     public abstract class Enemy : MonoBehaviour
     {
         protected float speed;
+        private float last_Speed;
         protected int door_Damage;
         protected float door_atk_Delay = 1;
         private float door_Timer;
         protected int Life;
+        bool buffed;
         [SerializeField] private EnemyConfig config;
         [SerializeField]protected int way_Point_Index;
         protected Way_Point target;
@@ -30,6 +32,8 @@ namespace Enemies
         private SpriteRenderer _renderer;
         private ParticleSystem particle;
         private float stun_Timer,ColRed_timer;
+
+        protected abstract void Power();
         public enum BehaviourParams
         {
             Recognize_The_Area, Moving_Towars_Target, Breaking_In, Tired, Go_Out,Stuned
@@ -182,6 +186,9 @@ namespace Enemies
             {
                 StartCoroutine(Death());
             }
+
+            Power();
+
         }
 
         public void Activation()
@@ -224,6 +231,22 @@ namespace Enemies
             currentBehaviour = BehaviourParams.Moving_Towars_Target;
         }
 
+        public void Buff(float i)
+        {
+            last_Speed = speed;
+            speed *= i; 
+        }
+
+        public void Buff(bool i)
+        {
+            buffed = i;
+        }
+
+        public void DeBuff()
+        {
+            speed = last_Speed;
+        }
+
         public void Door_Break_Down(float timer)
         {
             wait_Timer = timer;
@@ -231,9 +254,9 @@ namespace Enemies
             currentBehaviour = BehaviourParams.Tired;
         }
 
-        public void OnTouched(int i)
+        public virtual void OnTouched(int i)
         {
-            Life += i;
+            Life += buffed? (int)Mathf.Round(i/2) : i;
             ColRed();
         }
         void ColRed()

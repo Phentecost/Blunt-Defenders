@@ -12,6 +12,10 @@ namespace Enemies
             gameObject.layer = 13;
             currentBehaviour = BehaviourParams.Go_Out;
         }
+
+        protected override void Power()
+        {
+        }
     }
     
 }

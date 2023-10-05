@@ -6,7 +6,9 @@ namespace Enemies
 {
     public class Tombo : Enemy
     {
-        
+        protected override void Power()
+        {
+        }
     }
 
 }

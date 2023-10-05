@@ -9,7 +9,7 @@ public abstract class TrapsFather : MonoBehaviour , interactible_OGJ
 {
     protected List<Enemy> _Enemy_Inside;
     private float wait;
-    private float timer;
+    private float timer, disable_Timer;
     [SerializeField] private Traps_Config traps_Config;
     public int Current_Level {get; private set;}
     private CircleCollider2D fire_Range;
@@ -27,19 +27,33 @@ public abstract class TrapsFather : MonoBehaviour , interactible_OGJ
     {
 
         if(Game_Manager._Current_Game_State == Game_Manager.Game_State.Preparation) return;
-        if(Disable) return;
-        if(timer <= 0)
+        if(Disable)
         {
-            if(_Enemy_Inside.Count > 0)
+            if(disable_Timer<= 0)
             {
-                timer = wait;
-                DoSomething();
+                Disable = false;
+            }
+            else
+            {
+                disable_Timer -= Time.deltaTime;
             }
         }
         else
         {
-            timer-= Time.deltaTime;
+            if(timer <= 0)
+            {
+                if(_Enemy_Inside.Count > 0)
+                {
+                    timer = wait;
+                    DoSomething();
+                }
+            }
+            else
+            {
+                timer-= Time.deltaTime;
+            }
         }
+        
     }
 
     public void Config(bool deploy)
@@ -98,6 +112,12 @@ public abstract class TrapsFather : MonoBehaviour , interactible_OGJ
         {
             coin_TXT.text = "MAX LEVEL";
         }
+    }
+
+    public void Disable_Trap(float i)
+    {
+        disable_Timer= i;
+        Disable = true;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)

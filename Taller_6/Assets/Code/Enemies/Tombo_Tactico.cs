@@ -6,6 +6,8 @@ namespace Enemies
 {
     public class Tombo_Tactico : Enemy
     {
-
-    }    
+        protected override void Power()
+        {
+        }
+    }
 }

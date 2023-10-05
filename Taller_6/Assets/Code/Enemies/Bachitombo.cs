@@ -6,7 +6,9 @@ namespace Enemies
 {
     public class Bachitombo : Enemy
     {
-        
+        protected override void Power()
+        {
+        }
     }
 
 }
