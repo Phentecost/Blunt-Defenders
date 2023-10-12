@@ -11,6 +11,7 @@ public class UI_WS_Manager : MonoBehaviour
     public bool Previewing_Trap{get; private set;}
     TrapsFather trap;
     int trap_ID;
+    public bool Deploying = false;
 
     void Awake()
     {
@@ -25,6 +26,13 @@ public class UI_WS_Manager : MonoBehaviour
 
     void Update()
     {
+        if(!Deploying)
+        {
+            Deploy_Panel.SetActive(false);
+            Confirmation_Panel.SetActive(false);
+            if(Previewing_Trap)Cancel_Preview();
+        }
+
         if(!Previewing_Trap) return;
 
         trap.transform.position = transform.parent.position;
@@ -56,6 +64,7 @@ public class UI_WS_Manager : MonoBehaviour
 
     public void Preview(int i)
     {
+        
         trap_ID = i;
         trap = Trap_Manager.Instance.Get_Trap_To_Preveiw(trap_ID);
         trap.show_Outlines();

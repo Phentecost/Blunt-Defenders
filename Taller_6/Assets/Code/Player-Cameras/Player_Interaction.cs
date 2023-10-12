@@ -62,10 +62,11 @@ public class Player_Interaction : MonoBehaviour
                 Deply_Icon.SetActive(false);
                 Up_Icon.SetActive(false);
                 Repair_Icon.SetActive(false);
+                UI_WS_Manager.Instance.Deploying = false;
                 return;
             }
             
-            
+            UI_WS_Manager.Instance.Deploying = true;
             img.color = Color.red;
             Cant_Icon.SetActive(false);
             Deply_Icon.SetActive(true);
@@ -80,6 +81,7 @@ public class Player_Interaction : MonoBehaviour
             Deply_Icon.SetActive(false);
             Up_Icon.SetActive(true);
             Repair_Icon.SetActive(false);
+            UI_WS_Manager.Instance.Deploying = false;
             
         }
         else if(_current_Interaction == Type_Of_Interaction.Repare)
@@ -88,6 +90,7 @@ public class Player_Interaction : MonoBehaviour
             Deply_Icon.SetActive(false);
             Up_Icon.SetActive(false);
             Repair_Icon.SetActive(true);
+            UI_WS_Manager.Instance.Deploying = false;
             img.color = Color.green;
         }else if (_current_Interaction == Type_Of_Interaction.Build)
         {
@@ -96,14 +99,12 @@ public class Player_Interaction : MonoBehaviour
             Up_Icon.SetActive(false);
             Repair_Icon.SetActive(false);
             img.color = Color.yellow;
+            UI_WS_Manager.Instance.Deploying = false;
         }
     }
 
     public void showe_Closest_Interactible_Outlines()
     {
-        Debug.Log(interactibles.Count);
-        Debug.Log(closest_Interactible);
-
         if(interactibles.Count > 1)
         {
             for (int i = 0;i < interactibles.Count; i++)

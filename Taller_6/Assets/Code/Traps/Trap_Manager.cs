@@ -218,6 +218,7 @@ public class Trap_Manager : MonoBehaviour
 
     public TrapsFather Get_Trap_To_Preveiw(int i)
     {
+        Debug.Log(i);
         switch(i)
         {
             case 0:

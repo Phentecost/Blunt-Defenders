@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7762331971802391334}
-  - component: {fileID: 3023237590909532918}
   - component: {fileID: 1469023109627948101}
   - component: {fileID: 2619665563124004612}
   - component: {fileID: 2664079064940423454}
+  - component: {fileID: 8110588710122617081}
   m_Layer: 10
   m_Name: Bowling
   m_TagString: Untagged
@@ -40,25 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3023237590909532918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518534145856397418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d36a7fbee8c5612408b3dac1dad09632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traps_Config: {fileID: 11400000, guid: 371ab7768b3e806489c671a7c24a8ae3, type: 2}
-  out_Line: {fileID: 1232710268008364414}
-  spriteRenderer: {fileID: 259134719671558884}
-  coin_TXT: {fileID: 6546443220194662193}
-  mejora_TXT: {fileID: 0}
-  canica: {fileID: 8300000, guid: 2d4ce7d6db931ec418b9e546d0710ced, type: 3}
-  particulasdisparo: {fileID: 9001443038326154764}
 --- !u!58 &1469023109627948101
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -192,6 +173,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8110588710122617081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518534145856397418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b2730e286e83e4098865a8a8679123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traps_Config: {fileID: 11400000, guid: 371ab7768b3e806489c671a7c24a8ae3, type: 2}
+  out_Line: {fileID: 1232710268008364414}
+  spriteRenderer: {fileID: 259134719671558884}
+  coin_TXT: {fileID: 6546443220194662193}
+  mejora_TXT: {fileID: 0}
+  Bolos: {fileID: 8300000, guid: c0a4950cd54bf96409ffe79f0cace4d3, type: 3}
 --- !u!1 &1232710268008364414
 GameObject:
   m_ObjectHideFlags: 0
