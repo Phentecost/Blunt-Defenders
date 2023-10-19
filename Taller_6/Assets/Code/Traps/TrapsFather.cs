@@ -1,4 +1,5 @@
 using Enemies;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -53,7 +54,13 @@ public abstract class TrapsFather : MonoBehaviour , interactible_OGJ
                 timer-= Time.deltaTime;
             }
         }
-        
+
+        if(_Enemy_Inside.Count > 0 && !(this is Bribery) && !(this is PopsNBangs))
+        {
+            Vector2 v2t = _Enemy_Inside[0].transform.position - transform.position;
+            float rot = Mathf.Atan2(v2t.y,v2t.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0,0,rot + 180);
+        }
     }
 
     public void Config(bool deploy)

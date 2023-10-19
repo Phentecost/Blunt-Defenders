@@ -10,9 +10,8 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject Lose_Panel;
     [SerializeField] private GameObject Game_Panel;
     [SerializeField] private GameObject Prep_Panel; 
-    
-    [SerializeField] private GameObject How_To_Panel;
     [SerializeField] private GameObject Main_Panel;
+    [SerializeField] private GameObject Pause_Panel;
     [SerializeField] private GameObject Cant_Buy_Panel;
     private bool panel_Active;
     private float timer = 1;
@@ -64,20 +63,6 @@ public class UI_Manager : MonoBehaviour
         Game_Panel.SetActive(true);
     }
 
-    
-
-    public void How_To_Panel_Activation()
-    {
-        if(How_To_Panel.activeInHierarchy)
-        {
-            How_To_Panel.SetActive(false);
-        }
-        else
-        {
-            How_To_Panel.SetActive(true);
-        }
-    }
-
     public void Main_Panel_Activation()
     {
         if(Main_Panel.activeInHierarchy)
@@ -87,6 +72,18 @@ public class UI_Manager : MonoBehaviour
         else
         {
             Main_Panel.SetActive(true);
+        }
+    }
+
+    public void Pause_Panel_Activation()
+    {
+        if(Pause_Panel.activeInHierarchy)
+        {
+            Pause_Panel.SetActive(false);
+        }
+        else
+        {
+            Pause_Panel.SetActive(true);
         }
     }
 

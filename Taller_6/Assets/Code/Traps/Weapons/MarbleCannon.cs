@@ -20,9 +20,6 @@ public class MarbleCannon : TrapsFather
         Vector2 EnemyLocation = target.transform.position - transform.position;
         EnemyLocation.Normalize();
         Projectile.Launch(EnemyLocation);
-       
-       
-
         
         if (canica != null)
         {

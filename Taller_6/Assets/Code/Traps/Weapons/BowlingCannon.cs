@@ -8,6 +8,7 @@ public class BowlingCannon : TrapsFather
 
     //[SerializeField] BowlingBall Projectile;
     GameObject target;
+    //private Animator animator;
 
     protected override void DoSomething()
     {
@@ -24,5 +25,8 @@ public class BowlingCannon : TrapsFather
         {
             AudioSource.PlayClipAtPoint(Bolos, transform.position);
         }
+        //animator = GetComponent<Animator>();
+        // animator.SetTrigger("LanzarProyectil");
     }
+
 }

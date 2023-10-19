@@ -25,6 +25,8 @@ public class Game_Manager : MonoBehaviour
     private int tutorial_Waves_Index;
     public float timer {get;private set;} = 0;
     public bool OnPouse;
+    public bool Pause_Game = false;
+    private float Current_Time_Scale;
     void Awake()
     {
         if(Instance != null)
@@ -35,6 +37,8 @@ public class Game_Manager : MonoBehaviour
 
         Instance = this;
         OnPouse = false;
+        Tutorial = Data_Manager.Tutorial_Activation;
+        Current_Time_Scale = Time.timeScale;
     }
 
     void Start()
@@ -52,6 +56,19 @@ public class Game_Manager : MonoBehaviour
     {
         timer = 0;
         OnPouse = false;
+    }
+
+    public void PauseGame()
+    {
+        if(Pause_Game)
+        {
+            Time.timeScale = Current_Time_Scale;
+            Pause_Game = false;
+        }else
+        {
+            Time.timeScale = 0;
+            Pause_Game = true;
+        }
     }
 
     void Update()
