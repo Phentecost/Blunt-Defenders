@@ -109,7 +109,16 @@ public class Bullet_Manager : MonoBehaviour
 
     private void OnDestroy_ball(BulletFather bullet)
     {
-        if(bullet is BowlingBall) bowlPool.Release((BowlingBall)bullet);
+        if(bullet is BowlingBall) 
+        {
+             bowlPool.Release((BowlingBall)bullet);
+             //Animator animator = ((BowlingBall)bullet).animator; 
+             //if (animator != null)
+            // {
+             //    animator.SetTrigger("LanzarProyectil");
+             //}
+
+        }
         if(bullet is Marble) marblePool.Release((Marble)bullet);
         if(bullet is TeaserCables) cablePool.Release((TeaserCables)bullet);
     }
