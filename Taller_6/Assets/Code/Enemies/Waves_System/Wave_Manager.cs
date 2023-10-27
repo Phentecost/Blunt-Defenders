@@ -167,9 +167,9 @@ public class Wave_Manager : MonoBehaviour
 
     IEnumerator onWaveEnds()
     {
-        UI_Manager.Instance.Win_Round_Panel_Activation();
+        if(!Game_Manager.Instance.Tutorial)UI_Manager.Instance.Win_Round_Panel_Activation();
         yield return new WaitForSeconds(2);
-        UI_Manager.Instance.Win_Round_Panel_Activation();
+        if(!Game_Manager.Instance.Tutorial)UI_Manager.Instance.Win_Round_Panel_Activation();
         if(waves_left == 0)
         {
             if(!Flowchart_Displayed){onWin.ExecuteBlock("win"); Flowchart_Displayed = true;}
@@ -192,9 +192,9 @@ public class Wave_Manager : MonoBehaviour
 
     IEnumerator NextWave(Wave wave, bool tutorial)
     {
-        UI_Manager.Instance.Next_Round_Panel_Activation();
+        if(!tutorial)UI_Manager.Instance.Next_Round_Panel_Activation();
         yield return new WaitForSeconds(2);
-        UI_Manager.Instance.Next_Round_Panel_Activation();
+        if(!tutorial)UI_Manager.Instance.Next_Round_Panel_Activation();
         waves_left --;
         StartWave(wave, tutorial);
     }

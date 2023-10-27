@@ -26,6 +26,7 @@ namespace Enemies
         private float wait_Timer;
         private bool door;
         private bool tp;
+        private bool stoped;
         private bool traitor,Active;
         private Bribery money;
         [SerializeField] private Animator animator;
@@ -191,6 +192,18 @@ namespace Enemies
 
         }
 
+        public void stop()
+        {
+            if(stoped)
+            {
+                speed = config.speed;
+                stoped = false;
+            }else
+            {
+                speed = 0;
+                stoped = true;
+            }
+        }
         public void Activation()
         {
             Active = !Active;

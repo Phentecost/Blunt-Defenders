@@ -53,6 +53,9 @@ public class Enemy_Spawn_System : MonoBehaviour
     public static event Action OnWaveEnd;
     private List<int> paths_Index = new List<int>();
     int count,index;
+
+    private bool[,] Enemies_Found;
+
     void Awake()
     {
         if(Instance != null)
@@ -117,8 +120,7 @@ public class Enemy_Spawn_System : MonoBehaviour
         },_esmad_Pool_Collection_Check, _esmad_Pool_Default_Capacity, _esmad_Pool_Max_Capacity);
         
         _spawned_Enemy_Wave = new List<Enemy>();
-
-        //Fill_Pools();
+        Enemies_Found = new bool[2,5];
     }
 
     void Update()
@@ -175,6 +177,11 @@ public class Enemy_Spawn_System : MonoBehaviour
 
         if(wave._bachitombo_Count >0)
         {
+            if(!Enemies_Found[0,0])
+            {
+                Enemies_Found[0,0] = true;
+            }
+
             for (int i = 0; i< wave._bachitombo_Count;i++)
             {
                 var enemy = _bachitombo_Pool.Get();
@@ -188,6 +195,12 @@ public class Enemy_Spawn_System : MonoBehaviour
 
         if(wave._tombo_Count >0)
         {
+            
+            if(!Enemies_Found[0,1])
+            {
+                Enemies_Found[0,1] = true;
+            }
+
             for (int i = 0; i< wave._tombo_Count;i++)
             {
                 var enemy = _tombo_Pool.Get();
@@ -201,6 +214,10 @@ public class Enemy_Spawn_System : MonoBehaviour
 
         if(wave._tombo_Tactico_Count >0)
         {
+            if(!Enemies_Found[0,2])
+            {
+                Enemies_Found[0,2] = true;
+            }
             for (int i = 0; i< wave._tombo_Tactico_Count;i++)
             {
                 var enemy = _tombo_Tactico_Pool.Get();
@@ -215,6 +232,11 @@ public class Enemy_Spawn_System : MonoBehaviour
 
         if(wave._tombo_Con_Perro_Count >0)
         {
+            if(!Enemies_Found[0,3])
+            {
+                Enemies_Found[0,3] = true;
+            }
+
             for (int i = 0; i< wave._tombo_Con_Perro_Count;i++)
             {
                 var enemy = _tombo_Con_Pero_Pool.Get();
@@ -228,6 +250,11 @@ public class Enemy_Spawn_System : MonoBehaviour
 
         if(wave._esmad_Count >0)
         {
+            if(!Enemies_Found[0,4])
+            {
+                Enemies_Found[0,4] = true;
+            }
+
             for (int i = 0; i< wave._esmad_Count;i++)
             {
                 var enemy = _esmad_Pool.Get();
@@ -238,9 +265,43 @@ public class Enemy_Spawn_System : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
             }
         }
-        _active_Wave = true;
 
-        //if(tutorial) StartCoroutine(Wave_Manager.Instance.Tutorial_Fungus(_spawned_Enemy_Wave));
+        _active_Wave = true;
+        if(!tutorial)StartCoroutine(Check_for_New_Enemy());
+    }
+
+    IEnumerator Check_for_New_Enemy()
+    {
+        for(int i = 0; i < Enemies_Found.GetLength(1); i++)
+        {
+            if(Enemies_Found[0,i] && !Enemies_Found[1,i])
+            {
+                
+                foreach(Enemy en in _spawned_Enemy_Wave)
+                {
+                    en.stop();
+                    Debug.Log("xd");
+                }
+                UI_Manager.Instance.Enemies_Panels_Activations(i);
+                yield return StartCoroutine(Wait_for_Input());
+                UI_Manager.Instance.Enemies_Panels_Activations(i);
+                foreach(Enemy en in _spawned_Enemy_Wave)
+                {
+                    en.stop();
+                }
+                Enemies_Found[1,i] = true;
+                break;
+            }
+        }
+    }
+
+    IEnumerator Wait_for_Input()
+    {
+        yield return new WaitForSeconds(2);
+        while(Input.touchCount>0 || !Input.GetMouseButton(0))
+        {
+            yield return null;
+        }
     }
 
     private void OnDeath(Enemy enemy, int i)

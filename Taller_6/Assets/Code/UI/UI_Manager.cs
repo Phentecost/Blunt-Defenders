@@ -15,6 +15,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject Cant_Buy_Panel;
     [SerializeField] private GameObject Win_Round_Panel;
     [SerializeField] private GameObject Next_Round_Panel;
+    [SerializeField] private GameObject[] Enemies_Panels;
     private bool panel_Active;
     private float timer = 1;
     [SerializeField] private TextMeshProUGUI coins_TXT, life_TXT, weed_TXT;
@@ -128,6 +129,18 @@ public class UI_Manager : MonoBehaviour
         else if(i/100<0.25)
         {
             life_IMG.sprite = life_Sprites[2];
+        }
+    }
+
+    public void Enemies_Panels_Activations(int i)
+    {
+        if(Enemies_Panels[i].activeInHierarchy)
+        {
+            Enemies_Panels[i].SetActive(false);
+        }
+        else
+        {
+            Enemies_Panels[i].SetActive(true);
         }
     }
 

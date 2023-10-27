@@ -5,13 +5,14 @@ using UnityEngine;
 public class Tutorial_Manager : MonoBehaviour
 {
     public GameObject[] popUps;
+    public GameObject Ready_button,tut_01,tut_02;
     private int popUpsIndex = 0;
-    private float _timeScale;
     float timer = 0.5f;
     float timer_timer = 2f;
     void Start()
     {
-        _timeScale = Time.timeScale;
+        if(!Game_Manager.Instance.Tutorial)return;
+        Ready_button.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -83,6 +84,7 @@ public class Tutorial_Manager : MonoBehaviour
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    tut_01.SetActive(true);
                 }
             }
         }else if (popUpsIndex == 5) // Seleccionar una torreta
@@ -93,6 +95,8 @@ public class Tutorial_Manager : MonoBehaviour
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    tut_01.SetActive(false);
+                    tut_02.SetActive(true);
                 }
             }
         }else if(popUpsIndex == 6) // Colocar la torreta
@@ -104,10 +108,37 @@ public class Tutorial_Manager : MonoBehaviour
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    tut_02.SetActive(false);
                 }
             }
-        }else if(popUpsIndex == 7) // Mejorar trampa
+        }else if(popUpsIndex == 7) //Explicacion Radio
         {
+
+            if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            {
+                if(timer <= 0)
+                {
+                    popUpsIndex++;
+                    timer = timer_timer;
+                }
+            }
+
+        }else if(popUpsIndex == 8) // Explicacion Boton
+        {
+            
+
+            if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            {
+                if(timer <= 0)
+                {
+                    popUpsIndex++;
+                    timer = timer_timer;
+                }
+            }
+
+        }else if(popUpsIndex == 9) // Mejorar Trampa
+        {
+
             TrapsFather trap = GameObject.FindObjectOfType<TrapsFather>();
             if(trap.Current_Level == 2)
             {
@@ -115,69 +146,11 @@ public class Tutorial_Manager : MonoBehaviour
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    Ready_button.SetActive(true);
                 }
             }
-        }else if(popUpsIndex == 8) // Acercarse a la puerta
-        {
-            if(Player_Interaction.Instance._current_Interaction == Player_Interaction.Type_Of_Interaction.Build)
-            {
-                if(timer <= 0)
-                {
-                    popUpsIndex++;
-                    timer = timer_timer;
-                }
-            }
-        }else if(popUpsIndex == 9) // Countruir una puerta
-        {
-            if(Player_Interaction.Instance._door.Door)
-            {
-                if(timer <= 0)
-                {
-                    popUpsIndex++;
-                    timer = timer_timer;
-                }
-            }
-        }else if(popUpsIndex == 10) // Reparar una puerta
-        {
-            if(Input.touchCount>0 || Input.GetMouseButton(0))
-            {
-                if(timer <= 0)
-                {
-                    popUpsIndex++;
-                    timer = timer_timer;
-                }
-            }
-        }else if(popUpsIndex == 11) // Indicadores
-        {
-            if(Input.touchCount > 0 || Input.GetMouseButton(0))
-            {
-                if(timer <= 0)
-                {
-                    popUpsIndex++;
-                    timer = timer_timer;
-                }
-            }
-        }else if(popUpsIndex == 12) // Moverse al indicador
-        {
-            if(Camera_Manager.Instance.Current_Camera != 1)
-            {
-                if(timer <= 0)
-                {
-                    popUpsIndex++;
-                    timer = timer_timer;
-                }
-            }
-        }else if(popUpsIndex == 13) // ultima explicacion Indicador
-        {
-            if(Input.touchCount > 0 || Input.GetMouseButton(0))
-            {
-                if(timer <= 0)
-                {
-                    popUpsIndex++;
-                    timer = timer_timer;
-                }
-            }
-        }else if(popUpsIndex == 14) //Listos para defender
+
+        }else if(popUpsIndex == 10) // Listo para defender
         {
             if(Game_Manager._Current_Game_State == Game_Manager.Game_State.Defending)
             {
@@ -187,10 +160,10 @@ public class Tutorial_Manager : MonoBehaviour
                     timer = timer_timer;
                 }
             }
-        }
-        else if(popUpsIndex == 15) //Camaras
+
+        }else if(popUpsIndex == 11) // Camaras
         {
-            if(Camera_Manager.Instance.Current_Camera !=0)
+           if(Camera_Manager.Instance.Current_Camera !=0)
             {
                 if(timer <= 0)
                 {
@@ -198,11 +171,10 @@ public class Tutorial_Manager : MonoBehaviour
                     timer = timer_timer;
                 }
             }
-        }
-        else if(popUpsIndex == 16) //Enemigos
+
+        }else if(popUpsIndex == 12) // Camara enemigo
         {
-            Time.timeScale = _timeScale/2;
-            if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            if(Camera_Manager.Instance.Current_Camera == 0)
             {
                 if(timer <= 0)
                 {
@@ -210,19 +182,8 @@ public class Tutorial_Manager : MonoBehaviour
                     timer = timer_timer;
                 }
             }
-        }else if(popUpsIndex == 17) // Wack-A-Tombo
-        {
-           if(TouchManager.Instance.touche_this_Frame)
-            {
-                if(timer <= 0)
-                {
-                    popUpsIndex++;
-                    timer = timer_timer;
-                    Time.timeScale = _timeScale;
-                }
-                
-            } 
-        }else if(popUpsIndex == 18) //Matar a todos los enemigos
+
+        }else if(popUpsIndex == 13) // Acaba Con el enemigo
         {
             if(Game_Manager._Current_Game_State == Game_Manager.Game_State.Preparation)
             {
@@ -230,16 +191,62 @@ public class Tutorial_Manager : MonoBehaviour
                 {
                     popUpsIndex++;
                     timer =timer_timer;
+                    Game_Manager.Instance.Pause();
                 }
             }
-        }else if(popUpsIndex == 19) //Tiempo
+
+        }else if(popUpsIndex == 14) //Tiempo
         {
-            if(Input.touchCount>0 || Input.GetMouseButton(0))
+            if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            {
+                if(timer <= 0)
+                {
+                    popUpsIndex++;
+                    timer = timer_timer; 
+                }
+            }
+        }
+        else if(popUpsIndex == 15) //Pueta
+        {
+            if(Player_Interaction.Instance._current_Interaction == Player_Interaction.Type_Of_Interaction.Build)
+            {
+                if(timer <= 0)
+                {
+                    popUpsIndex++;
+                    timer = timer_timer;
+                }
+            }
+        }
+        else if(popUpsIndex == 16) //Mejorar puerta
+        {
+           if(Player_Interaction.Instance._door.Door)
+            {
+                if(timer <= 0)
+                {
+                    popUpsIndex++;
+                    timer = timer_timer;
+                }
+            }
+
+        }else if(popUpsIndex == 17) // Reparacion
+        {
+           if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            {
+                if(timer <= 0)
+                {
+                    popUpsIndex++;
+                    timer = timer_timer;
+                }
+            }
+        }else if(popUpsIndex == 18) //Listo
+        {
+            if(Input.touchCount > 0 || Input.GetMouseButton(0))
             {
                 if(timer <= 0)
                 {
                     Game_Manager.Instance.Tutorial = false;
                     popUps[popUpsIndex].SetActive(false);
+                    Game_Manager.Instance.Pause();
                 }
             }
         }
