@@ -209,7 +209,7 @@ namespace Enemies
         private void Reach(){_OnReach(this,damage_To_Player);}
         public void Config(Action<Enemy, int> _OnDeath, Action<Enemy, int> _OnReach, int path_Index)
         {
-            speed = config.speed;
+            speed = Game_Manager.Instance.Tutorial ? config.speed/3 :config.speed;
             door_Damage = config.door_Damage;
             Life = config.Life;
             damage_To_Player = config.damage_To_Player;

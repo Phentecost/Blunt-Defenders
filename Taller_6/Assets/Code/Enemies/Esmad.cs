@@ -16,7 +16,8 @@ namespace Enemies
             }
             else
             {
-                shield_Life -= i;
+                shield_Life --;
+                Debug.Log(shield_Life);
             }
             
         }
