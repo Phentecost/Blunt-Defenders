@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Emit;
+using Enemies;
 using UnityEngine;
 
 public class Tombo_Tactico_Hability : MonoBehaviour
@@ -8,21 +10,22 @@ public class Tombo_Tactico_Hability : MonoBehaviour
     public float Stun_Timer;
     public float cool_Down;
     private float timer;
+    bool Active;
+    private Enemy en;
 
     void Start()
     {
         timer = cool_Down;
+        Active = true;
+        en = GetComponentInParent<Enemy>();
     }
     void Update()
     {
-        if(timer <= 0)
+        if(!Active) return;
+        
+        if(timer <= 0 && traps.Count > 0)
         {
-            foreach(TrapsFather trapsFather in traps)
-            {
-                trapsFather.Disable_Trap(Stun_Timer);
-            }
-
-            timer = cool_Down;
+            StartCoroutine(Desable_Trap());
         }
         else
         {
@@ -30,6 +33,20 @@ public class Tombo_Tactico_Hability : MonoBehaviour
         }
     }
 
+    IEnumerator Desable_Trap()
+    {
+        Active = false;
+        en.stop();
+        yield return new WaitForSeconds(2);
+        foreach(TrapsFather trapsFather in traps)
+        {
+            trapsFather.Disable_Trap(Stun_Timer);
+        }
+
+        timer = cool_Down;
+        en.stop();
+        Active = true;
+    }
     void OnTriggerEnter2D(Collider2D col)
     {
         TrapsFather trap = col.GetComponent<TrapsFather>();
