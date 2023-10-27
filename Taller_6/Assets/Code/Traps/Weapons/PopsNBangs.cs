@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class PopsNBangs : TrapsFather
 {
+
+    public AudioClip petardos;
     [SerializeField] int range;
     [SerializeField] float Chargetime; 
 
@@ -28,6 +30,11 @@ public class PopsNBangs : TrapsFather
                         enemyController.Scared();
                     }
                 }
+                 if (petardos != null)
+            {
+                AudioSource.PlayClipAtPoint(petardos, transform.position);
+            }
+
             }
             Trap_Manager.Instance.Realice_Trap_To_Preveiw(this);
                 

@@ -3,7 +3,14 @@ guid: 20b2730e286e83e4098865a8a8679123
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - traps_Config: {instanceID: 0}
+  - out_Line: {instanceID: 0}
+  - spriteRenderer: {instanceID: 0}
+  - coin_TXT: {instanceID: 0}
+  - mejora_TXT: {instanceID: 0}
+  - Bolos: {fileID: 8300000, guid: e5440f0fe786a8143aebd569854cddfa, type: 3}
+  - ParticulasBolos: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
