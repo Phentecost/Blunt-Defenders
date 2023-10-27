@@ -193,6 +193,7 @@ MonoBehaviour:
   coin_TXT: {fileID: 6546443220194662193}
   mejora_TXT: {fileID: 0}
   Bolos: {fileID: 8300000, guid: c0a4950cd54bf96409ffe79f0cace4d3, type: 3}
+  ParticulasBolos: {fileID: 9001443038326154764}
 --- !u!95 &500477410848595455
 Animator:
   serializedVersion: 5

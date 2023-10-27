@@ -9,6 +9,8 @@ public class PopsNBangs : TrapsFather
 {
     [SerializeField] int range;
     [SerializeField] float Chargetime; 
+
+    [SerializeField] private ParticleSystem Particulaspops;
     protected override void DoSomething()
     {
         Chargetime -= Time.deltaTime;
@@ -18,6 +20,7 @@ public class PopsNBangs : TrapsFather
             foreach (GameObject enemy in enemies)
             {
                 Tombo_Con_Perro enemyController = enemy.GetComponent<Tombo_Con_Perro>();
+                Particulaspops.Play();
                 if (this.range >= Vector2.Distance(this.transform.position, enemy.transform.position))
                 {
                     if (enemyController != null)

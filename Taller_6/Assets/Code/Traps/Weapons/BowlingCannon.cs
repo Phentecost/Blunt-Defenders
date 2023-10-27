@@ -6,6 +6,8 @@ public class BowlingCannon : TrapsFather
 {
     public AudioClip Bolos;
 
+    [SerializeField] private ParticleSystem ParticulasBolos;
+
     //[SerializeField] BowlingBall Projectile;
     GameObject target;
     //private Animator animator;
@@ -15,6 +17,7 @@ public class BowlingCannon : TrapsFather
         BowlingBall Projectile =  Bullet_Manager.Instance.GetBowlingBall();
         Projectile.config(bullet_Damage,bullet_Power);
         Projectile.transform.position = transform.position;
+        ParticulasBolos.Play();
         target = _Enemy_Inside[0].gameObject;
         Vector2 EnemyLocation = target.transform.position - transform.position;
         EnemyLocation.Normalize();
