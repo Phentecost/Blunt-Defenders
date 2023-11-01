@@ -280,7 +280,6 @@ public class Enemy_Spawn_System : MonoBehaviour
                 foreach(Enemy en in _spawned_Enemy_Wave)
                 {
                     en.stop();
-                    Debug.Log("xd");
                 }
                 UI_Manager.Instance.Enemies_Panels_Activations(i);
                 yield return StartCoroutine(Wait_for_Input());
@@ -297,8 +296,8 @@ public class Enemy_Spawn_System : MonoBehaviour
 
     IEnumerator Wait_for_Input()
     {
-        yield return new WaitForSeconds(2);
-        while(Input.touchCount>0 || !Input.GetMouseButton(0))
+        yield return null;
+        while(Input.touchCount==0 || !Input.GetMouseButton(0))
         {
             yield return null;
         }
