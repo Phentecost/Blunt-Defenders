@@ -11,10 +11,11 @@ public class Perro_Hability : MonoBehaviour
     {
         if(col.gameObject == transform.parent)return;
         Enemy enemy = col.GetComponent<Enemy>();
+        if(enemy is Tombo_Con_Perro)return;
         if(enemy != null)
         {
             enemies.Add(enemy);
-            enemy.Buff(buff);
+            if(!enemy.Speed_Buff)enemy.Buff(buff);
         }
     }
 
@@ -22,12 +23,17 @@ public class Perro_Hability : MonoBehaviour
     {
         if(col.gameObject == transform.parent)return;
         Enemy enemy = col.GetComponent<Enemy>();
+        if(enemy is Tombo_Con_Perro)return;
         if(enemy != null)
         {
             if(!enemies.Contains(enemy))
             {
                 enemies.Add(enemy);
-                enemy.Buff(buff);
+                if(!enemy.Speed_Buff)
+                {
+                    enemy.Buff(buff);
+                }
+                
             }
         }
     }

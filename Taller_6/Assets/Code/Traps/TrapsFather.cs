@@ -19,7 +19,7 @@ public abstract class TrapsFather : MonoBehaviour , interactible_OGJ
     public int _level_Up_Money_Cost {get; private set;}
     public int _level_Up_Weed_Cost {get; private set;}
     protected bool Disable,PreView,showing_Outlines;
-    [SerializeField]private GameObject out_Line;
+    [SerializeField]private GameObject out_Line, Disable_Icon;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private TextMeshPro coin_TXT, mejora_TXT;
     protected abstract void DoSomething();
@@ -33,6 +33,7 @@ public abstract class TrapsFather : MonoBehaviour , interactible_OGJ
             if(disable_Timer<= 0)
             {
                 Disable = false;
+                Disable_Icon.SetActive(false);
             }
             else
             {
@@ -125,6 +126,7 @@ public abstract class TrapsFather : MonoBehaviour , interactible_OGJ
     {
         disable_Timer= i;
         Disable = true;
+        Disable_Icon.SetActive(true);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)

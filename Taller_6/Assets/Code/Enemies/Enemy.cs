@@ -9,7 +9,7 @@ namespace Enemies
 {
     public abstract class Enemy : MonoBehaviour
     {
-        protected float speed;
+        public float speed;
         private float last_Speed;
         protected int door_Damage;
         protected float door_atk_Delay = 1;
@@ -28,12 +28,13 @@ namespace Enemies
         private bool tp;
         private bool stoped;
         private bool traitor,Active;
+        public bool Speed_Buff, Protection_Buff;
         private Bribery money;
         [SerializeField] private Animator animator;
         private SpriteRenderer _renderer;
         private ParticleSystem particle;
+        [SerializeField] GameObject protection_Icon, speed_Icon;
         private float stun_Timer,ColRed_timer;
-
         protected abstract void Power();
         public enum BehaviourParams
         {
@@ -246,18 +247,24 @@ namespace Enemies
 
         public void Buff(float i)
         {
+            Speed_Buff = true;
+            speed_Icon.SetActive(true);
             last_Speed = speed;
             speed *= i; 
         }
 
         public void Buff(bool i)
         {
+            Protection_Buff = i;
             buffed = i;
+            protection_Icon.SetActive(i);
         }
 
         public void DeBuff()
         {
+            Speed_Buff = false;
             speed = last_Speed;
+            speed_Icon.SetActive(false);
         }
 
         public void Door_Break_Down(float timer)
@@ -269,7 +276,7 @@ namespace Enemies
 
         public virtual void OnTouched(int i)
         {
-            Life += buffed? (int)Mathf.Round(i/2) : i;
+            Life += buffed? (int)Mathf.Round(i/2) +1 : i;
             ColRed();
         }
         void ColRed()

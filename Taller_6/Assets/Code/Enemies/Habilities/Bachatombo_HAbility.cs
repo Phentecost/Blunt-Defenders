@@ -10,10 +10,11 @@ public class Bachatombo_HAbility : MonoBehaviour
     {
         if(col.gameObject == transform.parent)return;
         Enemy enemy = col.GetComponent<Enemy>();
+        if(enemy is Bachitombo) return;
         if(enemy != null)
         {
             enemies.Add(enemy);
-            enemy.Buff(true);
+            if(!enemy.Protection_Buff)enemy.Buff(true);
         }
     }
 
@@ -32,12 +33,13 @@ public class Bachatombo_HAbility : MonoBehaviour
     {
         if(col.gameObject == transform.parent)return;
         Enemy enemy = col.GetComponent<Enemy>();
+        if(enemy is Bachitombo) return;
         if(enemy != null)
         {
             if(!enemies.Contains(enemy))
             {
                 enemies.Add(enemy);
-                enemy.Buff(true);
+                if(!enemy.Protection_Buff)enemy.Buff(true);
             }
         }
     }

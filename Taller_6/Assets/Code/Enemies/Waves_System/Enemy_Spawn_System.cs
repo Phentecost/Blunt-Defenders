@@ -297,8 +297,9 @@ public class Enemy_Spawn_System : MonoBehaviour
     IEnumerator Wait_for_Input()
     {
         yield return null;
-        while(Input.touchCount==0 || !Input.GetMouseButton(0))
+        while(Input.touchCount==0 && !Input.GetMouseButton(0))
         {
+            Debug.Log("XD");
             yield return null;
         }
     }
