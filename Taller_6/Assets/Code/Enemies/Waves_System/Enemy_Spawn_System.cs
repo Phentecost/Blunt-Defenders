@@ -299,7 +299,6 @@ public class Enemy_Spawn_System : MonoBehaviour
         yield return null;
         while(Input.touchCount==0 && !Input.GetMouseButton(0))
         {
-            Debug.Log("XD");
             yield return null;
         }
     }

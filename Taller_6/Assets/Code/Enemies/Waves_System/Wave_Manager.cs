@@ -7,6 +7,7 @@ using Fungus;
 using Enemies;
 using System.Linq;
 using System.IO.Compression;
+using UnityEngine.UI;
 
 public class Wave_Manager : MonoBehaviour
 {
@@ -22,7 +23,8 @@ public class Wave_Manager : MonoBehaviour
     [SerializeField] private List<Wave> tutorial_Waves;
     [SerializeField] private List<Wave> Game_Waves;
     int tutorial_index = 0;
-
+    private bool Auto_Pass;
+    [SerializeField] Image IMG;
     void Awake()
     {
         if(Instance != null)
@@ -34,11 +36,13 @@ public class Wave_Manager : MonoBehaviour
         Instance = this;
 
         Flowchart_Displayed = false;
-        _wave = new Wave();
-        _wave.Path_01 = true;
-        _wave.Path_02 = true;
-        _wave.Path_03 = true;
-        _wave.Path_04 = true;
+        _wave = new Wave
+        {
+            Path_01 = true,
+            Path_02 = true,
+            Path_03 = true,
+            Path_04 = true
+        };
     }
 
     void Start()
@@ -168,7 +172,7 @@ public class Wave_Manager : MonoBehaviour
     IEnumerator onWaveEnds()
     {
         if(!Game_Manager.Instance.Tutorial)UI_Manager.Instance.Win_Round_Panel_Activation();
-        yield return new WaitForSeconds(2);
+        yield return StartCoroutine(Wait());
         if(!Game_Manager.Instance.Tutorial)UI_Manager.Instance.Win_Round_Panel_Activation();
         if(waves_left == 0)
         {
@@ -187,6 +191,35 @@ public class Wave_Manager : MonoBehaviour
             }
 
             
+        }
+    }
+
+    IEnumerator Wait()
+    {
+        if(Auto_Pass)
+        {
+            yield return new WaitForSeconds(2);
+        }
+        else
+        {
+            while(Input.touchCount==0 && !Input.GetMouseButton(0))
+            {
+                yield return null;
+            }
+        }
+    }
+
+    public void Change_Mode()
+    {
+        Auto_Pass = !Auto_Pass;
+
+        if(Auto_Pass)
+        {
+            IMG.color = Color.green;
+        }
+        else
+        {
+            IMG.color = Color.red;
         }
     }
 

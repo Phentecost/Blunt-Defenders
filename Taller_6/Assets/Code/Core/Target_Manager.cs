@@ -105,6 +105,7 @@ public class Target_Manager : MonoBehaviour
         for(int i = 0; i<targets_Indicators.Length; i++)
         {
             Paths_Indicators[i].SetActive(false);
+            targets_Indicators[3].color = new Color(0,0,0,0);
         }
 
         CancelInvoke();
