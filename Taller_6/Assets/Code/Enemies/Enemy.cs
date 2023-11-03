@@ -242,6 +242,7 @@ namespace Enemies
             _renderer = GetComponentInChildren<SpriteRenderer>();
             particle = GetComponentInChildren<ParticleSystem>();
             Active = true;
+            last_Speed = speed;
             currentBehaviour = BehaviourParams.Moving_Towars_Target;
         }
 
@@ -249,7 +250,6 @@ namespace Enemies
         {
             Speed_Buff = true;
             speed_Icon.SetActive(true);
-            last_Speed = speed;
             speed *= i; 
         }
 
@@ -301,11 +301,10 @@ namespace Enemies
             currentBehaviour = BehaviourParams.Go_Out;
         }
 
-        public void Hit(){Death();}
+        public void Hit(){StartCoroutine(Death());}
         void OnCollisionEnter2D(Collision2D col)
         {
             if(!traitor) return;
-            Debug.Log("XD");
             Enemy en = col.collider.GetComponent<Enemy>();
             if(en != null)
             {

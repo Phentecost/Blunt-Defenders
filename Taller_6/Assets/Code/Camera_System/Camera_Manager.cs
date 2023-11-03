@@ -44,7 +44,6 @@ public class Camera_Manager : MonoBehaviour
 
     public void onPov(Camera_UI Cam)
     {
-        Debug.Log("xd");
         Cam.POV = true;
         if (CurrentPOV != null) CurrentPOV.POV = false ;
         CurrentPOV = Cam;

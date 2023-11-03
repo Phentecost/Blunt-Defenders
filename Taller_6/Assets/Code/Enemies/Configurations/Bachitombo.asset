@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3de11aad36e1854ba08ebedde0bc143, type: 3}
   m_Name: Bachitombo
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
   door_Damage: 1
   Life: 2
   damage_To_Player: 5
-  Max_Path: 4
   points: 5

@@ -201,6 +201,10 @@ public class Wave_Manager : MonoBehaviour
         {
             yield return new WaitForSeconds(2);
         }
+        else if(Game_Manager.Instance.Tutorial)
+        {
+            yield return null;
+        }
         else
         {
             while(Input.touchCount==0 && !Input.GetMouseButton(0))

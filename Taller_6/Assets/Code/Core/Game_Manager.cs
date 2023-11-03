@@ -93,6 +93,11 @@ public class Game_Manager : MonoBehaviour
         }
     }
 
+    public void Set_TXT()
+    {
+        txt.text= "60";
+    }
+
     private void Prep_Fase()
     {
         Camera_Manager.Instance.Change_Camera(1);
@@ -100,7 +105,7 @@ public class Game_Manager : MonoBehaviour
         _Player.transform.position = _Start_Pos;
         timer = Preparation_fase_Time;
         UI_Manager.Instance.Change_To_Prep();
-        Target_Manager.Instance.Activate_Indicators(Wave_Manager.Instance.Check_Wave_Paths());
+        if(!Tutorial)Target_Manager.Instance.Activate_Indicators(Wave_Manager.Instance.Check_Wave_Paths());
         _Current_Game_State = Game_State.Preparation;
     }
 

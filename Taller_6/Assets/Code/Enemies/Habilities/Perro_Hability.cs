@@ -42,10 +42,11 @@ public class Perro_Hability : MonoBehaviour
     {
         if(col.gameObject == transform.parent)return;
         Enemy enemy = col.GetComponent<Enemy>();
+        if(enemy is Tombo_Con_Perro)return;
         if(enemy != null)
         {
             enemies.Remove(enemy);
-            enemy.DeBuff();
+            if(enemy.Speed_Buff)enemy.DeBuff();
         }
     }
 
@@ -53,7 +54,7 @@ public class Perro_Hability : MonoBehaviour
     {
         foreach(Enemy enemy in enemies)
         {
-            enemy.DeBuff();
+            if(enemy.Speed_Buff)enemy.DeBuff();
         }
 
         enemies.Clear();
