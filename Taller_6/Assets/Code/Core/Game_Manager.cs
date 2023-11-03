@@ -85,7 +85,7 @@ public class Game_Manager : MonoBehaviour
                 timer -= Time.deltaTime;
             }
 
-            txt.text = "Time: " + MathF.Round(timer);
+            txt.text = MathF.Round(timer).ToString();
         }
         else
         {

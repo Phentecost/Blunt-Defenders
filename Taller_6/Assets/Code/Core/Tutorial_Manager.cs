@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tutorial_Manager : MonoBehaviour
 {
     public GameObject[] popUps;
-    public GameObject Ready_button,tut_01,tut_02;
+    public GameObject Ready_button,tut_01,tut_02,Map,Map_button;
     private int popUpsIndex = 0;
     float timer = 0.5f;
     float timer_timer = 2f;
@@ -13,6 +13,8 @@ public class Tutorial_Manager : MonoBehaviour
     {
         if(!Game_Manager.Instance.Tutorial)return;
         Ready_button.SetActive(false);
+        Map.SetActive(false);
+        Map_button.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -236,9 +238,22 @@ public class Tutorial_Manager : MonoBehaviour
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    Map.SetActive(true);
+                    Map_button.SetActive(true);
                 }
             }
-        }else if(popUpsIndex == 18) //Listo
+        }else if(popUpsIndex == 18) //Mapa
+        {
+            if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            {
+                if(timer <= 0)
+                {
+                    popUpsIndex++;
+                    timer = timer_timer;
+                    UI_Manager.Instance.Map_Activation();
+                }
+            }
+        }else if(popUpsIndex == 19) //Listo
         {
             if(Input.touchCount > 0 || Input.GetMouseButton(0))
             {

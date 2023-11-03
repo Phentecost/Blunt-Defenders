@@ -25,6 +25,7 @@ public class Wave_Manager : MonoBehaviour
     int tutorial_index = 0;
     private bool Auto_Pass;
     [SerializeField] Image IMG;
+    public GameObject txt;
     void Awake()
     {
         if(Instance != null)
@@ -216,10 +217,12 @@ public class Wave_Manager : MonoBehaviour
         if(Auto_Pass)
         {
             IMG.color = Color.green;
+            txt.SetActive(false);
         }
         else
         {
             IMG.color = Color.red;
+            txt.SetActive(true);
         }
     }
 

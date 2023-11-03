@@ -15,6 +15,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject Cant_Buy_Panel;
     [SerializeField] private GameObject Win_Round_Panel;
     [SerializeField] private GameObject Next_Round_Panel;
+    [SerializeField] private GameObject Map;
     [SerializeField] private GameObject[] Enemies_Panels;
     private bool panel_Active;
     private float timer = 1;
@@ -87,6 +88,18 @@ public class UI_Manager : MonoBehaviour
         else
         {
             Win_Round_Panel.SetActive(true);
+        }
+    }
+
+    public void Map_Activation()
+    {
+        if(Map.activeInHierarchy)
+        {
+            Map.SetActive(false);
+        }
+        else
+        {
+            Map.SetActive(true);
         }
     }
 
