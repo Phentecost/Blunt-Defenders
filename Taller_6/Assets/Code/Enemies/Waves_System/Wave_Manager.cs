@@ -24,7 +24,7 @@ public class Wave_Manager : MonoBehaviour
     [SerializeField] private List<Wave> Game_Waves;
     int tutorial_index = 0;
     private bool Auto_Pass;
-    [SerializeField] Image IMG;
+    [SerializeField] GameObject IMG_01,IMG_02;
     public GameObject txt;
     void Awake()
     {
@@ -220,12 +220,14 @@ public class Wave_Manager : MonoBehaviour
 
         if(Auto_Pass)
         {
-            IMG.color = Color.green;
+            IMG_01.SetActive(false);
+            IMG_02.SetActive(true);
             txt.SetActive(false);
         }
         else
         {
-            IMG.color = Color.red;
+            IMG_01.SetActive(true);
+            IMG_02.SetActive(false);
             txt.SetActive(true);
         }
     }

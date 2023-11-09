@@ -10,6 +10,7 @@ namespace Enemies
     public abstract class Enemy : MonoBehaviour
     {
         public float speed;
+        public float Current_Speed;
         private float last_Speed;
         protected int door_Damage;
         protected float door_atk_Delay = 1;
@@ -164,7 +165,7 @@ namespace Enemies
 
                 if(stun_Timer<= 0)
                 {
-                    speed = config.speed;
+                    speed = Current_Speed;
                     currentBehaviour = BehaviourParams.Moving_Towars_Target;
                 }
                 else
@@ -197,7 +198,7 @@ namespace Enemies
         {
             if(stoped)
             {
-                speed = config.speed;
+                speed = Current_Speed;
                 stoped = false;
             }else
             {
@@ -224,6 +225,7 @@ namespace Enemies
         public void Config(Action<Enemy, int> _OnDeath, Action<Enemy, int> _OnReach, int path_Index)
         {
             speed = Game_Manager.Instance.Tutorial ? config.speed/3 :config.speed;
+            Current_Speed = speed; 
             door_Damage = config.door_Damage;
             Life = config.Life;
             damage_To_Player = config.damage_To_Player;
@@ -250,7 +252,8 @@ namespace Enemies
         {
             Speed_Buff = true;
             speed_Icon.SetActive(true);
-            speed *= i; 
+            speed += 1; 
+            Current_Speed = speed;
         }
 
         public void Buff(bool i)
@@ -264,6 +267,7 @@ namespace Enemies
         {
             Speed_Buff = false;
             speed = last_Speed;
+            Current_Speed = speed;
             speed_Icon.SetActive(false);
         }
 
