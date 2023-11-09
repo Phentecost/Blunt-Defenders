@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   door_Damage: 5
-  Life: 3
+  Life: 2
   damage_To_Player: 5
-  Max_Path: 4
   points: 5

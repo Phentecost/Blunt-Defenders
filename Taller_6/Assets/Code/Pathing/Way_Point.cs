@@ -63,6 +63,7 @@ public class Way_Point : MonoBehaviour, interactible_OGJ
         life = 100;
         spriteRenderer.color = Color.green;
         spriteRenderer.gameObject.SetActive(true);
+        txt.gameObject.SetActive(true);
         
     }
 
@@ -83,7 +84,6 @@ public class Way_Point : MonoBehaviour, interactible_OGJ
     {
         if(Door)
         {
-            txt.gameObject.SetActive(true);
             out_Lines = true;
 
         }
@@ -115,7 +115,6 @@ public class Way_Point : MonoBehaviour, interactible_OGJ
     {
         if(Door)
         {
-            txt.gameObject.SetActive(false);
             out_Lines = false;
         }
         else

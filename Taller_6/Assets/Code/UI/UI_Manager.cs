@@ -17,6 +17,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject Next_Round_Panel;
     [SerializeField] private GameObject Map;
     [SerializeField] private GameObject[] Enemies_Panels;
+    [SerializeField] private GameObject Sub_Game_Panel;
     private bool panel_Active;
     private float timer = 1;
     [SerializeField] private TextMeshProUGUI coins_TXT, life_TXT, weed_TXT;
@@ -76,6 +77,18 @@ public class UI_Manager : MonoBehaviour
         else
         {
             Main_Panel.SetActive(true);
+        }
+    }
+
+    public void Sub_Game_Panel_Activation()
+    {
+        if(Sub_Game_Panel.activeInHierarchy)
+        {
+            Sub_Game_Panel.SetActive(false);
+        }
+        else
+        {
+            Sub_Game_Panel.SetActive(true);
         }
     }
 
