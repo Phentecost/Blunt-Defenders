@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject Map;
     [SerializeField] private GameObject[] Enemies_Panels;
     [SerializeField] private GameObject Sub_Game_Panel;
+    [SerializeField] private VideoPlayer[] videos;
     private bool panel_Active;
     private float timer = 1;
     [SerializeField] private TextMeshProUGUI coins_TXT, life_TXT, weed_TXT;
@@ -162,10 +164,12 @@ public class UI_Manager : MonoBehaviour
     {
         if(Enemies_Panels[i].activeInHierarchy)
         {
+            videos[i].Stop();
             Enemies_Panels[i].SetActive(false);
         }
         else
         {
+            videos[i].Play();
             Enemies_Panels[i].SetActive(true);
         }
     }

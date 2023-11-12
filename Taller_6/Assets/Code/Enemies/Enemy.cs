@@ -15,7 +15,7 @@ namespace Enemies
         protected int door_Damage;
         protected float door_atk_Delay = 1;
         private float door_Timer;
-        protected int Life;
+        public int Life;
         bool buffed;
         [SerializeField] private EnemyConfig config;
         [SerializeField]protected int way_Point_Index;
@@ -280,7 +280,7 @@ namespace Enemies
 
         public virtual void OnTouched(int i)
         {
-            Life += buffed? (int)Mathf.Round(i/2) +1 : i;
+            Life += buffed? (int)Mathf.Round(i/2) -1 : i;
             ColRed();
         }
         void ColRed()

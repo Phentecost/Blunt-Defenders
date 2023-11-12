@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fungus;
 using UnityEngine;
 
 public class UI_WS_Manager : MonoBehaviour
@@ -8,6 +9,7 @@ public class UI_WS_Manager : MonoBehaviour
 
     [SerializeField] public GameObject Deploy_Panel;
     [SerializeField] private GameObject Confirmation_Panel;
+    [SerializeField] private GameObject[] traps_Panels;
     public bool Previewing_Trap{get; private set;}
     TrapsFather trap;
     int trap_ID;
@@ -66,6 +68,7 @@ public class UI_WS_Manager : MonoBehaviour
     {
         
         trap_ID = i;
+        traps_Panels_Activation(trap_ID);
         trap = Trap_Manager.Instance.Get_Trap_To_Preveiw(trap_ID);
         trap.show_Outlines();
         Previewing_Trap = true;
@@ -79,12 +82,25 @@ public class UI_WS_Manager : MonoBehaviour
         }
     }
 
+    private void traps_Panels_Activation(int i)
+    {
+        if(traps_Panels[i].activeInHierarchy)
+        {
+            traps_Panels[i].SetActive(false);
+        }
+        else
+        {
+            traps_Panels[i].SetActive(true);
+        }
+    }
+
     public void Confirmation(bool B)
     {
         if(B){Trap_Manager.Instance.pos = transform.parent.position; Trap_Manager.Instance.Deploy_Trap(trap_ID); };
         trap.Off_Outlines();
         Previewing_Trap = false;
         Trap_Manager.Instance.Realice_Trap_To_Preveiw(trap);
+        traps_Panels_Activation(trap_ID);
         trap = null;
     }
 }

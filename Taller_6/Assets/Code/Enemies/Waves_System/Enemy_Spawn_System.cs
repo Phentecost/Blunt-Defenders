@@ -175,23 +175,7 @@ public class Enemy_Spawn_System : MonoBehaviour
         int enemies_per_paths; 
         (enemies_per_paths,paths_Index) = wave.GetPahts();
 
-        if(wave._bachitombo_Count >0)
-        {
-            if(!Enemies_Found[0,0])
-            {
-                Enemies_Found[0,0] = true;
-            }
-
-            for (int i = 0; i< wave._bachitombo_Count;i++)
-            {
-                var enemy = _bachitombo_Pool.Get();
-                _spawned_Enemy_Wave.Add(enemy);
-                enemy.Config(OnDeath,OnReach,paths_Index[index]);
-                count++;
-                if(count == enemies_per_paths && index < paths_Index.Count-1) {index++; count = 0;}
-                yield return new WaitForSeconds(0.2f);
-            }
-        }
+        
 
         if(wave._tombo_Count >0)
         {
@@ -206,6 +190,24 @@ public class Enemy_Spawn_System : MonoBehaviour
                 var enemy = _tombo_Pool.Get();
                 _spawned_Enemy_Wave.Add(enemy);
                 enemy.Config(OnDeath,OnReach, paths_Index[index]);
+                count++;
+                if(count == enemies_per_paths && index < paths_Index.Count-1) {index++; count = 0;}
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+
+        if(wave._bachitombo_Count >0)
+        {
+            if(!Enemies_Found[0,0])
+            {
+                Enemies_Found[0,0] = true;
+            }
+
+            for (int i = 0; i< wave._bachitombo_Count;i++)
+            {
+                var enemy = _bachitombo_Pool.Get();
+                _spawned_Enemy_Wave.Add(enemy);
+                enemy.Config(OnDeath,OnReach,paths_Index[index]);
                 count++;
                 if(count == enemies_per_paths && index < paths_Index.Count-1) {index++; count = 0;}
                 yield return new WaitForSeconds(0.2f);

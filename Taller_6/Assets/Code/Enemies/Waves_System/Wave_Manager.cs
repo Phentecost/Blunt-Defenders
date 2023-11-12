@@ -243,11 +243,11 @@ public class Wave_Manager : MonoBehaviour
 
     void Increase_Dificulty()
     {
-        _wave._bachitombo_Count = _wave_Index;
-        _wave._tombo_Count = _wave_Index;
-        _wave._tombo_Tactico_Count = _wave_Index;
-        _wave._tombo_Con_Perro_Count = _wave_Index;
-        _wave._esmad_Count = _wave_Index;
+        _wave._bachitombo_Count = (int)MathF.Round(_wave_Index/3);
+        _wave._tombo_Count = _wave_Index-5;
+        _wave._tombo_Tactico_Count = (int)MathF.Round(_wave_Index/2);
+        _wave._tombo_Con_Perro_Count = (int)MathF.Round(_wave_Index/4);
+        _wave._esmad_Count = (int)MathF.Round(_wave_Index/3);
 
         //Aumentar la dificultad
     }
