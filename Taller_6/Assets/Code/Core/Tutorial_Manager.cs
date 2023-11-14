@@ -5,16 +5,19 @@ using UnityEngine;
 public class Tutorial_Manager : MonoBehaviour
 {
     public GameObject[] popUps;
-    public GameObject Ready_button,tut_01,tut_02,Map,Map_button;
+    public GameObject Ready_button,tut_01,tut_02,Map,Map_button,Next_Button;
     private int popUpsIndex = 0;
     float timer = 0.5f;
-    float timer_timer = 0.5f;
+    float timer_timer = 1.2f;
+    bool next = false;
     void Start()
     {
         if(!Game_Manager.Instance.Tutorial)return;
         Ready_button.SetActive(false);
         Map.SetActive(false);
         Map_button.SetActive(false);
+        Next_Button.SetActive(true);
+        next = false;
     }
     // Update is called once per frame
     void Update()
@@ -39,12 +42,14 @@ public class Tutorial_Manager : MonoBehaviour
 
         if(popUpsIndex == 0) //intro
         {
-            if(Input.touchCount > 0 || Input.GetMouseButton(0)) 
+            if(next) 
             {
                 if(timer <= 0)
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    Next_Button.SetActive(false);
+                    next = false;
                 }
             }
             
@@ -56,16 +61,19 @@ public class Tutorial_Manager : MonoBehaviour
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    Next_Button.SetActive(true);
                 }
             }
         }else if( popUpsIndex == 2) // Explicarle el camino
         {
-            if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            if(next)
             {
                 if(timer <= 0)
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    Next_Button.SetActive(false);
+                    next = false;
                 }
             }
         }else if( popUpsIndex == 3) // Abrir el menu de trampas
@@ -76,17 +84,20 @@ public class Tutorial_Manager : MonoBehaviour
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    Next_Button.SetActive(true);
                 }
             }
         }else if (popUpsIndex == 4) // explicar trampas
         {
-            if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            if(next)
             {
                 if(timer <= 0)
                 {
                     popUpsIndex++;
                     timer = timer_timer;
                     tut_01.SetActive(true);
+                    next = false;
+                    Next_Button.SetActive(false);
                 }
             }
         }else if (popUpsIndex == 5) // Seleccionar una torreta
@@ -111,17 +122,19 @@ public class Tutorial_Manager : MonoBehaviour
                     popUpsIndex++;
                     timer = timer_timer;
                     tut_02.SetActive(false);
+                    Next_Button.SetActive(true);
                 }
             }
         }else if(popUpsIndex == 7) //Explicacion Radio
         {
 
-            if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            if(next)
             {
                 if(timer <= 0)
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    next = false;
                 }
             }
 
@@ -129,12 +142,14 @@ public class Tutorial_Manager : MonoBehaviour
         {
             
 
-            if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            if(next)
             {
                 if(timer <= 0)
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    Next_Button.SetActive(false);
+                    next = false;
                 }
             }
 
@@ -171,6 +186,7 @@ public class Tutorial_Manager : MonoBehaviour
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    Ready_button.SetActive(false);
                 }
             }
 
@@ -195,17 +211,20 @@ public class Tutorial_Manager : MonoBehaviour
                     timer =timer_timer;
                     Game_Manager.Instance.Pause();
                     Game_Manager.Instance.Set_TXT();
+                    Next_Button.SetActive(true);
                 }
             }
 
         }else if(popUpsIndex == 14) //Tiempo
         {
-            if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            if(next)
             {
                 if(timer <= 0)
                 {
                     popUpsIndex++;
                     timer = timer_timer; 
+                    Next_Button.SetActive(false);
+                    next = false;
                 }
             }
         }
@@ -228,12 +247,13 @@ public class Tutorial_Manager : MonoBehaviour
                 {
                     popUpsIndex++;
                     timer = timer_timer;
+                    Next_Button.SetActive(true);
                 }
             }
 
         }else if(popUpsIndex == 17) // Reparacion
         {
-           if(Input.touchCount > 0 || Input.GetMouseButton(0))
+           if(next)
             {
                 if(timer <= 0)
                 {
@@ -241,31 +261,41 @@ public class Tutorial_Manager : MonoBehaviour
                     timer = timer_timer;
                     Map.SetActive(true);
                     Map_button.SetActive(true);
+                    next = false;
                 }
             }
         }else if(popUpsIndex == 18) //Mapa
         {
-            if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            if(next)
             {
                 if(timer <= 0)
                 {
                     popUpsIndex++;
                     timer = timer_timer;
                     UI_Manager.Instance.Map_Activation();
+                    next = false;
                 }
             }
         }else if(popUpsIndex == 19) //Listo
         {
-            if(Input.touchCount > 0 || Input.GetMouseButton(0))
+            if(next)
             {
                 if(timer <= 0)
                 {
                     Game_Manager.Instance.Tutorial = false;
                     popUps[popUpsIndex].SetActive(false);
+                    Ready_button.SetActive(true);
                     Target_Manager.Instance.Activate_Indicators(Wave_Manager.Instance.Check_Wave_Paths());
                     Game_Manager.Instance.Pause();
+                    Next_Button.SetActive(false);
+                    next = false;
                 }
             }
         }
+    }
+
+    public void Next_Pop_Up()
+    {
+        next = true;
     }
 }

@@ -34,7 +34,7 @@ namespace Enemies
         [SerializeField] private Animator animator;
         private SpriteRenderer _renderer;
         private ParticleSystem particle;
-        [SerializeField] GameObject protection_Icon, speed_Icon;
+        [SerializeField] GameObject protection_Icon, speed_Icon,touch_Icon;
         private float stun_Timer,ColRed_timer;
         protected abstract void Power();
         public enum BehaviourParams
@@ -224,6 +224,17 @@ namespace Enemies
         private void Reach(){_OnReach(this,damage_To_Player);}
         public void Config(Action<Enemy, int> _OnDeath, Action<Enemy, int> _OnReach, int path_Index)
         {
+            if(touch_Icon != null)
+            {
+                if(Game_Manager.Instance.Tutorial)
+                {
+                    touch_Icon.SetActive(true);
+                }
+                else
+                {
+                    touch_Icon.SetActive(false);
+                }
+            }
             speed = Game_Manager.Instance.Tutorial ? config.speed/3 :config.speed;
             Current_Speed = speed; 
             door_Damage = config.door_Damage;
